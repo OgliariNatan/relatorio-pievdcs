@@ -1,382 +1,194 @@
 
+%
+%         Destinado a confecção do relatorio
+%
+%
 \section{Introdução}
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
   \vspace {1cm}
-  \begin{description}
-    \item [Banana] Exemplo de mini página com figura e seus respectivos rotulos, para que sejam referenciados ao decorrer do texto.
-    \item [Maça] Veja que a Figura \ref{fig:place}, está reservando um espaço para adição de figuras, e o mesmo já esta referenciando seu autor e sua nomeclatura com o indice automatico.
-  \end{description}
+  A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência, promovendo agilidade e efetividade no atendimento às vítimas e concientização dos agressores.
+
+  Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma não apenas melhora o presente — ela transforma o futuro, criando condições para que novas gerações cresçam em ambientes mais seguros, protegidos e livres da normalização da violência doméstica.
 
 \end{minipage}
 \begin{minipage}[c]{0.4\textwidth}
-  \captionof{figure}{Placeholder.}
-  \includegraphics[width=\textwidth]{figure/placeholder.jpg}
-  \label{fig:place}
+  \captionof{figure}{logo PIEVDCS.}
+  \includegraphics[width=\textwidth]{figure/logo_PIEVDCS.png}
+  \label{figlogo_PIEVDCS}
   {\fontsize{10pt}{\baselineskip}\selectfont
-    Fonte: \citeonline{linux:2023}}
+    Fonte: O autor (2025)}
 \end{minipage}
+
+\par O desenvolvimento da plataforma foi viabilizado por meio de verba oriunda do Poder Judiciário da Comarca de Maravilha/SC. Um aspecto singular do projeto é a participação direta de um reeducando do Presídio Regional de Maravilha como responsável técnico pelo desenvolvimento da solução. O reeducando, com formação técnica, atua sob supervisão institucional, aplicando seus conhecimentos de forma produtiva e qualificada, demonstrando que a ressocialização é viável e impactante.
+
+\par Este relatório documenta o progresso técnico da implementação, destacando as funcionalidades já desenvolvidas, os métodos utilizados e as etapas pendentes até a entrega final.
+
+\section{Tecnologias utilizadas}
+\par A escolha das tecnologias adotadas neste projeto foi pautada, sobretudo, por seu caráter \textit{Open Source} (código aberto), o que proporciona significativa economia ao eliminar custos com licenciamento. Dessa forma, os investimentos se concentram exclusivamente em aspectos de infraestrutura, como servidores e equipe técnica especializada.
+\par Além disso, o desenvolvedor considera que as informações sensíveis contempladas por esta plataforma devem permanecer sob responsabilidade do Estado, não devendo ser compartilhadas com empresas privadas, como serviços de hospedagem em nuvem ou soluções de inteligência artificial de terceiros. Ressalta-se, contudo, que, na fase de validação, a plataforma está hospedada em serviços de terceiros.
+
+\subsection{Framework: Django}
+\par Segundo \citeonline{django:2025}, Django é um framework de desenvolvimento web escrito em Python, amplamente reconhecido por acelerar a criação de aplicações robustas e escaláveis. Seu diferencial está na abordagem \textit{"batteries included"}, oferecendo nativamente funcionalidades essenciais como autenticação, painel administrativo, mapeamento objeto-relacional (ORM) e roteamento de URLs.
+\par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}, como \texttt{scikit-learn}, \texttt{TensorFlow} e \texttt{PyTorch}. Isso viabiliza, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
+
+\subsection{Banco de dados: PostgreSQL}
+\par \citeonline{postgresql:2025} é um sistema de gerenciamento de banco de dados objeto-relacional de código aberto, com mais de 35 anos de desenvolvimento ativo,considerado um dos mais avançados e robustos do mercado. Conta com integração nativa ao Django.
+
+\subsection{Tailwind CSS}
+\par O \citeonline{tailwindCSS:2025} é um framework de estilo baseado em classes utilitárias, que permite o desenvolvimento rápido de interfaces personalizadas e responsivas. Sua abordagem facilita a manutenção e reutilização de estilos, promovendo consistência visual e produtividade no desenvolvimento front-end, Mantendo os padrões de desenvolvimento de Experiência do Usuário/Interface do Usuário (UX/UI).
+
+\subsection{Chart.js}
+\par \citeonline{Chartjs:2025} é uma biblioteca JavaScript especializada na renderização de gráficos interativos e responsivos. Utilizada para a visualização dos dados gerados pela aplicação, permite criar diferentes tipos de gráficos (como barras, linhas, setores dentre outras opções), proporcionando clareza e insights para os usuários.
+\par A biblioteca foi criada e mantida pelos \href{https://github.com/chartjs/Chart.js/graphs/contributors}{Voluntários}. \\
+Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
+
+\subsection{Leaflet.js com OpenStreetMap}
+\par \citeonline{Leafletjss:2025} é uma biblioteca JavaScript leve para a criação de mapas interativos. Em conjunto com a plataforma \href{https://www.openstreetmap.org/#map=7/-26.613/-50.746}{OpenStreetMap}, oferece uma base cartográfica gratuita e de alta qualidade. No contexto do projeto, foi empregada para a representação geoespacial de dados, com funcionalidades como marcação de locais, camadas e interações de usuário.
+
+\subsection{jQuery}\label{jQuery}
+\par \citeonline{jquery:2025} é uma biblioteca JavaScript amplamente utilizada para simplificar operações no DOM\footnote{Document Object Model (Modelo de Objeto de Documento) permite alterar parte do conteudo da página web sem a necessidade de recarregar toda a página.}, gerenciamento de eventos e requisições assíncronas (AJAX)\footnote{(Asynchronous JavaScript and XML) Permite comunicação em segundo plano com o servidor sem recarregar a página.}. No projeto, ela contribui para tornar a navegação mais fluida e as interações mais dinâmicas, além de facilitar a integração com outras bibliotecas e funcionalidades da aplicação.
+
+\section{Implementação para testes e validações}
+\par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python}\ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
+
+\subsection{Dos Scripts}\label{script}
+\par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, sendo desde a configurações de Municípios, Comarcas até a inserção de valores fictícios para validação da plataforma com os usuários finais.
+\par Funcionalidades já implementadas nos \textit{script}
+
+\begin{description}
+   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado n vezes, pois só cria se não existir.
+   \item [Atribui Município] Script que atibui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado".
+   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas} - Funcionalidade de configuração - a futuro, complementar para a inserção de todas as comarcas da federação com seus respectivos \textit{foro}. Função a ser executada após o "Atribui Município".
+   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Pode ser utilizada quantas vezes for necessárias.
+   \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente.
+   \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas protetivas e Medidas protetivas de urgência e cadastra na seção competente a \textbf{Defensoria Pública}.
+   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possa ser inserido usuários pertinentes as suas instituições e suas permissões. [\textit{CAPS, CRAS, CREAS, Conselho Tutelar, Sevretaria de Saúde, Polícia Penal, Polícia Militar, Polícia Civil, Polícia Científica, Poder Judiciário, Ministério Público e Defensoria Pública}].
+ \end{description}
+
+%\lstinputlisting[language=python, caption={código externo}, label={cod:externo}]{main.c} %Busca os codigos na pasta /cod
+
+
+\subsection{Hostinger}
+\par A Hostinger é uma empresa global de hospedagem de sites que oferece serviços como hospedagem compartilhada, VPS (Servidor Virtual Privado), hospedagem em nuvem, registro de domínios e criador de sites. Fundada em 2004, a empresa se destacou no mercado por oferecer soluções acessíveis, com boa performance e suporte técnico multilíngue. Atualmente, a Hostinger atende milhões de clientes em todo o mundo e se tornou uma das principais opções para desenvolvedores, empreendedores e pequenas empresas que buscam presença online confiável e de fácil gerenciamento~\cite{hostinger2025}.
+\par Esta seção será subdividida em três partes: a aplicação da plataforma como serviço, o banco de dados em \textit{PostgreSQL} e o domínio de acesso via rede mundial de computadores.
+
+
+\subsubsection{Aplicação SaaS}
+\par A aplicação foi implementada em um servidor VPS (\textit{Virtual Private Server})\footnote{Servidor Virtual Privado: uma instância virtual isolada dentro de um servidor físico, com recursos próprios de CPU, RAM e armazenamento. Ideal para aplicações que exigem controle total do ambiente.} contratado junto à Hostinger, utilizando a infraestrutura como serviço (IaaS) oferecida pela plataforma. A instância VPS utilizada possui as seguintes configurações: \textbf{2 núcleos de CPU}, \textbf{8\,GB de memória RAM} e \textbf{100\,GB de armazenamento em disco SSD}.
+\par O plano contratado teve início em \textbf{05 de agosto de 2025}, com vigência de \textbf{1 ano}, totalizando um custo de \textbf{R\$563,88} para o período. Essa infraestrutura garante a escalabilidade e estabilidade necessárias para o funcionamento da aplicação, permitindo seu acesso contínuo via rede pública.
+\par A seguir, são descritos os principais recursos da VPS utilizada e o impacto de cada um no desempenho da aplicação:
+
+\begin{itemize}
+    \item \textbf{CPU (2 núcleos):} A quantidade de núcleos da CPU influencia diretamente na capacidade de processamento paralelo do servidor. Com dois núcleos, é possível atender múltiplas requisições simultâneas de forma eficiente, garantindo responsividade adequada da aplicação em cenários de uso moderado.
+
+    \item \textbf{Memória RAM (8\,GB):} A memória RAM é essencial para o carregamento de aplicações, bibliotecas, cache e o gerenciamento de múltiplas sessões de usuários. Com 8\,GB, a aplicação possui espaço suficiente para operar com fluidez, mesmo sob cargas de trabalho maiores, como múltiplos acessos simultâneos ou processamento de dados em tempo real.
+
+    \item \textbf{Armazenamento (100\,GB SSD):} O espaço em disco é utilizado para armazenar o código da aplicação, arquivos estáticos, banco de dados local e arquivos temporários. O uso de disco SSD, em comparação com HDs tradicionais, oferece maior velocidade de leitura e escrita, resultando em tempos de resposta mais rápidos e menor latência nas operações de I/O.
+\end{itemize}
+
+
+\subsubsection{O Banco de dados}
+\par Com relação ao banco de dados, a sua configuração ficou a cargo do PostgreSQL 14, com acesso local e configurações passadas para o Django através de variáveis de ambientes.
+
+\subsubsection{O domínio}
+\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.edecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP\footnote{IP é como se fosse o endereço da sua casa, mas na internet.} (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
+\par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é válido até 12/11/2025.
 
 
 \section{Métodos}
 
-\begin{algorithm}[H]
-  \SetAlgoLined %APAGAR
-  \KwData{Entrada do algoritimo}
-  \KwIn{entrada} \
-   \KwResult{Resultado do codigo} \
-   \While{$x = 0$}{
-    Leia atual \;
-    \eIf{$n = 2$}{
-     vá para aproxima seção \;
-     a seção atual se torna esta \;
-     }{
-     VOlta ao inicio da seção \;
-      \Return{EXIT}
-    }
-   }
-   \caption{Nome do algoritimo em Portugues}
-   {\fontsize{10pt}{\baselineskip}\selectfont
-   Fonte: O autor (2022)}
+A estrutura de desenvolvimento adotada é modular, baseada em aplicações Django (apps), com automações para carga de dados, visualização via dashboards\footnote{Os dashboards são interfaces gráficas que permitem a visualização de dados de forma interativa e dinâmica.} e controle granular de permissões por perfil institucional.
 
-\end{algorithm}
-\subsection{tabelas}
+Algumas técnicas adotadas incluem:
+\begin{itemize}
+\item Utilização de scripts para geração automática de dados (vítimas, agressores, municípios, medidas protetivas entre outros \textit{scripts}), visando a validação da plataforma.
+\item Criação de visualizações dinâmicas com \textit{Chart.js} e \textit{Leaflet.js}.
+\item Controle de acesso por meio de autenticação baseada em grupos e instituições.
+\item Templates responsivos desenvolvidos com \textit{TailwindCSS}.
+\item Envio e recebimento de requisições entre instituições.
+\item Implementação de endpoints REST com suporte a CORS e \textit{logging} customizado.
+\item Mecanismos de segurança como proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)}, tempo limite de sessão e separação de variáveis sensíveis com \textit{Dotenv}.
+\end{itemize}
 
-\begin{table}[H]
-\center
-  \caption{Criação do banco de dados}
-  \begin{tabular}{ | c | c  | c | c |}
-      \hline
-      \textbf{Nome} & \textbf{Cliente VIP} & EMAIL & TELEFONE \\
-          & (1-SIM / 0-Não)  &  &    \\
-      \hline
-          João & 1 & joao@email.com & 9999-1111, 8888-1111 \\
-      \hline
-          Marcos & 0 &  & 9999-2222 \\
-      \hline
-          Maria & 1 &maria@email.com & 9999-3333, 8888-3333, 9988-3000 \\
-      \hline
-  \end{tabular}
-  \label{tab:banco}
-  \flushleft % Alinha a esquerda a referencia
-  %\raggedleft
+\par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python ativo. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade e autonomia na configuração de ambientes complexos.
 
-  {\fontsize{10pt}{\baselineskip}\selectfont
-    Fonte: \citeonline{alguem2022nada}}
-\end{table}
-
+\par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
 \section{Resultados}
-\lipsum[2-2]
 
+A seguir estão listadas as principais funcionalidades já implementadas:
 
+\begin{itemize}
+    \item Estrutura de dados: modelos para vítimas, agressores, usuários e formulários;
+    \item Dashboards: relatórios gráficos interativos e mapas geográficos;
+    \item Interface: responsiva e modular, com herança de templates;
+    \item Segurança: autenticação, permissões e logs de middleware;
+    \item Documentação: instruções técnicas, README de cada app;
+    \item \textit{Script} de inserção de informações aleatórios;
+\end{itemize}
 
-\subsection{Qr CODE}
-\par Exemplo de acição de QRcode.
-\qrcode {https://dicionario.priberam.org/}
-\qquad
-QrCode com 5cm:
-\quad
-\qrcode[height=5cm]{https://github.com/OgliariNatan/Template-UNOPAR}
-
-\subsection{Dicionário}
-
-\par Sugiro este dicionário, para dividas quanto a línga.
-\quad
-\qrcode {https://dicionario.priberam.org/}
-
-\subsection{Código externo no main.c}
-\lstinputlisting[language=c, caption={código externo}, label={cod:externo}]{main.c} %Busca os codigos na pasta /cod
-
-
-
-
-\subsection{Banco de dados} \label{Banco de dados}
-
-$\underline{{\color{Blue} }}{\color{red} \, \: \: \left ( \iint_{\widetilde{ \theta }}^{\phi } \right )}  $
-
-\lipsum[2-4]
-
-\subsection{Algoritmo}
-\par Um exemplo de adição de Algoritmo. \\
-
-\begin{algorithm}[H]
-  \caption{Calculo da potênciação.}
-  \label{ap1.2}
-  \Entrada{a, b, valor}
-  \Saida{Valor da potênciação}
-  Var \\
-  a, b, valor: inteiro; \Comment {Declara as variável do tipo inteiro.}
-
-  \Inicio{
-    escreva ("Você deverá entrar com dois valores, sendo que eles deverão ser
-    positivos e inteiros.") \Comment {Inicio do algoritmo.} \\
-    escreva ("") \\
-    escreva ("Entre com o valor de a:") \\
-    leia (a) \\
-    escreva("Entre com o valor de b:") \\
-    leia(b) \\
-    $valor \leftarrow 1$ \\
-    \While{$b \neq 0$}{
-      $valor  \leftarrow  a  \times valor$ \\
-      $b \leftarrow b-1$
-    }
-    escreval ("A Potência é:", valor)
-    }
-    %Deixar um espaço
-
-    \raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: O autor (\ano)}
-\end{algorithm}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\par Aqui vai um exemplo de código em \LaTeX2e.
-
-\begin{algorithm} [H]
-	\caption{O nome do código}\label{alg:cap}
-
-	\begin{algorithmic} [H]
-		\Require $n \geq 0$	\Comment {n será maior ou igual a zero.}
-    \Require $x \geq 10$	\Comment {x será maior que 10.}
-		\Ensure $y = x^n$   	\Comment {adicionado.}
-    \Ensure $x = n $      \Comment{Idiota.}
-		\State $y \gets 1$
-		\State $X \gets x$
-		\State $N \gets n$
-%		\While{$N \neq 0$}
-%			\If{$N$ is even}
-%			 	   \State $X \gets X \times X$
-% 			   	\State $N \gets \frac{N}{2}$  \Comment{Aqui Vai o meu comentario}
-%			\ElsIf{$N = 0$ }
-%   				 \State $y \gets y \times X$
-%  			 	 \State $N \gets N - 1$
-%				\State $Xold \gets Xnew$
-%			\EndIf
-%		\EndWhile
-	\end{algorithmic}
-  %Deixar um espaço
-
-  \raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: O autor (\ano)}
-\end{algorithm}
-
-\subsection{Sub Figuras}
-
-\begin{figure}[H] %Figuras da aula pratica 1.1
-  \center
-  \caption{Resultado da aula prática}
-  \subfigure[ Algoritmo.\label{fig:pri2}]{\includegraphics[scale=0.4]{figure/placeholder.jpg}}
-  \subfigure[Comportamento.\label{fig:seg2}]{\includegraphics[scale=.4]{figure/placeholder.jpg}}
-  %\caption{Resultado da atividade prática 1.2, \cite{oliveira_SO2009}}
-  \label{fig:ap1_cod_vigual1}
-  %Deixar um espaço
-
-  \raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: \citeonline{oliveira_SO2009}}
-
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Seção que será apagada}
-
-Para referenciar utilize \cite{ninguem2022curioso}. Também pode ser citado integrada ao texto, de acordo com \citeonline{alguem2022nada}.
-
-Para inserir imagens adicione a figura no diretório \textit{/figure}
+\par Incluo algumas telas da plataforma -a sequência das imagens são aleatória-.
 
 \begin{figure}[H]
-\centering
-\caption{Exemplo de uma imagem externa em arquivo .pdf}
-\includegraphics[width=1\textwidth]{figure/Welcome to CoCalc.pdf}
-\label{fig:imagem_massa}
-%Deixar um espaço
-
-\raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: O autor (\ano)}
-
+    \center
+    \subfigure[ Tela de Login.\label{fig:login}]{\includegraphics[scale=0.5]{figure/login.png}}
+    \subfigure[Página aberta, estilo one-page.\label{fig:one-page}]{\includegraphics[scale=.2]{figure/one-page_1.png}}
+    \subfigure[Página aberta, estilo one-page 1.\label{fig:one-page1}]{\includegraphics[scale=.2]{figure/one-page_3.png}}
+    \subfigure[Página aberta, estilo one-page 2.\label{fig:one-page2}]{\includegraphics[scale=.2]{figure/one-page_2.png}}
+    \caption{Telas da plataforma, O autor}\label{fig:telas_plataforma}
 \end{figure}
-
-\par Estou usando \href {https://cocalc.com/} {CoCal}
-
-E para referenciar a figura \ref{fig:imagem_massa} utilize dessa forma.
-
-\begin{equation}
-  a + b = c \label{1}
-  $$ $$ %usado para pular linha
-  \sqrt{x} + \sqrt{\smash[b]{y}} + \sqrt{z}
-\end{equation}
-
-
-\par Exemplo de incerção de formula \eqref{1},
-
-\begin{equation}
-S = \left\{
-\begin{aligned}
-  a + b     &= 4\\
-  a \cdot b &= 4
-\end{aligned}
-\right.
-$$ $$% Usado para pular linha [não recomendado]
-\sum_{n<k,\;\text{$n$ odd}} nE_n
- \label{3}
-\end{equation}
-
-Aqui é um exemplo de rodapé. \footnote{Um exemplo de rodapé}
-
-\begin{equation}
-\int_{-L}^{L} sen \frac{m \pi x}{2}\,sen \frac{n \pi x}{2}\,dx =
-\left \{
-\begin{array}{cc}
-0, & m \neq n \\
-1, & m = n \\
-\end{array}
-\right.
-\end{equation}
-
-
-\subsection{Sub itens}
-
-\begin{enumerate}[label=\Roman{*}, ref=(\roman{*})]
-  \item fsfsdf
-  \item kugfhiuh
-\end{enumerate}
-
-\begin{asparaenum}
-\item Anterior ... \cite{ninguem2022curioso}
-\item Próximo ... \label{pl1}
-\end{asparaenum}
-
-\subsection{Plotação de gráficos}
-
-\begin{tikzpicture}
-
-  \begin{axis}[
-    title = Gráfico,
-    xlabel = $x$,
-    ylabel = {$f(x) = x^2 - x +4$}
-    ]
-    \addplot[color = red] {x^2 - x +4};
-    \addlegendentry{Teste de legenda.}
-
-  \end{axis}
-\end{tikzpicture}
-
-\subsection{Sub exemplo 3d}
-\begin{tikzpicture}
-\begin{axis}
-    [
-    view={60}{30},
-    ]
-\addplot3[
-    title = gráfico 3d,
-    domain=0:5*pi,
-    samples = 60,
-    samples y=0,
-]
-[color=green]({sin(deg(x))},
-{cos(deg(x))},
-{x});
-\addlegendentry{Teste de legenda.}
-\end{axis}
-\end{tikzpicture}
-
-\subsection{ Outro exemplo}
-
-\begin{tikzpicture}
-\begin{axis}[
-    title = título do gráfco,
-    axis lines = left,
-    xlabel = \(x\),
-    ylabel = {\(f(x)\)},
-]
-%define a parabula vermelha
-\addplot [
-    mark=*,
-    domain=-10:10,
-    samples=100,
-    color=red,
-]
-{x^2 - 2*x - 1};
-\addlegendentry{\(x^2 - 2x - 1\)}
-%define a parabula azul
-\addplot [
-    domain=-10:10,
-    samples=100,
-    color=blue,
-    ]
-    {x^2 + 2*x + 1};
-\addlegendentry{\(x^2 + 2x + 1\)}
-
-\end{axis}
-\end{tikzpicture}
-
-
-\subsubsection{Mais um exemplo}
-
-
-
+\par Foi desenvolvida uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são reais e baseadas nos registros da plataforma, mas tratadas com rigor técnico para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta dos locais de ocorrência.
 
 \begin{figure}[H]
-    \centering
-    \caption{Gráfico com arquivo externo}
-  \begin{tikzpicture}
-    \begin{axis}[title = Título do gráfco, xlabel = {$x$}, ylabel = {$y$}, label = grafico]
-      \addplot [red] table [x=a, y=c, col sep=comma] {cod/data.csv};
-      \addplot [blue] table [x=a, y=b, col sep=comma] {cod/file.csv};
-      \addlegendentry{{$x \exp(-x^2-y^2)$}}
-    \end{axis}
-  \end{tikzpicture}
-  %Deixar um espaço
+    \center
+    \subfigure[Gráfico da Etinia e Classe Econômica.\label{fig:car_map1}]{\includegraphics[scale=.2]{figure/info_3.png}}
+    \subfigure[Gráfico do Grau de Instrução e Grau de Parentesco.\label{fig:car_map1}]{\includegraphics[scale=.2]{figure/info_1.png}}
+    \subfigure[Frases Motivacionais e alguns indicadores.\label{fig:car_fras}]{\includegraphics[scale=.4]{figure/info_2.png}}
+    \subfigure[Gráfico Geográfico dos tipos de vilência.\label{fig:car_map}]{\includegraphics[scale=.5]{figure/cards_map.png}}
+    \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma}
+\end{figure}
 
-  \raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: O autor (\ano)}
+\par Esta sendo criada telas para cada instituição que terá acesso a plataforma e cada instituição terá determinado acesso e cada funcionalidade e \textit{layout}, das instituições ficará a cargo de cada representante da referida, em ajustar com o desenvolvedor, para usabilidade.
+
+\begin{figure}[H]
+    \center
+    \subfigure[Seleção das instituições.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/institui.png}}
+    \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.3]{figure/pp_home.png}}
+    \caption{Telas institucionais, O autor}\label{fig:telas_plataforma}
 \end{figure}
 
 
 
-\section{Conclusões}
+Funcionalidades em desenvolvimento:
+\begin{itemize}
+    \item \textbf{Módulo de Atendimento Municipal} CRAS, CAPS, CREAS, Conselho Tutelar e Secretaria da Saúde
+    \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
+    \item \textbf{Notificações e Alertas} Sistema de notificações internas e externas
+    \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
+    \item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
+    \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
 
-\begin{algorithm}
-\DontPrintSemicolon
-\KwData{Ponteiros randomicos.} \Comment{Testando meu comentario} \\
-\KwResult{Ordenação de vetores, e concatenação de vetores.}
+\end{itemize}
 
-\Begin{ \Comment{Inicio do meu algoritimo.} \\
-$V \longleftarrow X$\;
-$S \longleftarrow \emptyset$\;
-\For{$x\in X$}{
-  $NbSuccInS(x) \longleftarrow 0$\;
-  $NbPredInMin(x) \longleftarrow 0$\;
-  $NbPredNotInMin(x) \longleftarrow |ImPred(x)|$\;
-}
-\For{$x \in X$}{
-  \If{$ponteiroValido() = 1$ {\bf and} $filaVazia() = 1$}{
-    $SOMA4()$}
-    }
-\nl\While{$S \neq \emptyset$}{\label{InRes1}
-\nlset{REM} remove $x$ from the list of $T$ of maximal index\;\label{InResR}
-\lnl{InRes2}\While{$|S \cap ImSucc(x)| \neq |S|$}{
-\For{$ y \in S-ImSucc(x)$}{
-\{ remove from $V$ all the arcs $zy$ : \}\;
-\For{$z \in ImPred(y) \cap Min$}{
-remove the arc $zy$ from $V$\;
-$NbSuccInS(z) \longleftarrow NbSuccInS(z) - 1$\;
-move $z$ in $T$ to the list preceding its present list\;
-\{i.e. If $z \in T[k]$, move $z$ from $T[k]$ to
-$T[k-1]$\}\;
-}
-$NbPredInMin(y) \longleftarrow 0$\;
-$NbPredNotInMin(y) \longleftarrow 0$\;
-$S \longleftarrow S - \{y\}$\;
-$AppendToMin(y)$\;
-}
-}
-$RemoveFromMin(x)$\;
-}
-}
-\caption{Exemplo de algoritimo}
-%Deixar um espaço
-
-\raggedright{\fontsize{10pt}{\baselineskip}\selectfont Fonte: O autor (\ano)}
-\end{algorithm}
+Funcionalidades Pendentes:
+\begin{itemize}
+    \item Integração com sistemas externos (e-eproc, MP, Defensoria, SISP)
+    \item Documentação Técnica Detalhada (Swagger/OpenAPI)
+    \item Aprimoramento de UX/UI para acessibilidade
+    \item Implantação em ambiente de produção e automação de deploy
+    \item Aprimoramento de Segurança, Auditoria de logs, permissões granulares, autenticação de dois fatores
+\end{itemize}
 
 
-  %$X \xLongleftarrow[\text{NATAN}]{\text{OGLIARI}} Y $ %COM TEXTO
-	% $\uparrow$ %Seta para Cima
-	%$\overleftarrow{NATAN}$
+\section{Conclusão}
+
+\par O projeto PIEVDCS encontra-se em estágio intermediário de desenvolvimento, com cerca de 30\% das funcionalidades previstas já implementadas. Entre os avanços, destacam-se a estrutura básica da aplicação, os modelos de dados principais, a interface inicial e os primeiros dashboards de visualização.
+
+\par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
+
+\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. No entanto, \textbf{não há um prazo final fixo para a entrega}, sem extrapolar o período da prestação de contas-, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interresadas).
+
+\par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões e contextos.
+
+\par Além de seu impacto direto no enfrentamento à violência de gênero, o projeto promove inclusão e ressocialização, ao contar com a atuação técnica de um reeducando em ambiente supervisionado. A proposta comprova o potencial transformador da tecnologia aliada à reintegração social.
