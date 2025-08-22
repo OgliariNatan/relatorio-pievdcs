@@ -33,13 +33,13 @@
 \par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}, como \texttt{scikit-learn}, \texttt{TensorFlow} e \texttt{PyTorch}. Isso viabiliza, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
 
 \subsection{Banco de dados: PostgreSQL}
-\par \citeonline{postgresql:2025} é um sistema de gerenciamento de banco de dados objeto-relacional de código aberto, considerado um dos mais avançados e robustos do mercado.
+\par \citeonline{postgresql:2025} é um sistema de gerenciamento de banco de dados objeto-relacional de código aberto, com mais de 35 anos de desenvolvimento ativo,considerado um dos mais avançados e robustos do mercado. Conta com integração nativa ao Django.
 
 \subsection{Tailwind CSS}
 \par O \citeonline{tailwindCSS:2025} é um framework de estilo baseado em classes utilitárias, que permite o desenvolvimento rápido de interfaces personalizadas e responsivas. Sua abordagem facilita a manutenção e reutilização de estilos, promovendo consistência visual e produtividade no desenvolvimento front-end, Mantendo os padrões de desenvolvimento de Experiência do Usuário/Interface do Usuário (UX/UI).
 
 \subsection{Chart.js}
-\par \citeonline{Chartjs:2025} é uma biblioteca JavaScript especializada na renderização de gráficos interativos e responsivos. Utilizada para a visualização dos dados gerados pela aplicação, permite criar diferentes tipos de gráficos (como barras, linhas e radar), proporcionando clareza e insights para os usuários.
+\par \citeonline{Chartjs:2025} é uma biblioteca JavaScript especializada na renderização de gráficos interativos e responsivos. Utilizada para a visualização dos dados gerados pela aplicação, permite criar diferentes tipos de gráficos (como barras, linhas, setores dentre outras opções), proporcionando clareza e insights para os usuários.
 \par A biblioteca foi criada e mantida pelos \href{https://github.com/chartjs/Chart.js/graphs/contributors}{Voluntários}. \\
 Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
@@ -47,7 +47,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par \citeonline{Leafletjss:2025} é uma biblioteca JavaScript leve para a criação de mapas interativos. Em conjunto com a plataforma \href{https://www.openstreetmap.org/#map=7/-26.613/-50.746}{OpenStreetMap}, oferece uma base cartográfica gratuita e de alta qualidade. No contexto do projeto, foi empregada para a representação geoespacial de dados, com funcionalidades como marcação de locais, camadas e interações de usuário.
 
 \subsection{jQuery}\label{jQuery}
-\par \citeonline{jquery:2025} é uma biblioteca JavaScript amplamente utilizada para simplificar operações no DOM, gerenciamento de eventos e requisições assíncronas (AJAX). No projeto, ela contribui para tornar a navegação mais fluida e as interações mais dinâmicas, além de facilitar a integração com outras bibliotecas e funcionalidades da aplicação.
+\par \citeonline{jquery:2025} é uma biblioteca JavaScript amplamente utilizada para simplificar operações no DOM\footnote{Document Object Model (Modelo de Objeto de Documento) permite alterar parte do conteudo da página web sem a necessidade de recarregar toda a página.}, gerenciamento de eventos e requisições assíncronas (AJAX)\footnote{(Asynchronous JavaScript and XML) Permite comunicação em segundo plano com o servidor sem recarregar a página.}. No projeto, ela contribui para tornar a navegação mais fluida e as interações mais dinâmicas, além de facilitar a integração com outras bibliotecas e funcionalidades da aplicação.
 
 \section{Implementação para testes e validações}
 \par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python}\ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
@@ -58,18 +58,19 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 \begin{description}
    \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado n vezes, pois só cria se não existir.
-   \item [Atribui Município] Script que atibui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente - função de configuração.
-   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas} - Funcionalidade de configuração - a futuro, complementar para a inserção de todas as comarcas da federação com seus respectivos \textit{foro}.
-   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente.
+   \item [Atribui Município] Script que atibui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado".
+   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas} - Funcionalidade de configuração - a futuro, complementar para a inserção de todas as comarcas da federação com seus respectivos \textit{foro}. Função a ser executada após o "Atribui Município".
+   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Pode ser utilizada quantas vezes for necessárias.
    \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente.
    \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas protetivas e Medidas protetivas de urgência e cadastra na seção competente a \textbf{Defensoria Pública}.
+   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possa ser inserido usuários pertinentes as suas instituições e suas permissões. [\textit{CAPS, CRAS, CREAS, Conselho Tutelar, Sevretaria de Saúde, Polícia Penal, Polícia Militar, Polícia Civil, Polícia Científica, Poder Judiciário, Ministério Público e Defensoria Pública}].
  \end{description}
 
 %\lstinputlisting[language=python, caption={código externo}, label={cod:externo}]{main.c} %Busca os codigos na pasta /cod
 
 
 \subsection{Hostinger}
-\par A Hostinger é uma empresa global de hospedagem de sites que oferece serviços como hospedagem compartilhada, VPS, hospedagem em nuvem, registro de domínios e criador de sites. Fundada em 2004, a empresa se destacou no mercado por oferecer soluções acessíveis, com boa performance e suporte técnico multilíngue. Atualmente, a Hostinger atende milhões de clientes em todo o mundo e se tornou uma das principais opções para desenvolvedores, empreendedores e pequenas empresas que buscam presença online confiável e de fácil gerenciamento~\cite{hostinger2025}.
+\par A Hostinger é uma empresa global de hospedagem de sites que oferece serviços como hospedagem compartilhada, VPS (Servidor Virtual Privado), hospedagem em nuvem, registro de domínios e criador de sites. Fundada em 2004, a empresa se destacou no mercado por oferecer soluções acessíveis, com boa performance e suporte técnico multilíngue. Atualmente, a Hostinger atende milhões de clientes em todo o mundo e se tornou uma das principais opções para desenvolvedores, empreendedores e pequenas empresas que buscam presença online confiável e de fácil gerenciamento~\cite{hostinger2025}.
 \par Esta seção será subdividida em três partes: a aplicação da plataforma como serviço, o banco de dados em \textit{PostgreSQL} e o domínio de acesso via rede mundial de computadores.
 
 
@@ -88,30 +89,31 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 
 \subsubsection{O Banco de dados}
-\par Com relação ao banco de dados, a sua configuração ficou a cargo do PostgreSQL 14, com acesso local e configurações passadas para o Django através de variaveis de ambientes.
+\par Com relação ao banco de dados, a sua configuração ficou a cargo do PostgreSQL 14, com acesso local e configurações passadas para o Django através de variáveis de ambientes.
 
 \subsubsection{O domínio}
-\par O domínio a ser utilizado é o \href{http://redecontraaviolencia.org}{http://redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}.
+\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.edecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP\footnote{IP é como se fosse o endereço da sua casa, mas na internet.} (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
+\par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é válido até 12/11/2025.
 
 
 \section{Métodos}
 
-A estrutura de desenvolvimento adotada é modular, baseada em aplicações Django (apps), com automações para carga de dados, visualização via dashboards e controle granular de permissões por perfil institucional.
+A estrutura de desenvolvimento adotada é modular, baseada em aplicações Django (apps), com automações para carga de dados, visualização via dashboards\footnote{Os dashboards são interfaces gráficas que permitem a visualização de dados de forma interativa e dinâmica.} e controle granular de permissões por perfil institucional.
 
 Algumas técnicas adotadas incluem:
 \begin{itemize}
-\item Utilização de scripts para geração automática de dados (vítimas, agressores, municípios, medidas protetivas), visando a validação da plataforma.
+\item Utilização de scripts para geração automática de dados (vítimas, agressores, municípios, medidas protetivas entre outros \textit{scripts}), visando a validação da plataforma.
 \item Criação de visualizações dinâmicas com \textit{Chart.js} e \textit{Leaflet.js}.
 \item Controle de acesso por meio de autenticação baseada em grupos e instituições.
 \item Templates responsivos desenvolvidos com \textit{TailwindCSS}.
 \item Envio e recebimento de requisições entre instituições.
 \item Implementação de endpoints REST com suporte a CORS e \textit{logging} customizado.
-\item Mecanismos de segurança como proteção CSRF, tempo limite de sessão e separação de variáveis sensíveis com \textit{Decouple}.
+\item Mecanismos de segurança como proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)}, tempo limite de sessão e separação de variáveis sensíveis com \textit{Dotenv}.
 \end{itemize}
 
-\par O desenvolvimento da plataforma está sendo realizado inicialmente em ambiente Windows 11, com ambiente virtual Python ativo. Após a chegada da estação de trabalho com maior poder computacional, será realizada a migração para um sistema operacional baseado em Linux (Ubuntu), em virtude da sua flexibilidade e autonomia na configuração de ambientes complexos.
+\par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python ativo. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade e autonomia na configuração de ambientes complexos.
 
-\par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}). Na versão de produção, será adotado o servidor \textbf{Apache} ou \textbf{Nginx}. O \textit{deploy} da aplicação será feito na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
+\par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
 \section{Resultados}
 
