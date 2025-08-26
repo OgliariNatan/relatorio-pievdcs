@@ -49,6 +49,11 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \subsection{jQuery}\label{jQuery}
 \par \citeonline{jquery:2025} é uma biblioteca JavaScript amplamente utilizada para simplificar operações no DOM\footnote{Document Object Model (Modelo de Objeto de Documento) permite alterar parte do conteudo da página web sem a necessidade de recarregar toda a página.}, gerenciamento de eventos e requisições assíncronas (AJAX)\footnote{(Asynchronous JavaScript and XML) Permite comunicação em segundo plano com o servidor sem recarregar a página.}. No projeto, ela contribui para tornar a navegação mais fluida e as interações mais dinâmicas, além de facilitar a integração com outras bibliotecas e funcionalidades da aplicação.
 
+\subsection{Ollama: Execução Local de Modelos de Linguagem}
+\par A execução de Modelos de Linguagem de Grande Escala (LLMs) será realizada utilizando a plataforma \texttt{Ollama}, que permite rodar modelos como LLaMA, Mistral e Gemma diretamente no ambiente local, sem necessidade de conexão com servidores externos. Segundo \citeonline{ollama:2025}, a proposta da ferramenta é “facilitar a execução de grandes modelos de linguagem localmente”, o que contribui para maior privacidade e controle sobre os dados processados.
+\par A execução dos modelos será realizada com suporte de uma GPU \texttt{NVIDIA RTX 2000 ADA}, equipada com 16GB de memória dedicada. Embora não seja a mais potente da linha, essa placa gráfica oferece recursos suficientes para testes locais com modelos otimizados, como os disponíveis na plataforma Ollama. Seu uso viabiliza a aceleração das inferências, mesmo que com tempos de resposta mais elevados em modelos de maior complexidade.
+
+
 \section{Implementação para testes e validações}
 \par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python}\ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
 
@@ -111,7 +116,9 @@ Algumas técnicas adotadas incluem:
 \item Mecanismos de segurança como proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)}, tempo limite de sessão e separação de variáveis sensíveis com \textit{Dotenv}.
 \end{itemize}
 
-\par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python ativo. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade e autonomia na configuração de ambientes complexos.
+\par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python ativo. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade, autonomia na configuração de ambientes complexos e implementações de inteligências artificiais no ambiente de desenvolvimento local.
+
+\par Estão sendo implementados modelos de inteligência artificial utilizando o Ollama, com restrições específicas ao tema de violência doméstica e à Lei nº 11.340/2006 (Lei Maria da Penha). O objetivo é desenvolver uma assistente virtual capaz de oferecer atendimento qualificado às vítimas e ao público em geral, garantindo conformidade legal e segurança nas respostas.
 
 \par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
