@@ -1,19 +1,20 @@
-# relatorio-pievdcs
+# Relatório PIEVDCS
 
 Este projeto contém o relatório do Projeto Plataforma - Violência Doméstica e Crimes Sexuais (PIEVDCS).
 
 ## Estrutura do Projeto
-
-- `text/write.tex`: Arquivo principal do relatório em LaTeX
-- `make.sh`: Script para compilar o relatório
+- `main.tex`: Arquivo principal com capa e sumário e outras componentes textuais
+- `text/write.tex`: Arquivo do relatório em LaTeX
+- `text/ref.bib`: Referências
 - `figure/`: Imagens utilizadas no relatório
 - `cod/`: Códigos e dados utilizados
-- `structure/`: Estrutura do relatório
-- `text/ref.bib`: Referências
+- `structure/report.tex`: Estrutura do relatório
+- `make.sh`: Script para compilar o relatório
+
 
 ## Como compilar o relatório
 
-Para compilar o relatório, utilize o script `make.sh`:
+Para compilar o relatório, utilize o script `make.sh`: <br>
 torne-se executável:
 
 ```bash
