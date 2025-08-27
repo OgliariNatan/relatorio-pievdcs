@@ -178,18 +178,54 @@ Funcionalidades em desenvolvimento:
     \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
     \item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
     \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
-
+    \item Implantação em ambiente de produção e automação de deploy na plataforma \textit{Hostinger}
 \end{itemize}
+
 
 Funcionalidades Pendentes:
 \begin{itemize}
     \item Integração com sistemas externos (e-eproc, MP, Defensoria, SISP)
     \item Documentação Técnica Detalhada (Swagger/OpenAPI)
     \item Aprimoramento de UX/UI para acessibilidade
-    \item Implantação em ambiente de produção e automação de deploy
+    
     \item Aprimoramento de Segurança, Auditoria de logs, permissões granulares, autenticação de dois fatores
 \end{itemize}
 
+\subsection{Assistente virtual com IA}
+
+\par A assistente virtual com inteligência artificial será uma das funcionalidade do projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, o assistente será capaz de compreender e responder a perguntas, fornecer orientações e realizar tarefas automatizadas.
+\par Implementado e testado alguns modelos de linguagem com Ollama, algumas figuras de desempenho e respostas obtidas. Frisa-se que, alguns modelos detem de um elevado tempo de respostas isso é devido a restrição de \textit{hardware}.
+
+
+\begin{figure}[H]
+    \center
+    \subfigure[Perguntado para a IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/pergunta.png}}
+    \subfigure[Resposta final da IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
+    \subfigure[Tempo para resposta.\label{fig:home_pp}]{\includegraphics[scale=.3]{figure/IA_1/tempo.png}}
+    \caption{Modelo llama3:70b, O autor}\label{fig:modelos_ia}
+\end{figure}
+
+
+
+\begin{algorithm}
+     \KwIn{Entendo sua pergunta sobre: "58"} \
+
+\KwResult{ Posso ajudar com informações sobre: \\
+• Medidas protetivas - Como solicitar proteção judicial \\
+• Documentos necessários - O que levar para denunciar \\
+• Acolhimento - Rede de apoio disponível \\
+• Tipos de violência - Física, psicológica, sexual, etc. \\
+• Direitos da vítima - Garantias legais \\
+• Como denunciar - Passo a passo
+
+Por favor, seja mais específica ou escolha um dos tópicos acima. \\
+
+ Emergência: 190 | Central da Mulher: 180}
+
+ \caption{Interação com o Modelo llama3:70b}
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2025)}
+\end{algorithm}
 
 \section{Conclusão}
 
@@ -198,6 +234,8 @@ Funcionalidades Pendentes:
 \par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
 
 \par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. No entanto, \textbf{não há um prazo final fixo para a entrega}, sem extrapolar o período da prestação de contas-, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interresadas).
+
+\par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
 
 \par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões e contextos.
 
