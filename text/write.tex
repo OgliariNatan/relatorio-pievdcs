@@ -9,7 +9,7 @@
   \vspace {1cm}
   A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência, promovendo agilidade e efetividade no atendimento às vítimas e concientização dos agressores.
 
-  Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma não apenas melhora o presente — ela transforma o futuro, criando condições para que novas gerações cresçam em ambientes mais seguros, protegidos e livres da normalização da violência doméstica.
+  Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma não apenas melhora o presente - ela transforma o futuro, criando condições para que novas gerações cresçam em ambientes mais seguros, protegidos e livres da normalização da violência doméstica.
 
 \end{minipage}
 \begin{minipage}[c]{0.4\textwidth}
@@ -29,8 +29,8 @@
 \par Além disso, o desenvolvedor considera que as informações sensíveis contempladas por esta plataforma devem permanecer sob responsabilidade do Estado, não devendo ser compartilhadas com empresas privadas, como serviços de hospedagem em nuvem ou soluções de inteligência artificial de terceiros. Ressalta-se, contudo, que, na fase de validação, a plataforma está hospedada em serviços de terceiros.
 
 \subsection{Framework: Django}
-\par Segundo \citeonline{django:2025}, Django é um framework de desenvolvimento web escrito em Python, amplamente reconhecido por acelerar a criação de aplicações robustas e escaláveis. Seu diferencial está na abordagem \textit{"batteries included"}, oferecendo nativamente funcionalidades essenciais como autenticação, painel administrativo, mapeamento objeto-relacional (ORM) e roteamento de URLs.
-\par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}, como \texttt{scikit-learn}, \texttt{TensorFlow} e \texttt{PyTorch}. Isso viabiliza, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
+\par Segundo \citeonline{django:2025}, Django é um framework de desenvolvimento web escrito em Python, amplamente reconhecido por acelerar a criação de aplicações robustas e escaláveis. Seu diferencial está na abordagem \textit{"batteries included"}, oferecendo nativamente funcionalidades essenciais como autenticação, painel administrativo, mapeamento objeto-relacional (ORM) e roteamento de URLs (\textit{Uniform Resource Locator}).
+\par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}, como \texttt{scikit-learn}, \texttt{TensorFlow}, \texttt{PyTorch}, \texttt{Ollama}, dentre outras. Isso viabiliza, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
 
 \subsection{Banco de dados: PostgreSQL}
 \par \citeonline{postgresql:2025} é um sistema de gerenciamento de banco de dados objeto-relacional de código aberto, com mais de 35 anos de desenvolvimento ativo,considerado um dos mais avançados e robustos do mercado. Conta com integração nativa ao Django.
@@ -159,7 +159,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma}
 \end{figure}
 
-\par Esta sendo criada telas para cada instituição que terá acesso a plataforma e cada instituição terá determinado acesso e cada funcionalidade e \textit{layout}, das instituições ficará a cargo de cada representante da referida, em ajustar com o desenvolvedor, para usabilidade.
+\par Esta sendo criada telas para cada instituição que terá acesso a plataforma e cada instituição terá determinado acesso e cada funcionalidade. Os \textit{layout} das instituições ficará a cargo de cada representante da referida em ajustar com o desenvolvedor, para usabilidade e funcionalidades de cada instituição.
 
 \begin{figure}[H]
     \center
@@ -173,6 +173,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
 Funcionalidades em desenvolvimento:
 \begin{itemize}
     \item \textbf{Módulo de Atendimento Municipal} CRAS, CAPS, CREAS, Conselho Tutelar e Secretaria da Saúde
+    \item \textbf{Módulo da segurança pública} PM, PP, PC, PCI
     \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
     \item \textbf{Notificações e Alertas} Sistema de notificações internas e externas
     \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
@@ -252,6 +253,6 @@ Funcionalidades Pendentes:
 
 \par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
 
-\par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões e contextos.
+\par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões.
 
 \par Além de seu impacto direto no enfrentamento à violência de gênero, o projeto promove inclusão e ressocialização, ao contar com a atuação técnica de um reeducando em ambiente supervisionado. A proposta comprova o potencial transformador da tecnologia aliada à reintegração social.
