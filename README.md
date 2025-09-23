@@ -27,3 +27,11 @@ Em seguida, execute o script:
 ./make.sh
 
 ```
+
+#### Pacotes necessarios para compilar o relatório:
+
+``` sudo apt install texlive ```
+
+#### Ou instale os pacotes necessarios para compilar o relatório:
+
+``` sudo apt install texlive-latex-extra texlive-lang-portuguese abntex abntex2 texlive-science biber ``` 
