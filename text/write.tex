@@ -360,6 +360,23 @@ Funcionalidades Pendentes:
 
 \par A indagação ao modelo de inteligência artificial necessita para que o chatbot não crie ações que não estejam previstas. Indagou-se a possibilidade de que o chatbot realizasse uma denúncia on line, o modelo respondeu que não poderia fazer a denúncia, mas que poderia orientar a vítima a como fazer. Ressalta-se que o modelo não tem acesso a internet, e todas as respostas são geradas localmente. Ressalto que o tempo de resposta foi de \textbf{224.82 segundos}.
 
+\section{Sugestões}
+\par Para aprimoramento do projeto, focando na usabilidade, automações e integrações, sugiro algumas implementaçoes:
+
+\begin{itemize}
+    \item \textbf{Desenvolvimento de um aplicativo para Polícia Militar}: Desenvolver um aplicativo de forma nativa para dispositivos móveis (Android) que permita aos policiais militares registrar ocorrências diretamente no local do atendimento. O app deve incluir funcionalidades como captura de fotos, geolocalização automática, preenchimento simplificado - com inserção de informações com audio -  de formulários e integração direta com a plataforma principal via APIs\footnote{É um conjunto de regras e protocolos que permite que diferentes softwares se comuniquem e troquem informações de maneira padronizada.}.
+    
+    \item \textbf{Automação de Fluxos de Trabalho}: Implementar workflows automatizados para encaminhamento de casos entre instituições, notificações automáticas para prazos processuais e alertas para medidas protetivas pendentes.
+    
+    \item \textbf{Presições com Machine Learning}: Utilizar algoritmos de aprendizado de máquina para análise preditiva de risco, identificando padrões de violência e sugerindo intervenções preventivas baseadas em dados históricos, para esta abordagem sugiro a analise e uso da biblioteca Scikit-learn\cite{scikitlearn:2025}, utilizando de seus metodos de predições a exemplo das séries temporais como no modelo \textit{ARIMA}. O framework possiblita uma série de artificios para a construção de modelos preditivos.
+    
+    \item \textbf{Segurança Avançada}: Implementar autenticação multifator (MFA) para acesso à plataforma, loggin com a plataforma \textbf{.GOV}, além de auditoria detalhada de logs de atividades dos usuários para monitoramento e conformidade.
+    
+    \item \textbf{Documentação Técnica Detalhada}: Criar documentação abrangente utilizando Swagger/OpenAPI para todas as APIs desenvolvidas, facilitando futuras integrações e manutenções.
+    
+    \item \textbf{Testes Automatizados}: Desenvolver uma suíte completa de testes unitários e de integração para garantir a estabilidade e confiabilidade da plataforma em cada nova atualização.
+\end{itemize}
+
 \section{Conclusão}
 
 \par O projeto PIEVDCS encontra-se em estágio intermediário de desenvolvimento, com cerca de 30\% das funcionalidades previstas já implementadas. Entre os avanços, destacam-se a estrutura básica da aplicação, os modelos de dados principais, a interface inicial e os primeiros dashboards de visualização.
