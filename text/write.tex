@@ -272,7 +272,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     \subfigure[Gráfico do Grau de Instrução e Grau de Parentesco.\label{fig:car_map1}]{\includegraphics[scale=.2]{figure/info_1.png}}
     \subfigure[Frases Motivacionais e alguns indicadores.\label{fig:car_fras}]{\includegraphics[scale=.4]{figure/info_2.png}}
     \subfigure[Gráfico Geográfico dos tipos de vilência.\label{fig:car_map2}]{\includegraphics[scale=.5]{figure/cards_map.png}}
-    \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma2}
+    \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma1}
 \end{figure}
 
 \par Esta sendo criada telas para cada instituição que terá acesso a plataforma e cada instituição terá determinado acesso e cada funcionalidade. Os \textit{layout} das instituições ficará a cargo de cada representante da referida em ajustar com o desenvolvedor, para usabilidade e funcionalidades de cada instituição.
@@ -281,7 +281,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     \center
     \subfigure[Seleção das instituições.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/institui.png}}
     \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.3]{figure/pp_home.png}}
-    \caption{Telas institucionais, O autor}\label{fig:telas_plataforma}
+    \caption{Telas institucionais, O autor}\label{fig:telas_plataforma2}
 \end{figure}
 
 
@@ -318,8 +318,8 @@ Funcionalidades Pendentes:
 \begin{figure}[H]
     \center
     \subfigure[Perguntado para a IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/pergunta.png}}
-    \subfigure[Resposta final da IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
-    \subfigure[Tempo para resposta.\label{fig:home_pp}]{\includegraphics[scale=.3]{figure/IA_1/tempo.png}}
+    \subfigure[Resposta final da IA.\label{fig:selecao_out}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
+    \subfigure[Tempo para resposta.\label{fig:time_response}]{\includegraphics[scale=.3]{figure/IA_1/tempo.png}}
     \caption{Modelo llama3:70b, O autor}\label{fig:modelos_ia}
 \end{figure}
 
@@ -360,15 +360,14 @@ Funcionalidades Pendentes:
 
 \par A indagação ao modelo de inteligência artificial necessita para que o chatbot não crie ações que não estejam previstas. Indagou-se a possibilidade de que o chatbot realizasse uma denúncia on line, o modelo respondeu que não poderia fazer a denúncia, mas que poderia orientar a vítima a como fazer. Ressalta-se que o modelo não tem acesso a internet, e todas as respostas são geradas localmente. Ressalto que o tempo de resposta foi de \textbf{224.82 segundos}.
 
-\section{Sugestões}
-\par Para aprimoramento do projeto, focando na usabilidade, automações e integrações, sugiro algumas implementaçoes:
+\section{Sugestões/Para implementações futuras}
+\par Para aprimoramento do projeto focando na usabilidade, automações e integrações, sugiro algumas implementações:
 
 \begin{itemize}
-    \item \textbf{Desenvolvimento de um aplicativo para Polícia Militar}: Desenvolver um aplicativo de forma nativa para dispositivos móveis (Android) que permita aos policiais militares registrar ocorrências diretamente no local do atendimento. O app deve incluir funcionalidades como captura de fotos, geolocalização automática, preenchimento simplificado - com inserção de informações com audio -  de formulários e integração direta com a plataforma principal via APIs\footnote{É um conjunto de regras e protocolos que permite que diferentes softwares se comuniquem e troquem informações de maneira padronizada.}.
+    \item \textbf{Desenvolvimento de um aplicativo para Polícia Militar}: Desenvolver um aplicativo de forma nativa para dispositivos móveis (Android) que permita aos policiais militares consultar/registrar ocorrências diretamente no local do atendimento. O app deve incluir funcionalidades como captura de fotos, geolocalização automática, preenchimento simplificado - com inserção de informações com áudio -  de formulários e integração direta com a plataforma principal via APIs\footnote{É um conjunto de regras e protocolos que permite que diferentes softwares se comuniquem e troquem informações de maneira padronizada.}.
     
-    \item \textbf{Automação de Fluxos de Trabalho}: Implementar workflows automatizados para encaminhamento de casos entre instituições, notificações automáticas para prazos processuais e alertas para medidas protetivas pendentes.
-    
-    \item \textbf{Presições com Machine Learning}: Utilizar algoritmos de aprendizado de máquina para análise preditiva de risco, identificando padrões de violência e sugerindo intervenções preventivas baseadas em dados históricos, para esta abordagem sugiro a analise e uso da biblioteca Scikit-learn\cite{scikitlearn:2025}, utilizando de seus metodos de predições a exemplo das séries temporais como no modelo \textit{ARIMA}. O framework possiblita uma série de artificios para a construção de modelos preditivos.
+        
+    \item \textbf{Predições com Machine Learning}: Utilizar algoritmos de aprendizado de máquina para análise preditiva de risco, identificando padrões de violência e sugerindo intervenções preventivas baseadas em dados históricos, para esta abordagem sugiro a análise e uso da biblioteca \href{https://scikit-learn.org/stable/index.html}{Scikit-learn}, utilizando de seus métodos de predições a exemplo das séries temporais como no modelo \textit{ARIMA}. O framework possiblita uma série de artifícios para a construção de modelos preditivos.
     
     \item \textbf{Segurança Avançada}: Implementar autenticação multifator (MFA) para acesso à plataforma, loggin com a plataforma \textbf{.GOV}, além de auditoria detalhada de logs de atividades dos usuários para monitoramento e conformidade.
     
