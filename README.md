@@ -35,3 +35,6 @@ Em seguida, execute o script:
 #### Ou instale os pacotes necessarios para compilar o relatório:
 
 ``` sudo apt install texlive-latex-extra texlive-lang-portuguese abntex abntex2 texlive-science biber ``` 
+
+# Relatório em .pdf
+[relatorio-pievdcs](https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf)
