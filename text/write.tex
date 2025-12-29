@@ -3,6 +3,11 @@
 %         Destinado a confecção do relatorio
 %
 %
+%
+% Variaveis 
+\def\numero_instituicoes{11}
+\def\tempo_secao{9000}
+%
 \section{Introdução}
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
@@ -20,6 +25,7 @@
 \end{minipage}
 \\
 \par Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma não apenas melhora o presente - ela transforma o futuro, criando condições para que novas gerações cresçam em ambientes mais seguros, protegidos e livres da normalização da violência doméstica.
+
 
 
 \par O desenvolvimento da plataforma foi viabilizado por meio de verba oriunda do Poder Judiciário da Comarca de Maravilha/SC. Um aspecto singular do projeto é a participação direta de um reeducando do Presídio Regional de Maravilha como responsável técnico pelo desenvolvimento da solução. O reeducando, com formação técnica, atua sob supervisão institucional, aplicando seus conhecimentos de forma produtiva e qualificada, demonstrando que a ressocialização é viável e impactante.
@@ -142,7 +148,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \begin{description}
    \item[\texttt{MAIN}] Aplicação principal que gerencia a estrutura base do projeto, incluindo configurações globais, roteamento de URLs, página inicial com conteúdos dinâmicos e cálculo de variáveis estatísticas compartilhadas entre módulos.
    
-   \item[\texttt{usuarios}] Gerencia autenticação, autorização e perfis de usuários customizados (\texttt{CustomUser}). Implementa grupos personalizados (\texttt{CustomGroup}) com permissões específicas por instituição, validação de CPF, telefone e comprovantes de vínculo institucional em formato PDF.
+   \item[\texttt{usuarios}] Gerencia autenticação, autorização e perfis de usuários customizados (\texttt{CustomUser}). Implementa grupos personalizados com permissões específicas por instituição.
    
    \item[\texttt{sistema\_justica}] Centraliza os módulos do sistema de justiça, subdividido em:
    \begin{itemize}
@@ -194,7 +200,7 @@ Algumas técnicas adotadas incluem:
 
 \item \textbf{Visualizações Dinâmicas}: Criação de dashboards interativos com \textit{Chart.js} para análise de tipos de violência, medidas protetivas por comarca, e mapas geográficos com \textit{Leaflet.js} para visualização espacial de ocorrências.
 
-\item \textbf{Controle Granular de Permissões}: Sistema de grupos customizados (\texttt{CustomGroup}) com permissões específicas por instituição, implementando diferentes níveis de acesso (visualização, adição, modificação) conforme o perfil institucional.
+\item \textbf{Controle Granular de Permissões}: Sistema de grupos customizados com permissões específicas por instituição, implementando diferentes níveis de acesso (visualização, adição, modificação) conforme o perfil institucional.
 
 \item \textbf{Templates Responsivos}: Interface desenvolvida com \textit{TailwindCSS}, garantindo adaptabilidade a diferentes dispositivos (desktop, tablets, smartphones).
 
@@ -202,7 +208,7 @@ Algumas técnicas adotadas incluem:
    \begin{itemize}
       \item Proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)};
       \item Configuração de CORS para APIs;
-      \item Sessões com tempo limite configurável (9000 segundos);
+      \item Sessões com tempo limite configurável (\tempo_secao{} segundos);
       \item Cookies HTTP-only e SameSite;
       \item Separação de variáveis sensíveis com \textit{Dotenv};
       \item Sistema de \textit{logging} customizado para auditoria.
@@ -231,13 +237,13 @@ A seguir estão listadas as principais funcionalidades já implementadas:
 \begin{itemize}
     \item \textbf{Estrutura de dados completa}: Modelos Django para vítimas, agressores, filhos, usuários, estados, municípios, comarcas e formulários especializados;
     
-    \item \textbf{Sistema de autenticação robusto}: Login customizado com usuários estendidos (\texttt{CustomUser}), incluindo validação de CPF, telefone, data de nascimento e vinculação institucional;
+    \item \textbf{Sistema de autenticação robusto}: Login customizado com usuários estendidos (\texttt{CustomUser}), CPF, telefone, data de nascimento, gênero, Foto de perfil e vinculação institucional;
     
-    \item \textbf{Gestão de grupos e permissões}: Sistema automatizado de criação de grupos institucionais (12 grupos) com permissões granulares específicas por app (Sistema de Justiça, Segurança Pública, Município);
+    \item \textbf{Gestão de grupos e permissões}: Sistema automatizado de criação de grupos institucionais (\numero_instituicoes{} grupos) com permissões granulares específicas por app (Sistema de Justiça, Segurança Pública, Município) e por instituições;
     
     \item \textbf{Formulário de Medida Protetiva extenso}: Implementado na Defensoria Pública com mais de 35 campos detalhados sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária;
     
-    \item \textbf{Registro de Ocorrências}: Polícia Militar (com 14 tipos de patrulha), Polícia Civil (investigação e flagrantes), Polícia Penal (atendimentos individuais e em grupo com agressores);
+    \item \textbf{Registro de Ocorrências e acompanhamentos}: Polícia Militar (com 14 tipos de patrulha), Polícia Civil (investigação e flagrantes), Polícia Penal (atendimentos individuais e em grupo com agressores);
     
     \item \textbf{Sistema de Notificações em Tempo Real}: WebSocket com Django Channels, envio para usuários/grupos, prioridades (Normal, Urgente, Crítica), status (Não lida, Lida, Arquivada);
     
@@ -251,7 +257,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     
     \item \textbf{Documentação}: Instruções técnicas e README detalhado de cada aplicação Django;
     
-    \item \textbf{Páginas Concluídas}: Login (com recuperação de senha), Página Inicial pública (conteúdos dinâmicos), Relatórios públicos, Home institucional das 12 instituições, Formulários de cadastro, Interface de notificações.
+    \item \textbf{Páginas Concluídas}: Login (com recuperação de senha), Página Inicial pública (conteúdos dinâmicos), Relatórios públicos, Home institucional das \numero_instituicoes{} instituições, Formulários de cadastro, Interface de notificações.
 \end{itemize}
 
 \par Incluo algumas telas da plataforma, a sequência das imagens são aleatórias.
@@ -374,6 +380,8 @@ Funcionalidades Pendentes:
     \item \textbf{Documentação Técnica Detalhada}: Criar documentação abrangente utilizando Swagger/OpenAPI para todas as APIs desenvolvidas, facilitando futuras integrações e manutenções.
     
     \item \textbf{Testes Automatizados}: Desenvolver uma suíte completa de testes unitários e de integração para garantir a estabilidade e confiabilidade da plataforma em cada nova atualização.
+    \item \textbf{Redundâncias de permissões} Implementar nas visualizações críticas verificações adicionais de permissões e usuários autentificados para evitar acessos indevidos. Caso o acesso seja indevido(Falta de login ou qualquer outro) registrar logging detalhado do evento e forcar "ERRO" ``` raise ValeuError("Comentario a ser exibido caso o 'DEBUG' esteja ativo") ```.
+    Esta abordagem suprime o erro ao usuário evitando informações para possivél ataque.
 \end{itemize}
 
 \section{Conclusão}
