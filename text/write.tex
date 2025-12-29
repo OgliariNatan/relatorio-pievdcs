@@ -142,50 +142,55 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é válido até 12/11/2025.
 
 \subsection{Do Desenvolvimento}
-\par Para o desenvolvimento - se entende como desenvolvimento, a variavel "DEBUG = True" no arquivo .env -, e comum a depuração de códigos em desenvolvimento, para tal, o desenvolvedor esta utilizando um artificio de impressão no terminal de informações que o considera importante e para que quando for implementado a solução em produção, seja desativado a depuração utiliza-se o seguinte padrão: 
+\par Durante o desenvolvimento da aplicação — entendido como o ambiente onde a variável \texttt{DEBUG = True} está configurada no arquivo \texttt{.env} —, é comum utilizar recursos de depuração de código. Para tal, o desenvolvedor implementou um mecanismo de impressão no terminal de informações consideradas relevantes. Esse artifício permite que, quando a solução for implementada em produção, a depuração seja desativada de forma controlada, utilizando o seguinte padrão:
 
-
-\begin{lstlisting}[caption={Configuração de depuração em Python}, label={cod:depuracao}, language=Python]
-   """ Configuraçao de decoradores para debug """
-   import os
-
-   var_debug = os.getenv('DEBUG', False) #Carrega apenas a variavel de debug
-
-   if var_debug == 'True':
-      from MAIN.decoradores.calcula_tempo import calcula_tempo, calcula_tempo_fun
-      checked_debug_decorador = calcula_tempo
-      checked_debug_decorador_fun = calcula_tempo_fun
+\begin{algorithm}[H]
+    \caption{Uso de Decoradores para Depuração}
+    \label{alg:depuracao_uso}
     
-   else:
-      checked_debug_decorador = None
-      checked_debug_decorador_fun = None
+   \begin{lstlisting}[language=Python, basicstyle=\small\ttfamily]
+      # Outras importacoes
+      """ Configuraçao de decoradores para debug """
+      import os
 
-   """ Fim da configuraçao de decoradores para debug """
-\end{lstlisting}
+      var_debug = os.getenv('DEBUG', False) #Carrega apenas a variavel de debug
 
-\begin{lstlisting}[caption={Usando a Depuração no código}, label={cod:depuraca_uso}, language=Python]
-   # No inicio de cada visualização
-   @checked_debug_decorador
-   @login_required(login_url=reverse_lazy('login'))
-   @grupos_permitidos(['instituicao_autorizadas', 'outras_instituicoes_autorizadas'])
-   def funcao(request):
-      pass
+      if var_debug == 'True':
+         from MAIN.decoradores.calcula_tempo import calcula_tempo, calcula_tempo_fun
+         checked_debug_decorador = calcula_tempo
+         checked_debug_decorador_fun = calcula_tempo_fun
+         
+      else:
+         checked_debug_decorador = None
+         checked_debug_decorador_fun = None
 
-   # No inicio de cada função
-   @checked_debug_decorador_fun
-   @login_required(login_url=reverse_lazy('login'))
-   @grupos_permitidos(['instituicao_autorizadas', 'outras_instituicoes_autorizadas'])
-   def funcao_qualquer(parametros):
-      pass
+      """ Fim da configuraçao de decoradores para debug """
+      
+            
+      # No inicio de cada visualização
+      @checked_debug_decorador
+      @login_required(login_url=reverse_lazy('login'))
+      @grupos_permitidos(['instituicao_autorizadas', 'outras_instituicoes_autorizadas'])
+      def funcao(request):
+         pass
 
+      # No inicio de cada função
+      @checked_debug_decorador_fun
+      @login_required(login_url=reverse_lazy('login'))
+      @grupos_permitidos(['instituicao_autorizadas', 'outras_instituicoes_autorizadas'])
+      def funcao_qualquer(parametros):
+         # code
+         # Para exibir impressões no terminal
+         if var_debug == 'True':
+            print("Impressão de depuração")
+         # code
+   \end{lstlisting}
 
-   # Para exibir impressões no terminal
-   if var_debug == 'True':
-      print("Impressão de depuração")
-\end{lstlisting}
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2025)}
+\end{algorithm}
 
-\par Ao declarar um artificio para depuração\ref{cod:depuracao}, o desenvolvedor pode utilizar o decorador \texttt{@checked\_debug\_decorador} para medir o tempo de execução de cada visualização (view) ou função específica (\ref{cod:depuraca_uso}). Além disso, dentro do código, é possível inserir comandos de impressão condicionais que só serão executados quando a variável de depuração estiver ativa. Isso permite um monitoramento detalhado do desempenho e comportamento do código durante o desenvolvimento, facilitando a identificação e resolução de problemas sem impactar o ambiente de produção.
-
+\par Ao utilizar esse artifício de depuração (\ref{alg:depuracao_uso}), o desenvolvedor pode aplicar os decoradores \texttt{@checked\_debug\_decorador} ou \texttt{@checked\_debug\_decorador\_fun} para medir o tempo de execução de cada visualização (\textit{view}) ou função específica. Além disso, dentro do código, é possível inserir comandos de impressão condicionais que serão executados apenas quando a variável de depuração estiver ativa. Essa abordagem permite um monitoramento detalhado do desempenho e comportamento do código durante o desenvolvimento, facilitando a identificação e resolução de problemas sem impactar o ambiente de produção.
 
 
 \section{Métodos}
