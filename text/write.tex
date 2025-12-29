@@ -109,7 +109,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
    \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Pode ser utilizada quantas vezes for necessárias.
    \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente.
    \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas protetivas e Medidas protetivas de urgência e cadastra na seção competente a \textbf{Defensoria Pública}.
-   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possa ser inserido usuários pertinentes as suas instituições e suas permissões. [\textit{CAPS, CRAS, CREAS, Conselho Tutelar, Secretaria de Saúde, Polícia Penal, Polícia Militar, Polícia Civil, Polícia Científica, Poder Judiciário, Ministério Público e Defensoria Pública}].
+   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possa ser inserido usuários pertinentes as suas instituições e suas permissões. [\textit{CAPS, CRAS, CREAS, Secretaria de Saúde, Polícia Penal, Polícia Militar, Polícia Civil, Polícia Científica, Poder Judiciário, Ministério Público e Defensoria Pública}].
  \end{description}
 
 %\lstinputlisting[language=python, caption={código externo}, label={cod:externo}]{main.c} %Busca os codigos na pasta /cod
@@ -219,12 +219,11 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
       \item \textbf{Polícia Militar}: Registro de atendimentos por tipo de patrulha (Radio Patrulha, Emergência 190, Policiamento Montado, etc.).
    \end{itemize}
    
-   \item[\texttt{municipio}] Abrange serviços municipais de assistência:
+   \item[\texttt{municipio}]\footnote{No inicio possuíamos o conselho tutelar, no entanto, como não se trata de uma equipe técnica, mas sim de conselheiros eleitos pela sociedade, optamos por não incluí-los como um grupo institucional, devido a informações criticas contidas na plataforma.} Abrange serviços municipais de assistência:
    \begin{itemize}
       \item CRAS (Centro de Referência de Assistência Social);
       \item CREAS (Centro de Referência Especializado de Assistência Social);
       \item CAPS (Centro de Atenção Psicossocial);
-      \item Conselho Tutelar;
       \item Secretaria da Saúde.
    \end{itemize}
    
