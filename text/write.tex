@@ -94,6 +94,96 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par A execução de Modelos de Linguagem de Grande Escala (LLMs) será realizada utilizando a plataforma \texttt{Ollama}, que permite rodar modelos como LLaMA, Mistral e Gemma diretamente no ambiente local, sem necessidade de conexão com servidores externos. Segundo \citeonline{ollama:2025}, a proposta da ferramenta é “facilitar a execução de grandes modelos de linguagem localmente”, o que contribui para maior privacidade e controle sobre os dados processados.
 \par A execução dos modelos será realizada com suporte de uma GPU \texttt{NVIDIA RTX 2000 Ada Generation}, equipada com 16GB de memória dedicada, DDR6, 128bits. Embora não seja a mais potente da linha, essa placa gráfica oferece recursos suficientes para testes locais com modelos otimizados, como os disponíveis na plataforma Ollama. Seu uso viabiliza a aceleração das inferências, mesmo que com tempos de resposta mais elevados em modelos de maior complexidade.
 
+% filepath: /media/ogliari/backup_ssd/GitHub/relatorio-pievdcs/text/write.tex
+\section{Níveis de Prontidão Tecnológica (TRL)}\label{trl}
+
+\par A escala de Níveis de Prontidão Tecnológica (\textit{Technology Readiness Level} - TRL) é uma metodologia sistemática utilizada para avaliar o grau de maturidade de uma tecnologia específica, desde sua concepção teórica até sua implementação operacional completa. Desenvolvida originalmente pela NASA na década de 1970, a escala TRL tornou-se um padrão internacional para avaliação de projetos tecnológicos \cite{trl:2025}.
+
+\par A metodologia TRL é estruturada em nove níveis progressivos, permitindo uma avaliação objetiva do estágio de desenvolvimento e dos riscos associados à implementação de novas tecnologias. Cada nível representa um marco específico no processo de maturação tecnológica, desde a pesquisa básica até a operação comprovada em ambiente real.
+
+\subsection{Classificação dos Níveis TRL}
+
+\begin{description}
+    \item[TRL 1 -- Princípios básicos observados e reportados] Fase inicial de pesquisa científica, onde os princípios fundamentais são identificados e documentados teoricamente.
+    
+    \item[TRL 2 -- Formulação de conceitos tecnológicos e/ou de aplicação] Desenvolvimento conceitual da tecnologia, com proposição de possíveis aplicações práticas.
+    
+    \item[TRL 3 -- Estabelecimento de função crítica de forma analítica ou experimental e/ou prova de conceito] Realização de estudos analíticos e experimentações iniciais para validar conceitos críticos da tecnologia.
+    
+    \item[TRL 4 -- Validação funcional dos componentes em ambiente de laboratório] Testes controlados em laboratório para verificar o funcionamento dos componentes individuais do sistema.
+    
+    \item[TRL 5 -- Validação das funções críticas dos componentes em ambiente relevante] Verificação do desempenho dos componentes em condições que simulam o ambiente operacional real.
+    
+    \item[TRL 6 -- Demonstração de funções críticas do protótipo em ambiente relevante] Teste de um protótipo do sistema completo em ambiente que representa adequadamente as condições operacionais.
+    
+    \item[TRL 7 -- Demonstração de protótipo do sistema em ambiente operacional] Validação do protótipo em ambiente operacional real, com usuários finais e condições reais de uso.
+    
+    \item[TRL 8 -- Sistema qualificado e finalizado] Sistema completo testado e aprovado em todas as suas funcionalidades, pronto para implementação em larga escala.
+    
+    \item[TRL 9 -- Sistema operando e comprovado em todos os aspectos de sua missão operacional] Tecnologia totalmente madura, operando com sucesso em ambiente real e atendendo plenamente aos requisitos operacionais.
+\end{description}
+
+
+\section{Níveis de Prontidão Tecnológica (TRL)}\label{trl}
+
+\par A escala de Níveis de Prontidão Tecnológica (\textit{Technology Readiness Level} - TRL) é uma metodologia sistemática utilizada para avaliar o grau de maturidade de uma tecnologia específica, desde sua concepção teórica até sua implementação operacional completa. Desenvolvida originalmente pela NASA na década de 1970, a escala TRL tornou-se um padrão internacional para avaliação de projetos tecnológicos, sendo posteriormente consolidada pela norma ISO 16290:2013 e adaptada no Brasil pela NBR ISO 16290:2015 \cite{trl:2025}.
+
+\par A metodologia TRL é estruturada em nove níveis progressivos, permitindo uma avaliação objetiva do estágio de desenvolvimento e dos riscos associados à implementação de novas tecnologias. Cada nível representa um marco específico no processo de maturação tecnológica, desde a pesquisa básica até a operação comprovada em ambiente real. Para facilitar o entendimento, estes níveis são agrupados em cinco categorias principais relacionadas ao ciclo de vida de projetos de inovação tecnológica: pesquisa básica, pesquisa aplicada, desenvolvimento experimental, industrialização e produção/comercialização.
+
+\subsection{Classificação dos Níveis TRL}
+
+\begin{description}
+    \item[TRL 1 -- Princípios básicos observados e reportados] Fase inicial de pesquisa científica, onde os princípios fundamentais são identificados e documentados teoricamente. \textit{(Grupo: Pesquisa Básica)}
+    
+    \item[TRL 2 -- Formulação de conceitos tecnológicos e/ou de aplicação] Desenvolvimento conceitual da tecnologia, com proposição de possíveis aplicações práticas. \textit{(Grupo: Pesquisa Básica)}
+    
+    \item[TRL 3 -- Estabelecimento de função crítica de forma analítica ou experimental e/ou prova de conceito] Realização de estudos analíticos e experimentações iniciais para validar conceitos críticos da tecnologia. \textit{(Grupo: Pesquisa Aplicada)}
+    
+    \item[TRL 4 -- Validação funcional dos componentes em ambiente de laboratório] Testes controlados em laboratório para verificar o funcionamento dos componentes individuais do sistema. \textit{(Grupo: Pesquisa Aplicada)}
+    
+    \item[TRL 5 -- Validação das funções críticas dos componentes em ambiente relevante] Verificação do desempenho dos componentes em condições que simulam o ambiente operacional real. \textit{(Grupo: Desenvolvimento Experimental)}
+    
+    \item[TRL 6 -- Demonstração de funções críticas do protótipo em ambiente relevante] Teste de um protótipo do sistema completo em ambiente que representa adequadamente as condições operacionais. \textit{(Grupo: Desenvolvimento Experimental)}
+    
+    \item[TRL 7 -- Demonstração de protótipo do sistema em ambiente operacional] Validação do protótipo em ambiente operacional real, com usuários finais e condições reais de uso. \textit{(Grupo: Industrialização)}
+    
+    \item[TRL 8 -- Sistema qualificado e finalizado] Sistema completo testado e aprovado em todas as suas funcionalidades, pronto para implementação em larga escala. \textit{(Grupo: Industrialização)}
+    
+    \item[TRL 9 -- Sistema operando e comprovado em todos os aspectos de sua missão operacional] Tecnologia totalmente madura, operando com sucesso em ambiente real e atendendo plenamente aos requisitos operacionais. \textit{(Grupo: Produção e Comercialização)}
+\end{description}
+
+\subsection{Classificação da escala de nível de prontidão tecnológica (TRL)} \ref{trl}
+
+\par O projeto PIEVDCS encontra-se atualmente transitando entre os níveis \textbf{TRL 5 e TRL 6}, com perspectiva de alcançar o \textbf{TRL 7} ao final da fase de validação atual. Esta classificação se justifica pelos seguintes marcos já atingidos e em desenvolvimento:
+
+\begin{itemize}
+    \item \textbf{TRL 1 e 2 (Concluídos - Pesquisa Básica):} Os princípios fundamentais foram estabelecidos através do levantamento de requisitos com as instituições participantes, identificação das necessidades de integração entre os sistemas de justiça, segurança pública e serviços municipais, e formulação do conceito de plataforma integrada para enfrentamento à violência doméstica.
+    
+    \item \textbf{TRL 3 e 4 (Concluídos - Pesquisa Aplicada):} Os conceitos tecnológicos foram estabelecidos e validados em ambiente de desenvolvimento. A arquitetura Django com PostgreSQL, sistema de autenticação customizado baseado em instituições e integração entre módulos foram testados com sucesso em laboratório (ambiente de desenvolvimento local). Validação funcional dos componentes críticos: sistema de cadastro de vítimas/agressores, formulários de medidas protetivas, sistema de notificações em tempo real via WebSockets e dashboards estatísticos.
+    
+    \item \textbf{TRL 5 (Concluído - Desenvolvimento Experimental):} As funções críticas do sistema foram validadas em ambiente relevante através do servidor de desenvolvimento (\texttt{10.40.22.46:8000}) acessível pela rede interna do estado catarinense. Testes realizados com dados reais demonstraram a viabilidade técnica da integração entre as \numero_instituicoes{} instituições participantes, incluindo fluxos completos desde o registro de ocorrências até a emissão de medidas protetivas.
+    
+    \item \textbf{TRL 6 (Em andamento - Desenvolvimento Experimental):} O protótipo funcional está sendo demonstrado em ambiente operacional relevante através da plataforma Hostinger (\href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}), permitindo acesso externo controlado e testes com dados fictícios por potenciais usuários finais das diferentes instituições. Esta fase inclui validação de usabilidade, performance sob carga e refinamento de interfaces baseado em \textit{feedback} dos usuários.
+    
+    \item \textbf{TRL 7 (Meta do projeto piloto - Industrialização):} A fase final do projeto piloto consistirá na validação do protótipo com usuários reais das instituições participantes (Poder Judiciário, Ministério Público, Defensoria Pública, Polícia Militar, Polícia Civil, Polícia Penal e serviços municipais) em ambiente operacional real, porém ainda com dados controlados e supervisionados. Esta é a meta máxima estabelecida para o escopo atual do projeto, marcando a transição da fase de desenvolvimento experimental para a fase de industrialização.
+\end{itemize}
+
+\par É importante destacar que o projeto \textbf{não avançará para os níveis TRL 8 e 9} (fases de industrialização final e produção/comercialização) nesta etapa piloto. A transição para esses níveis superiores -- que representam sistema qualificado, finalizado e operando em plena capacidade produtiva -- demandaria:
+
+\begin{enumerate}
+    \item Aprovação formal de todas as instituições participantes após testes extensivos com dados reais;
+    \item Integração completa com sistemas legados já em operação (e-eproc do Poder Judiciário, sistemas do Ministério Público, SISP das forças de segurança);
+    \item Certificações de segurança da informação e conformidade plena com a LGPD\footnote{Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018)}, incluindo auditorias independentes;
+    \item Infraestrutura de produção robusta com garantias de alta disponibilidade (99,9\%), redundância geográfica e planos de contingência;
+    \item Programa completo de treinamento e capacitação para todos os operadores das instituições participantes;
+    \item Período estendido de operação assistida com suporte técnico dedicado e monitoramento contínuo de desempenho;
+    \item Validação de escalabilidade para expansão regional (demais comarcas de Santa Catarina) ou nacional;
+    \item Estabelecimento de governança institucional permanente e modelo de sustentabilidade financeira para manutenção evolutiva do sistema.
+\end{enumerate}
+
+\par A decisão estratégica de limitar o escopo ao \textbf{TRL 7} está alinhada com a natureza de \textbf{projeto piloto} da iniciativa, conforme estabelecido pela NBR ISO 16290:2015. Esta abordagem permite validação técnica e operacional em escala controlada antes de uma possível expansão futura, minimizando riscos técnicos, organizacionais e financeiros. O modelo piloto possibilita ajustes iterativos baseados em \textit{feedback} real dos usuários, demonstra a viabilidade da solução em condições operacionais reais e gera evidências concretas de valor agregado antes de investimentos mais substanciais em infraestrutura e implantação em larga escala.
+
+\par O acompanhamento sistemático da evolução do projeto através da metodologia TRL, conforme padronizada pela NBR ISO 16290:2015, permite aos \textit{stakeholders} (gestores públicos, instituições participantes e órgãos de fomento) compreender claramente o estágio atual de maturidade da tecnologia, os riscos associados a cada fase de transição e os próximos passos necessários para avançar rumo a uma solução completamente operacional e escalável no combate à violência doméstica e crimes sexuais.
 
 \section{Implementação para testes e validações}
 \par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python} \ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
