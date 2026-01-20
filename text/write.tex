@@ -208,7 +208,6 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 \begin{algorithm}[H]
     
-    
    \lstinputlisting[language=python, caption={Uso de Decoradores para Depuração}, label={alg:depuracao_uso}]{decorador.py}
 
    {\fontsize{10pt}{\baselineskip}\selectfont
@@ -323,6 +322,7 @@ Algumas técnicas adotadas incluem:
       \item Cookies HTTP-only e SameSite;
       \item Separação de variáveis sensíveis com \textit{Dotenv};
       \item Sistema de \textit{logging} customizado para auditoria.
+      \item Camadas extras de segurança com decoradores para controle de acesso por grupo institucional, usuários autentificados e usuários ativos (algoritmo \ref{alg:seg_extras}).
    \end{itemize}
 
 \item \textbf{Integração com IA Local}: Implementação e testes com modelos de linguagem via Ollama (\texttt{llama3:70b}, \texttt{mixtral}, \texttt{gpt-oss:120b}), com configurações em \texttt{settings.py} permitindo alternância entre modelos. Sistema de fallback com respostas demo quando Ollama não está disponível.
@@ -333,6 +333,17 @@ Algumas técnicas adotadas incluem:
       \item Controle de acesso por grupo institucional (\texttt{@grupos\_permitidos}).
    \end{itemize}
 \end{itemize}
+
+
+\par O framework Django possui verificaçãoe de segurança robustas, no entanto implementamos camadas extras de segurança, utilizando decoradores personalizados que verificam se o usuário está autenticado, ativo e pertence a grupos institucionais permitidos antes de conceder acesso às funcionalidades sensíveis da plataforma.
+
+\begin{algorithm}[H]
+    
+   \lstinputlisting[language=python, caption={Três camadas de segurança extra}, label={alg:seg_extras},breaklines=true,breakatwhitespace=true]{permission_group.py}
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2025)}
+\end{algorithm}
 
 \par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade, autonomia na configuração de ambientes complexos e implementações de inteligências artificiais em ambiente de desenvolvimento local.
 
