@@ -159,20 +159,23 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python} \ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
 
 \subsection{Dos Scripts}\label{script}
-\par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, sendo desde a configurações de Municípios, Comarcas até a inserção de valores fictícios para validação da plataforma com os usuários finais.
-\par Funcionalidades já implementadas nos \textit{script}
+\par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, com foco em testes e validações.
+
+\par Para validação de performance e escalabilidade do sistema, foram gerados através destes scripts \textbf{6.000 registros fictícios de Medidas Protetivas de Urgência}, permitindo testar o comportamento da plataforma sob carga realista antes da utilização de dados reais. Este volume possibilitou identificar gargalos de performance e validar as otimizações implementadas, especialmente no módulo da Polícia Militar.
+
+\par Funcionalidades já implementadas nos \textit{script}:
 
 \begin{description}
-   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado n vezes, pois só cria se não existir.
-   \item [Atribui Município] Script que atibui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado".
-   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas} - Funcionalidade de configuração - a futuro, complementar para a inserção de todas as comarcas da federação com seus respectivos \textit{foro}. Função a ser executada após o "Atribui Município".
-   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Pode ser utilizada quantas vezes for necessárias.
-   \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente.
-   \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas protetivas e Medidas protetivas de urgência e cadastra na seção competente a \textbf{Defensoria Pública}.
-   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possa ser inserido usuários pertinentes as suas instituições e suas permissões. [\textit{CAPS, CRAS, CREAS, Secretaria de Saúde, Polícia Penal, Polícia Militar, Polícia Civil, Polícia Científica, Poder Judiciário, Ministério Público e Defensoria Pública}].
- \end{description}
+   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio apenas uma vez;
+   \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado", apenas uma vez;
+   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
+   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Utilizado para popular a base de testes com volume realista;
+   \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente. Utilizado para popular a base de testes;
+   \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas Protetivas e Medidas Protetivas de Urgência e cadastra na seção competente da \textbf{Defensoria Pública}. Responsável pela geração dos 6.000 registros utilizados nos testes de performance e escalabilidade;
+   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possam ser inseridos usuários pertinentes às suas instituições e suas permissões. [\textit{Centro de Atenção Psicossocial, Centro de Referência de Assistência Social, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde, Conselho Tutelar, Polícia Penal, Polícia Civil, Polícia Militar, Poder Judiciário, Ministério Público, Defensoria Pública}] - totalizando \numero_instituicoes{} grupos;
+\end{description}
 
-%\lstinputlisting[language=python, caption={código externo}, label={cod:externo}]{main.c} %Busca os codigos na pasta /cod
+\par Todos os dados gerados são \textbf{fictícios}, garantindo que nenhuma informação real de pessoas seja utilizada durante a fase de desenvolvimento e validação (TRL 6-7), em conformidade com as diretrizes do projeto piloto.
 
 
 \subsection{Hostinger}
@@ -260,7 +263,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \par Portanto, a customização aqui descrita visa aumentar a produtividade e, consequentemente, a assertividade das ações de cada departamento. A seguir estão listadas as implementações de cada instituição (ressaltando que esta é uma lista viva das funcionalidades já implementadas ou em desenvolvimento, não limitando expansões futuras):
 
 \subsubsection{Página Inicial}
-\par A página inicial da plataforma tem por focoa a concientização dos público alvo, e 
+\par A página inicial da plataforma tem por foco a concientização dos público alvo, e acesso a informações relevantes sobre a violência doméstica. Para isso, foram implementados \textit{cards informativos} dinâmicos, que exibem dados estatísticos atualizados, dicas de segurança, contatos de emergência e links para recursos de apoio.
 
 \subsubsection{Polícia Penal}
 \par A Polícia Penal atua diretamente com pessoas privadas de liberdade, desempenhando um papel fundamental na ressocialização e na prevenção da reincidência de crimes relacionados à violência doméstica. No contexto da plataforma PIEVDCS, o módulo da Polícia Penal foi desenvolvido para registrar e acompanhar as ações de conscientização voltadas aos agressores que cumprem pena sob a Lei nº 11.340/2006 (Lei Maria da Penha).
@@ -270,7 +273,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \par A plataforma estabelece um canal ágil de comunicação entre a Polícia Penal e o Poder Judiciário, permitindo que relatórios de acompanhamento sejam compartilhados de forma estruturada e em tempo real. Isso proporciona maior celeridade e embasamento técnico nas decisões judiciais, como absolvições condicionadas, manutenção de medidas protetivas ou concessão de liberdade condicional. O sistema registra se o apenado frequentou grupos reflexivos, o número de atendimentos realizados, a evolução comportamental observada, oferecendo ao magistrado um panorama completo para tomada de decisão fundamentada.
 
 \begin{itemize}
-   \item \textbf{Página inicial da PP:} Registro de atendimentos realizados em grupos ou individuais; Busca por CPF do agressor; visualização de todos os atendimentos realizados e \textit{Cards informativos}
+   \item \textbf{Página inicial da Polícia Penal:} Registro de atendimentos realizados em grupos ou individuais; Busca por CPF do agressor; visualização de todos os atendimentos realizados e \textit{Cards informativos}
    \item \textbf{Ver todos os atendimentos:} Lista todos os atendimentos realizados, com filtros por data, tipo de atendimento e nome do profissional responsável; Geração de relatórios dos atendimentos em PDF em modelo de ofício.
 \end{itemize}
 
@@ -283,22 +286,10 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 \par Um dos diferenciais do módulo da Polícia Militar é o suporte à Rede Catarina de Proteção à Mulher. Por meio do sistema, os policiais militares responsáveis pela fiscalização podem registrar sistematicamente as visitas de acompanhamento às vítimas, verificando se as determinações judiciais estão sendo respeitadas pelo agressor. O sistema permite o registro de informações como: data e horário da fiscalização, situação encontrada (medida cumprida, descumprimento parcial ou total), relato da vítima sobre sua percepção de segurança.
 \begin{itemize}
-   \item \textbf{Página inicial da PM:} Consulta de  \textit{Vitimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas e \textit{Cards informativos}
+   \item \textbf{Página inicial da Polícia Militar:} Consulta de  \textit{Vitimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas e \textit{Cards informativos}
 \end{itemize}
 
-\subsubsection{Otimizações de Performance}
-\par Com o crescimento da base de dados, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026, visando garantir eficiência no acesso às informações armazenadas.
 
-\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas de vítimas. Anteriormente, todos os registros eram carregados simultaneamente, causando lentidão proporcional ao volume de dados. Com a nova abordagem, os registros são carregados progressivamente, reduzindo o tempo de resposta inicial e o consumo de recursos.
-
-\begin{itemize}
-    \item \textbf{Carregamento progressivo}: Os dados são requisitados e renderizados em partes, utilizando HTMX para atualizações assíncronas sem recarregar a página completa;
-    \item \textbf{Redução de carga no servidor}: Menor consumo de memória RAM e processamento da CPU por requisição;
-    \item \textbf{Melhoria na experiência do usuário}: Interface mais responsiva, independente do volume total de registros cadastrados;
-    \item \textbf{Consulta otimizada de banco de dados}: Implementação de queries específicas para busca total de vítimas com índices otimizados no PostgreSQL.
-\end{itemize}
-
-\par Essas otimizações garantem que a consulta ao histórico completo de vítimas e agressores pela Polícia Militar seja realizada de forma eficiente, permitindo análise adequada das informações após o atendimento inicial e estabilização da ocorrência.
 
 \subsection{Técnicas e Práticas de Desenvolvimento}
 
@@ -415,38 +406,107 @@ Busca por CPF & 2.1s & 0.4s & 81.0\% \\
 \end{tabular}
 
 \label{tab:performance}
+{\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2026)}
 \end{table}
 
 \par O Pull Request \#103, mesclado em 30 de janeiro de 2026, consolidou 17 arquivos modificados com 1.989 adições e 555 deleções de código, representando uma refatoração significativa focada em performance e usabilidade.
 
-\par Incluo algumas telas da plataforma a sequência das imagens são aleatórias.
+\subsubsection{Otimizações de Performance}
+\par Com o crescimento da base de dados, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026, visando garantir eficiência no acesso às informações armazenadas.
+
+\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas das medidas protetivas. Anteriormente, todos os registros eram carregados simultaneamente, causando lentidão proporcional ao volume de dados. Com a nova abordagem, os registros são carregados progressivamente, reduzindo o tempo de resposta inicial e o consumo de recursos.
+
+\begin{itemize}
+    \item \textbf{Carregamento progressivo}: Os dados são requisitados e renderizados em partes, utilizando HTMX para atualizações assíncronas sem recarregar a página completa;
+    \item \textbf{Redução de carga no servidor}: Menor consumo de memória RAM e processamento da CPU por requisição;
+    \item \textbf{Melhoria na experiência do usuário}: Interface mais responsiva, independente do volume total de registros cadastrados;
+    \item \textbf{Consulta otimizada de banco de dados}: Implementação de queries específicas para busca total de vítimas com índices otimizados no PostgreSQL.
+\end{itemize}
+
+\par Essas otimizações garantem que a consulta ao histórico completo de vítimas e agressores pela Polícia Militar seja realizada de forma eficiente, permitindo análise adequada das informações após o atendimento inicial e estabilização da ocorrência.
+
+
+\subsection{Volume de Dados em Ambiente de Testes}
+\par Considerando o nível TRL 6 do projeto (demonstração de protótipo em ambiente relevante), a plataforma opera atualmente com uma base de dados de teste que simula um cenário operacional realista. Através dos scripts de automação descritos na seção \ref{script}, foram gerados dados fictícios para validar a escalabilidade e performance do sistema.
+
+\par Volume atual de dados de teste (Janeiro 2026):
+
+\begin{table}[H]
+\centering
+\caption{Volume de dados fictícios para testes e validação}
+\begin{tabular}{|l|r|}
+\hline
+\textbf{Métrica} & \textbf{Quantidade} \\
+\hline
+Total de Medidas Protetivas cadastradas & 6.000 \\
+\hline
+Média de cadastros por mês (simulado) & $\sim$200 registros \\
+\hline
+\end{tabular}
+\label{tab:volume_dados}
+
+{\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2026)}
+\end{table}
+
+\par Este volume de 6.000 registros permite testar a escalabilidade da plataforma, validar a performance das consultas no banco de dados PostgreSQL e verificar o comportamento das interfaces com cargas realistas. As otimizações implementadas em janeiro de 2026, especialmente a paginação via HTMX no módulo da Polícia Militar, foram validadas com esta base, demonstrando manutenção de performance adequada mesmo com volume significativo de dados.
+
+\par É importante ressaltar que todos os registros são \textbf{dados fictícios gerados automaticamente}, em conformidade com as diretrizes do projeto piloto (TRL 6-7) que estabelecem a não utilização de dados reais de vítimas durante a fase de desenvolvimento e testes. A transição para dados reais ocorrerá apenas após aprovação formal das \numero_instituicoes{} instituições participantes e implementação da infraestrutura de produção definitiva (TRL 8-9).
 
 \begin{figure}[H]
     \center
-    \subfigure[ Tela de Login.\label{fig:login}]{\includegraphics[scale=0.5]{figure/login.png}}
-    \subfigure[Página aberta, estilo one-page.\label{fig:one-page}]{\includegraphics[scale=.2]{figure/one-page_1.png}}
-    \subfigure[Página aberta, estilo one-page 1.\label{fig:one-page1}]{\includegraphics[scale=.2]{figure/one-page_3.png}}
-    \subfigure[Página aberta, estilo one-page 2.\label{fig:one-page2}]{\includegraphics[scale=.2]{figure/one-page_2.png}}
-    \caption{Telas da plataforma, O autor}\label{fig:telas_plataforma}
+    \caption{Interface otimizada de consulta da Polícia Militar com paginação}
+    \includegraphics[scale=0.35]{figure/PM/Consulta_otimizada-PM.png}
+    \label{fig:consulta_pm_otimizada}
+
+    {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2026)}
+\end{figure}
+
+\par A figura \ref{fig:consulta_pm_otimizada} ilustra a interface otimizada de consulta do módulo da Polícia Militar, onde é possível visualizar a implementação da paginação dinâmica que permite navegação eficiente mesmo com a base completa de 6.000 registros de teste. A interface apresenta tempos de resposta consistentes independente do volume total de dados cadastrados.
+
+\par Incluo algumas telas da plataforma a sequência das imagens são aleatórias.
+
+\begin{figure}[H]
+   \center
+   \caption{Telas da plataforma}\label{fig:telas_plataforma}
+   \subfigure[ Tela de Login.\label{fig:login}]{\includegraphics[scale=0.5]{figure/login.png}}
+   \subfigure[Página aberta, estilo one-page.\label{fig:one-page}]{\includegraphics[scale=.2]{figure/one-page_1.png}}
+   \subfigure[Página aberta, estilo one-page 1.\label{fig:one-page1}]{\includegraphics[scale=.2]{figure/one-page_3.png}}
+   \subfigure[Página aberta, estilo one-page 2.\label{fig:one-page2}]{\includegraphics[scale=.2]{figure/one-page_2.png}}
+    
+   {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2025)}
 \end{figure}
 \par Foi desenvolvida uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são reais e baseadas nos registros da plataforma, mas tratadas com rigor técnico para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta dos locais de ocorrência.
 
 \begin{figure}[H]
-    \center
-    \subfigure[Gráfico da Etinia e Classe Econômica.\label{fig:car_map}]{\includegraphics[scale=.2]{figure/info_3.png}}
-    \subfigure[Gráfico do Grau de Instrução e Grau de Parentesco.\label{fig:car_map1}]{\includegraphics[scale=.2]{figure/info_1.png}}
-    \subfigure[Frases Motivacionais e alguns indicadores.\label{fig:car_fras}]{\includegraphics[scale=.4]{figure/info_2.png}}
-    \subfigure[Gráfico Geográfico dos tipos de vilência.\label{fig:car_map2}]{\includegraphics[scale=.5]{figure/cards_map.png}}
-    \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma1}
+   \center
+   \caption{Telas estatísticas, O autor}\label{fig:telas_plataforma1}
+
+   \subfigure[Gráfico da Etinia e Classe Econômica.\label{fig:car_map}]{\includegraphics[scale=.2]{figure/info_3.png}}
+   \subfigure[Gráfico do Grau de Instrução e Grau de Parentesco.\label{fig:car_map1}]{\includegraphics[scale=.2]{figure/info_1.png}}
+   \subfigure[Frases Motivacionais e alguns indicadores.\label{fig:car_fras}]{\includegraphics[scale=.4]{figure/info_2.png}}
+   \subfigure[Gráfico Geográfico dos tipos de vilência.\label{fig:car_map2}]{\includegraphics[scale=.5]{figure/cards_map.png}}
+    
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2025)}
 \end{figure}
 
 \par Esta sendo criada telas para cada instituição que terá acesso a plataforma e cada instituição terá determinado acesso e cada funcionalidade. Os \textit{layout} das instituições ficará a cargo de cada representante da referida em ajustar com o desenvolvedor, para usabilidade e funcionalidades de cada instituição.
 
 \begin{figure}[H]
-    \center
-    \subfigure[Seleção das instituições.\label{fig:selecao_insti}]{\includegraphics[scale=.3]{figure/institui.png}}
-    \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.3]{figure/pp_home.png}}
-    \caption{Telas institucionais, O autor}\label{fig:telas_plataforma2}
+   \center
+   \caption{Telas institucionais, O autor}\label{fig:telas_plataforma2}
+   
+   \subfigure[Seleção das instituições.\label{fig:selecao_insti}]{\includegraphics[scale=.3]{figure/institui.png}}
+   \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.25]{figure/pp_home.png}}
+   
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2025)}
 \end{figure}
 
 
@@ -481,16 +541,21 @@ Funcionalidades Pendentes:
 
 
 \begin{figure}[H]
-    \center
-    \subfigure[Perguntado para a IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/pergunta.png}}
-    \subfigure[Resposta final da IA.\label{fig:selecao_out}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
-    \subfigure[Tempo para resposta.\label{fig:time_response}]{\includegraphics[scale=.3]{figure/IA_1/tempo.png}}
-    \caption{Modelo llama3:70b, O autor}\label{fig:modelos_ia}
+   \center
+   \caption{Modelo llama3:70b, O autor}\label{fig:modelos_ia}
+   
+   \subfigure[Perguntado para a IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/pergunta.png}}
+   \subfigure[Resposta final da IA.\label{fig:selecao_out}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
+   \subfigure[Tempo para resposta.\label{fig:time_response}]{\includegraphics[scale=.3]{figure/IA_1/tempo.png}}
+   
+   {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2025)}
 \end{figure}
 
 
 
 \begin{algorithm}[H]
+   \caption{Interação com o Modelo llama3:70b, tempo de resposta: 224.82 [s]}
      \KwIn{Gostaria de informar que estou sofrendo, e desejo fazer uma denuncia on line. nao sei fazer a denuncia vou passar os dados e voce faz para eu.} \
 
     \KwResult{ \\ \textbf{Olá, querida!} \\
@@ -517,7 +582,7 @@ Funcionalidades Pendentes:
      Emergência: 190 | Central da Mulher: 180
     }
 
-    \caption{Interação com o Modelo llama3:70b, tempo de resposta: 224.82 [s]}
+    
    {\fontsize{10pt}{\baselineskip}\selectfont
    Fonte: O autor (2025)}
 
@@ -553,16 +618,18 @@ Funcionalidades Pendentes:
 \par Os principais marcos de desenvolvimento incluem:
 
 \begin{description}
-    \item[Julho-Agosto 2025] Estruturação inicial dos módulos de segurança pública, implementação de formulários de MPU, configuração da infraestrutura Hostinger;
+    \item[Julho-Agosto 2025] Estruturação inicial dos módulos de segurança pública (Polícia Militar, Polícia Civil, Polícia Penal), implementação de formulários de Medidas Protetivas de Urgência pela Defensoria Pública, configuração da infraestrutura de produção na Hostinger;
     
-    \item[Setembro-Novembro 2025] Desenvolvimento dos módulos municipais (CRAS, CAPS, CREAS), sistema de notificações em tempo real, integração com modelos de IA;
+    \item[Setembro-Novembro 2025] Desenvolvimento dos módulos municipais (Centro de Referência de Assistência Social, Centro de Atenção Psicossocial, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde), sistema de notificações em tempo real com Django Channels, integração e testes com modelos de linguagem via Ollama;
     
-    \item[Dezembro 2025] Refinamento de interfaces, testes de usabilidade, implementação de dashboards públicos;
+    \item[Dezembro 2025] Refinamento de interfaces, testes de usabilidade interna, implementação completa de dashboards públicos com dados anonimizados, ajustes de segurança e permissões granulares por grupo institucional;
     
-    \item[Janeiro 2026] Otimizações de performance, paginação via HTMX, melhorias nas consultas de banco de dados, preparação para fase de validação com usuários reais.
+    \item[Janeiro 2026] Otimizações significativas de performance com implementação de paginação dinâmica via HTMX no módulo da Polícia Militar, melhorias estruturais nas consultas PostgreSQL, geração de 6.000 registros de teste para validação de escalabilidade, preparação para fase de validação com usuários reais das \numero_instituicoes{} instituições participantes.
 \end{description}
 
-\par A branch de desenvolvimento principal utilizada é a \texttt{63-ogliari}, que representa o trabalho técnico do reeducando responsável pela implementação. Esta branch é regularmente sincronizada com a branch \texttt{main} após revisões e testes.
+\par A branch de desenvolvimento principal utilizada é a \texttt{63-ogliari}, que representa o trabalho técnico do reeducando responsável pela implementação. Esta branch é regularmente sincronizada com a branch \texttt{main} após revisões e validações funcionais.
+
+\par O repositório completo do projeto está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, totalizando mais de 597 commits até janeiro de 2026, com histórico completo de desenvolvimento documentado.
 
 \section{Considerações Finais}
 
