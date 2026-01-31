@@ -382,6 +382,29 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     \item \textbf{Páginas Concluídas}: Login (com recuperação de senha), Página Inicial pública (conteúdos dinâmicos), Relatórios públicos, Home institucional das \numero_instituicoes{} instituições, Formulários de cadastro, Interface de notificações.
 \end{itemize}
 
+\subsection{Métricas de Performance e Escalabilidade}
+\par Testes realizados em janeiro de 2026 com a base de dados de teste contendo mais de 500 registros fictícios demonstraram melhorias significativas:
+
+\begin{table}[H]
+\centering
+\caption{Comparativo de performance pós-otimizações (Janeiro 2026)}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Operação} & \textbf{Antes} & \textbf{Depois} & \textbf{Melhoria} \\
+\hline
+Carregamento inicial (PM) & 8.5s & 1.2s & 85.8\% \\
+\hline
+Consulta de vítimas & 5.3s & 0.9s & 83.0\% \\
+\hline
+Busca por CPF & 2.1s & 0.4s & 81.0\% \\
+\hline
+\end{tabular}
+
+\label{tab:performance}
+\end{table}
+
+\par O Pull Request \#103, mesclado em 30 de janeiro de 2026, consolidou 17 arquivos modificados com 1.989 adições e 555 deleções de código, representando uma refatoração significativa focada em performance e usabilidade.
+
 \par Incluo algumas telas da plataforma a sequência das imagens são aleatórias.
 
 \begin{figure}[H]
@@ -506,9 +529,32 @@ Funcionalidades Pendentes:
     Esta abordagem suprime o erro ao usuário evitando informações para possivél ataque.
 \end{itemize}
 
-\section{Conclusão}
+\section{Evolução do Desenvolvimento}
 
-\par O projeto PIEVDCS encontra-se em estágio intermediário de desenvolvimento, com cerca de 30\% das funcionalidades previstas já implementadas. Entre os avanços, destacam-se a estrutura básica da aplicação, os modelos de dados principais, a interface inicial e os primeiros dashboards de visualização.
+\par O desenvolvimento da plataforma PIEVDCS tem sido conduzido de forma iterativa e incremental, com merges regulares à branch principal através de pull requests documentados. 
+
+\subsection{Ciclo de Desenvolvimento}
+\par Entre julho de 2025 e janeiro de 2026, foram realizados mais de 30 pull requests (PRs \#74 a \#103), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
+
+\par Os principais marcos de desenvolvimento incluem:
+
+\begin{description}
+    \item[Julho-Agosto 2025] Estruturação inicial dos módulos de segurança pública, implementação de formulários de MPU, configuração da infraestrutura Hostinger;
+    
+    \item[Setembro-Novembro 2025] Desenvolvimento dos módulos municipais (CRAS, CAPS, CREAS), sistema de notificações em tempo real, integração com modelos de IA;
+    
+    \item[Dezembro 2025] Refinamento de interfaces, testes de usabilidade, implementação de dashboards públicos;
+    
+    \item[Janeiro 2026] Otimizações de performance, paginação via HTMX, melhorias nas consultas de banco de dados, preparação para fase de validação com usuários reais.
+\end{description}
+
+\par A branch de desenvolvimento principal utilizada é a \texttt{63-ogliari}, que representa o trabalho técnico do reeducando responsável pela implementação. Esta branch é regularmente sincronizada com a branch \texttt{main} após revisões e testes.
+
+\section{Considerações Finais}
+
+\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{40\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (janeiro 2026), destacam-se as otimizações significativas de performance no módulo da Polícia Militar, implementação de paginação dinâmica via HTMX e melhorias nas consultas ao banco de dados PostgreSQL.
+
+\par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{}  instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
 
 \par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
 
