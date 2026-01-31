@@ -72,8 +72,15 @@
 \subsection{Tailwind CSS}
 \par O \citeonline{tailwindCSS:2025} é um framework de estilo baseado em classes utilitárias, que permite o desenvolvimento rápido de interfaces personalizadas e responsivas. Sua abordagem facilita a manutenção e reutilização de estilos, promovendo consistência visual e produtividade no desenvolvimento front-end, mantendo os padrões de desenvolvimento de Experiência do Usuário/Interface do Usuário (UX/UI).
 
+\subsection{HTMX}
+\par O \textbf{HTMX} \cite{htmx:2026} é uma biblioteca JavaScript moderna que permite criar interfaces dinâmicas e interativas utilizando atributos HTML, sem a necessidade de escrever código JavaScript explícito. Sua filosofia é estender o HTML com capacidades de requisições AJAX, atualizações parciais de página, WebSockets e Server-Sent Events, mantendo a simplicidade e legibilidade do código.
+
+\par No contexto do Django, o HTMX se integra de forma natural ao padrão MVT (\textit{Model-View-Template}), permitindo que as views Django retornem fragmentos HTML que são injetados dinamicamente na página. Esta abordagem híbrida combina a robustez do backend Django com a interatividade do frontend moderno, sem a complexidade de frameworks JavaScript pesados como React ou Vue.js.
+
+
 \subsection{Django Channels e Redis}
-\par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entre um cliente e um servidor, permitindo a troca de dados em tempo real.}. Esta tecnologia permite o envio e recebimento de notificações instantâneas entre usuários e instituições, fundamentais para a coordenação eficiente das ações de enfrentamento à violência doméstica.
+\par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entr
+e um cliente e um servidor, permitindo a troca de dados em tempo real.}. Esta tecnologia permite o envio e recebimento de notificações instantâneas entre usuários e instituições, fundamentais para a coordenação eficiente das ações de enfrentamento à violência doméstica.
 \par Como \textit{backend} de mensagens, utiliza-se o \textbf{Redis} \cite{redis:2025}, um armazenamento de estrutura de dados em memória, que atua como \textit{broker} de mensagens garantindo alta performance e confiabilidade na entrega de notificações em tempo real. O sistema foi configurado com capacidade de 1500 conexões simultâneas e tempo de expiração de 10 segundos, assegurando escalabilidade e eficiência.
 
 \subsection{Smart Selects}
@@ -542,7 +549,7 @@ Funcionalidades Pendentes:
 
 \begin{figure}[H]
    \center
-   \caption{Modelo llama3:70b, O autor}\label{fig:modelos_ia}
+   \caption{Modelo llama3:70b}\label{fig:modelos_ia}
    
    \subfigure[Perguntado para a IA.\label{fig:selecao_in}]{\includegraphics[scale=.3]{figure/IA_1/pergunta.png}}
    \subfigure[Resposta final da IA.\label{fig:selecao_out}]{\includegraphics[scale=.3]{figure/IA_1/final_resposta.png}}
