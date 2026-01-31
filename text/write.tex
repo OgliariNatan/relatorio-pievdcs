@@ -287,18 +287,18 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \end{itemize}
 
 \subsubsection{Otimizações de Performance}
-\par Com o crescimento da base de dados e a necessidade de respostas rápidas em situações de emergência, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026.
+\par Com o crescimento da base de dados, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026, visando garantir eficiência no acesso às informações armazenadas.
 
-\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas de vítimas. Anteriormente, todas as vítimas eram carregadas simultaneamente, causando lentidão no sistema quando o volume de dados aumentava. Com a nova abordagem, os registros são carregados em partes (paginação), reduzindo significativamente o tempo de resposta inicial.
+\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas de vítimas. Anteriormente, todos os registros eram carregados simultaneamente, causando lentidão proporcional ao volume de dados. Com a nova abordagem, os registros são carregados progressivamente, reduzindo o tempo de resposta inicial e o consumo de recursos.
 
 \begin{itemize}
     \item \textbf{Carregamento progressivo}: Os dados são requisitados e renderizados em partes, utilizando HTMX para atualizações assíncronas sem recarregar a página completa;
-    \item \textbf{Redução de carga no servidor}: Menor consumo de memória e processamento por requisição;
-    \item \textbf{Melhoria na experiência do usuário}: Interface mais responsiva, especialmente em conexões de internet mais lentas;
-    \item \textbf{Consulta otimizada de banco de dados}: Implementação de queries específicas para busca total de vítimas da PM com índices otimizados.
+    \item \textbf{Redução de carga no servidor}: Menor consumo de memória RAM e processamento da CPU por requisição;
+    \item \textbf{Melhoria na experiência do usuário}: Interface mais responsiva, independente do volume total de registros cadastrados;
+    \item \textbf{Consulta otimizada de banco de dados}: Implementação de queries específicas para busca total de vítimas com índices otimizados no PostgreSQL.
 \end{itemize}
 
-\par Essas otimizações são críticas considerando que em situações de atendimento emergencial, como violência doméstica em andamento, cada segundo conta para que os policiais militares possam acessar o histórico da vítima e do agressor rapidamente.
+\par Essas otimizações garantem que a consulta ao histórico completo de vítimas e agressores pela Polícia Militar seja realizada de forma eficiente, permitindo análise adequada das informações após o atendimento inicial e estabilização da ocorrência.
 
 \subsection{Técnicas e Práticas de Desenvolvimento}
 
