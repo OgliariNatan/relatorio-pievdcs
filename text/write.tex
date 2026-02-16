@@ -297,24 +297,14 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 A seção destinada à Polícia Militar é uma das mais críticas, pois fornece acesso rápido a informações sobre medidas protetivas de urgência. Originalmente, a funcionalidade permitia a consulta e visualização desses dados, mas foram identificados gargalos de performance significativos.
 
-\par Em testes com uma massa de dados elevada, o tempo de resposta para consultas completas ultrapassava 70 segundos, tornando a ferramenta impraticável para uso em campo. Para resolver essa questão, foi realizado um trabalho de otimização focado em duas frentes:
+\par Em testes com uma massa de dados elevada, o tempo de resposta para consultas completas ultrapassava 70 segundos, tornando a ferramenta impraticável para uso em campo. Para resolver essa questão, foi realizado um trabalho de otimização focado em três frentes principais:
 \begin{itemize}
     \item \textbf{Otimização de Queries:} As consultas SQL foram reestruturadas para reduzir a complexidade e o número de junções (joins) necessárias.
     \item \textbf{Indexação de Banco de Dados:} Foram criados índices estratégicos nas tabelas, permitindo que o banco de dados localize os registros de forma muito mais eficiente.
+    \item \textbf{Paginação com Auto Carregamento:} Implementou-se a paginação dos resultados com carregamento automático de novas páginas conforme o usuário rola a pesquisa (\textit{infinite scroll}), tornando possível consultar grandes volumes de medidas protetivas de forma leve e contínua.
 \end{itemize}
 
 \par Como resultado, o tempo de execução das consultas foi reduzido para uma média de 0.2 segundos, um ganho de performance superior a 99\%, garantindo que os agentes de segurança tenham acesso quase instantâneo às informações (Figura \ref{fig:consulta_pm_otimizada}).
-
-\begin{figure}[H]
-    \centering
-    \caption{Tempo das consulta de Medidas Protetivas após otimização.}
-    \includegraphics[width=1\textwidth]{figure/PM/Consulta_otimizada-PM.png}
-    
-    \label{fig:consulta_pm_otimizada}
-    {\fontsize{10pt}{\baselineskip}\selectfont
-   Fonte: O autor (2026)}
-\end{figure}
-
 
 \begin{itemize}
    \item \textbf{Página inicial da Polícia Militar:} Consulta de  \textit{Vitimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas e \textit{Cards informativos}
