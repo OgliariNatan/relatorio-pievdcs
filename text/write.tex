@@ -272,6 +272,8 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \subsubsection{Página Inicial}
 \par A página inicial da plataforma tem por foco a concientização dos público alvo, e acesso a informações relevantes sobre a violência doméstica. Para isso, foram implementados \textit{cards informativos} dinâmicos, que exibem dados estatísticos atualizados, dicas de segurança, contatos de emergência e links para recursos de apoio.
 
+\par O principal recurso adicionado é o \textbf{assistente virtual (chatbot)}, uma ferramenta interativa projetada para guiar os usuários, esclarecer dúvidas sobre o ciclo da violência e indicar os canais de denúncia e apoio disponíveis. A implementação busca criar um ambiente seguro e informativo desde o primeiro contato com a plataforma.
+
 \subsubsection{Polícia Penal}
 \par A Polícia Penal atua diretamente com pessoas privadas de liberdade, desempenhando um papel fundamental na ressocialização e na prevenção da reincidência de crimes relacionados à violência doméstica. No contexto da plataforma PIEVDCS, o módulo da Polícia Penal foi desenvolvido para registrar e acompanhar as ações de conscientização voltadas aos agressores que cumprem pena sob a Lei nº 11.340/2006 (Lei Maria da Penha).
 
@@ -292,6 +294,28 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 
 \par Um dos diferenciais do módulo da Polícia Militar é o suporte à Rede Catarina de Proteção à Mulher. Por meio do sistema, os policiais militares responsáveis pela fiscalização podem registrar sistematicamente as visitas de acompanhamento às vítimas, verificando se as determinações judiciais estão sendo respeitadas pelo agressor. O sistema permite o registro de informações como: data e horário da fiscalização, situação encontrada (medida cumprida, descumprimento parcial ou total), relato da vítima sobre sua percepção de segurança.
+
+A seção destinada à Polícia Militar é uma das mais críticas, pois fornece acesso rápido a informações sobre medidas protetivas de urgência. Originalmente, a funcionalidade permitia a consulta e visualização desses dados, mas foram identificados gargalos de performance significativos.
+
+\par Em testes com uma massa de dados elevada, o tempo de resposta para consultas completas ultrapassava 70 segundos, tornando a ferramenta impraticável para uso em campo. Para resolver essa questão, foi realizado um trabalho de otimização focado em duas frentes:
+\begin{itemize}
+    \item \textbf{Otimização de Queries:} As consultas SQL foram reestruturadas para reduzir a complexidade e o número de junções (joins) necessárias.
+    \item \textbf{Indexação de Banco de Dados:} Foram criados índices estratégicos nas tabelas, permitindo que o banco de dados localize os registros de forma muito mais eficiente.
+\end{itemize}
+
+\par Como resultado, o tempo de execução das consultas foi reduzido para uma média de 0.2 segundos, um ganho de performance superior a 99\%, garantindo que os agentes de segurança tenham acesso quase instantâneo às informações (Figura \ref{fig:consulta_pm_otimizada}).
+
+\begin{figure}[H]
+    \centering
+    \caption{Tempo das consulta de Medidas Protetivas após otimização.}
+    \includegraphics[width=1\textwidth]{figure/PM/Consulta_otimizada-PM.png}
+    
+    \label{fig:consulta_pm_otimizada}
+    {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2026)}
+\end{figure}
+
+
 \begin{itemize}
    \item \textbf{Página inicial da Polícia Militar:} Consulta de  \textit{Vitimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas e \textit{Cards informativos}
 \end{itemize}
@@ -363,6 +387,7 @@ Algumas técnicas adotadas incluem:
 
 \par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
+\par Adicionalmente, foi dada atenção à experiência do usuário (UX) por meio de microinterações. Os componentes modais da plataforma foram aprimorados para seguir padrões de usabilidade consolidados: agora, além do clique no botão de fechar ('X'), os modais podem ser dispensados pressionando a tecla \textbf{ESC} ou clicando em qualquer área externa a eles. Tais melhorias, embora simples, contribuem para uma navegação mais fluida e intuitiva.
 
 \section{Resultados}
 
