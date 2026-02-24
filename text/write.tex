@@ -1,4 +1,3 @@
-
 %
 %         Destinado a confecção do relatorio
 %
@@ -28,7 +27,7 @@
     Fonte: O autor (2025)}
 \end{minipage}
 \\
-\par Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma não apenas melhora o presente - ela transforma o futuro, criando condições para que novas gerações cresçam em ambientes mais seguros, protegidos e livres da normalização da violência doméstica.
+\par Além de promover agilidade e efetividade no atendimento às vítimas, a plataforma representa uma ferramenta estratégica para romper o ciclo intergeracional da violência, que frequentemente se perpetua de pais para filhos. Estudos como o da Universidade Federal do Ceará, em parceria com a ONU Mulheres, revelam que quatro em cada dez mulheres que cresceram em lares violentos vivenciam o mesmo padrão na vida adulta, evidenciando a urgência de intervenções sistêmicas e integradas \cite{carvalho2017transmissao}. Ao conectar instituições e facilitar o fluxo de informações, a plataforma contribui para a construção de condições mais seguras e para a redução da normalização da violência doméstica.
 
 
 
@@ -52,7 +51,7 @@
 
 \par A violência psicológica, frequentemente subnotificada, afeta profundamente a saúde mental das vítimas. Estudos indicam que 85\% das mulheres em situação de violência doméstica desenvolvem transtornos psicológicos, como depressão, ansiedade e síndrome do pânico \cite{zancan2013}. A violência também impacta diretamente as crianças expostas ao ambiente violento, perpetuando o ciclo intergeracional já mencionado.
 
-\par Diante desse cenário alarmante, a implementação de sistemas integrados de informação, como a PIEVDCS, torna-se essencial para aprimorar a coordenação entre as instituições, acelerar o atendimento às vítimas, monitorar a efetividade das medidas protetivas e produzir dados estratégicos para o planejamento de políticas públicas de prevenção e enfrentamento à violência doméstica.
+\par Diante desse cenário, a implementação de sistemas integrados de informação, como a PIEVDCS, torna-se essencial para aprimorar a coordenação entre as instituições, acelerar o atendimento às vítimas, monitorar a efetividade das medidas protetivas e produzir dados estratégicos para o planejamento de políticas públicas de prevenção e enfrentamento à violência doméstica.
 
 \section{Tecnologias utilizadas}
 \par A escolha das tecnologias adotadas neste projeto foi pautada, sobretudo, por seu caráter \textit{Open Source} (código aberto), o que proporciona significativa economia ao eliminar custos com licenciamento. Dessa forma, os investimentos se concentram exclusivamente em aspectos de infraestrutura, como servidores e equipe técnica especializada.
@@ -77,6 +76,13 @@
 
 \par No contexto do Django, o HTMX se integra de forma natural ao padrão MVT (\textit{Model-View-Template}), permitindo que as views Django retornem fragmentos HTML que são injetados dinamicamente na página. Esta abordagem híbrida combina a robustez do backend Django com a interatividade do frontend moderno, sem a complexidade de frameworks JavaScript pesados como React ou Vue.js.
 
+
+\subsection{ReportLab}
+\par O \textbf{ReportLab} \citeonline{reportlab:2026} é uma biblioteca Python voltada à geração dinâmica de documentos PDF com alto nível de controle sobre layout e diagramação. Seu caráter tecnológico se destaca pela capacidade de produzir \textbf{PDFs de alta qualidade} para documentos que exigem padronização e precisão (ex.: relatórios, faturas e ofícios), garantindo reprodutibilidade e consistência visual.
+
+\par Do ponto de vista técnico, trata-se de uma solução \textbf{nativa em Python}, o que facilita sua integração direta em aplicações web (como Django/Flask) e em rotinas automatizadas. A biblioteca opera através de um modelo de desenho em \textit{canvas}, no qual é possível posicionar elementos por \textbf{coordenadas} com precisão (pontos), controlando fontes, estilos e cores.
+
+\par Além da emissão textual, o ReportLab oferece suporte à criação de \textbf{gráficos e desenhos vetoriais}, permitindo compor diagramas, formas personalizadas e elementos gráficos no próprio PDF. Essas características tornam a biblioteca adequada para a geração de relatórios complexos e documentos institucionais produzidos automaticamente a partir dos dados registrados na plataforma.
 
 \subsection{Django Channels e Redis}
 \par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entr
@@ -295,19 +301,20 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 \par Um dos diferenciais do módulo da Polícia Militar é o suporte à Rede Catarina de Proteção à Mulher. Por meio do sistema, os policiais militares responsáveis pela fiscalização podem registrar sistematicamente as visitas de acompanhamento às vítimas, verificando se as determinações judiciais estão sendo respeitadas pelo agressor. O sistema permite o registro de informações como: data e horário da fiscalização, situação encontrada (medida cumprida, descumprimento parcial ou total), relato da vítima sobre sua percepção de segurança.
 
-A seção destinada à Polícia Militar é uma das mais críticas, pois fornece acesso rápido a informações sobre medidas protetivas de urgência. Originalmente, a funcionalidade permitia a consulta e visualização desses dados, mas foram identificados gargalos de performance significativos.
+\par A seção destinada à Polícia Militar fornece acesso a informações sobre Medidas Protetivas de Urgência. Durante os testes com massa elevada de dados, foram identificados gargalos de performance relevantes para consulta e navegação, especialmente quando o sistema tentava carregar todos os registros simultaneamente.
 
-\par Em testes com uma massa de dados elevada, o tempo de resposta para consultas completas ultrapassava 70 segundos, tornando a ferramenta impraticável para uso em campo. Para resolver essa questão, foi realizado um trabalho de otimização focado em três frentes principais:
+\par Para resolver a questão, foi realizado um trabalho de otimização focado em três frentes principais:
+
 \begin{itemize}
-    \item \textbf{Otimização de Queries:} As consultas SQL foram reestruturadas para reduzir a complexidade e o número de junções (joins) necessárias.
-    \item \textbf{Indexação de Banco de Dados:} Foram criados índices estratégicos nas tabelas, permitindo que o banco de dados localize os registros de forma muito mais eficiente.
-    \item \textbf{Paginação com Auto Carregamento:} Implementou-se a paginação dos resultados com carregamento automático de novas páginas conforme o usuário rola a pesquisa (\textit{infinite scroll}), tornando possível consultar grandes volumes de medidas protetivas de forma leve e contínua.
+    \item \textbf{Otimização de Queries:} Reestruturação das consultas para reduzir a complexidade e o número de junções (joins) necessárias.
+    \item \textbf{Indexação de Banco de Dados:} Criação de índices estratégicos nas tabelas, melhorando o tempo de localização e filtragem de registros.
+    \item \textbf{Paginação com Auto Carregamento:} Implementação de paginação com carregamento automático de novas páginas conforme o usuário rola a listagem (\textit{infinite scroll}), tornando possível consultar grandes volumes de Medidas Protetivas de Urgência de forma leve e contínua.
 \end{itemize}
 
-\par Como resultado, o tempo de execução das consultas foi reduzido para uma média de 0.2 segundos, um ganho de performance superior a 99\%, garantindo que os agentes de segurança tenham acesso quase instantâneo às informações (Figura \ref{fig:consulta_pm_otimizada}).
+\par Como resultado, o tempo de execução das consultas foi reduzido para uma média de 0.2 segundos, garantindo que a Polícia Militar tenha acesso rápido às informações durante o processo de consulta (Figura \ref{fig:consulta_pm_otimizada}).
 
 \begin{itemize}
-   \item \textbf{Página inicial da Polícia Militar:} Consulta de  \textit{Vitimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas e \textit{Cards informativos}
+   \item \textbf{Página inicial da Polícia Militar:} Consulta de \textit{Vítimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas de Urgência e \textit{Cards informativos}.
 \end{itemize}
 
 
@@ -402,7 +409,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     
     \item \textbf{Chatbot com IA}: Interface para interação com modelos Ollama, sistema de fallback com respostas pré-definidas, configuração flexível de host e modelo;
     
-    \item \textbf{Scripts de automação}: Criação de estados, municípios, comarcas de SC, geração de 500+ registros fictícios de MPU, criação automática de grupos com permissões;
+    \item \textbf{Scripts de automação}: Criação de estados, municípios, comarcas de SC, geração de 6.000 registros fictícios de Medidas Protetivas de Urgência, criação automática de grupos com permissões;
     
     \item \textbf{Documentação}: Instruções técnicas e README detalhado de cada aplicação Django;
     
@@ -410,7 +417,7 @@ A seguir estão listadas as principais funcionalidades já implementadas:
 \end{itemize}
 
 \subsection{Métricas de Performance e Escalabilidade}
-\par Testes realizados em janeiro de 2026 com a base de dados de teste contendo mais de 500 registros fictícios demonstraram melhorias significativas:
+\par Testes realizados em janeiro de 2026 com a base de dados de teste contendo 6.000 registros fictícios de Medidas Protetivas de Urgência demonstraram melhorias significativas:
 
 \begin{table}[H]
 \centering
@@ -419,9 +426,9 @@ A seguir estão listadas as principais funcionalidades já implementadas:
 \hline
 \textbf{Operação} & \textbf{Antes} & \textbf{Depois} & \textbf{Melhoria} \\
 \hline
-Carregamento inicial (PM) & 8.5s & 1.2s & 85.8\% \\
+Carregamento inicial (Polícia Militar) & 8.5s & 1.2s & 85.8\% \\
 \hline
-Consulta de vítimas & 5.3s & 0.9s & 83.0\% \\
+Consulta total (listagem paginada) & 5.3s & 0.9s & 83.0\% \\
 \hline
 Busca por CPF & 2.1s & 0.4s & 81.0\% \\
 \hline
@@ -437,17 +444,16 @@ Busca por CPF & 2.1s & 0.4s & 81.0\% \\
 \subsubsection{Otimizações de Performance}
 \par Com o crescimento da base de dados, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026, visando garantir eficiência no acesso às informações armazenadas.
 
-\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas das medidas protetivas. Anteriormente, todos os registros eram carregados simultaneamente, causando lentidão proporcional ao volume de dados. Com a nova abordagem, os registros são carregados progressivamente, reduzindo o tempo de resposta inicial e o consumo de recursos.
+\par A principal otimização consistiu na implementação de \textbf{paginação dinâmica via HTMX} para o carregamento de listas extensas de Medidas Protetivas de Urgência. Anteriormente, todos os registros eram carregados simultaneamente, causando lentidão proporcional ao volume de dados. Com a nova abordagem, os registros são carregados progressivamente, reduzindo o tempo de resposta inicial e o consumo de recursos.
 
 \begin{itemize}
     \item \textbf{Carregamento progressivo}: Os dados são requisitados e renderizados em partes, utilizando HTMX para atualizações assíncronas sem recarregar a página completa;
     \item \textbf{Redução de carga no servidor}: Menor consumo de memória RAM e processamento da CPU por requisição;
     \item \textbf{Melhoria na experiência do usuário}: Interface mais responsiva, independente do volume total de registros cadastrados;
-    \item \textbf{Consulta otimizada de banco de dados}: Implementação de queries específicas para busca total de vítimas com índices otimizados no PostgreSQL.
+    \item \textbf{Consulta otimizada de banco de dados}: Implementação de consultas mais eficientes e ajustes de índices no PostgreSQL.
 \end{itemize}
 
-\par Essas otimizações garantem que a consulta ao histórico completo de vítimas e agressores pela Polícia Militar seja realizada de forma eficiente, permitindo análise adequada das informações após o atendimento inicial e estabilização da ocorrência.
-
+\par Essas otimizações permitem que as consultas sejam realizadas com maior fluidez, favorecendo o trabalho de análise e acompanhamento após o atendimento inicial.
 
 \subsection{Volume de Dados em Ambiente de Testes}
 \par Considerando o nível TRL 6 do projeto (demonstração de protótipo em ambiente relevante), a plataforma opera atualmente com uma base de dados de teste que simula um cenário operacional realista. Através dos scripts de automação descritos na seção \ref{script}, foram gerados dados fictícios para validar a escalabilidade e performance do sistema.
@@ -461,7 +467,7 @@ Busca por CPF & 2.1s & 0.4s & 81.0\% \\
 \hline
 \textbf{Métrica} & \textbf{Quantidade} \\
 \hline
-Total de Medidas Protetivas cadastradas & 6.000 \\
+Total de Medidas Protetivas de Urgência cadastradas & 6.000 \\
 \hline
 Média de cadastros por mês (simulado) & $\sim$200 registros \\
 \hline
@@ -486,9 +492,9 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
     Fonte: O autor (2026)}
 \end{figure}
 
-\par A figura \ref{fig:consulta_pm_sem_com_otimizada} ilustra a consulta do módulo da Polícia Militar, onde é possível visualizar a implementação sem otimização e da paginação dinâmica que permite navegação eficiente mesmo com a base completa de 6.000 registros de teste. A interface apresenta tempos de resposta consistentes independente do volume total de dados cadastrados.
+\par A figura \ref{fig:consulta_pm_sem_com_otimizada} ilustra a consulta do módulo da Polícia Militar, onde é possível visualizar a implementação sem otimização e a paginação dinâmica. A abordagem com paginação permite navegação eficiente mesmo com a base completa de 6.000 registros fictícios de teste.
 
-\par Incluo algumas telas da plataforma a sequência das imagens são aleatórias.
+\par Incluo algumas telas da plataforma, sendo a sequência das imagens aleatória.
 
 \begin{figure}[H]
    \center
@@ -501,7 +507,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
    {\fontsize{10pt}{\baselineskip}\selectfont
     Fonte: O autor (2025)}
 \end{figure}
-\par Foi desenvolvida uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são reais e baseadas nos registros da plataforma, mas tratadas com rigor técnico para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta dos locais de ocorrência.
+\par Foi desenvolvida uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são tratadas para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta de locais de ocorrência.
 
 \begin{figure}[H]
    \center
@@ -536,7 +542,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
 Funcionalidades em desenvolvimento:
 \begin{itemize}
     \item \textbf{Módulo de Atendimento Municipal} CRAS, CAPS, CREAS, Conselho Tutelar e Secretaria da Saúde
-    \item \textbf{Módulo da segurança pública} PM, PP, PC, PCI
+    \item \textbf{Módulo da segurança pública} Polícia Militar, Polícia Penal, Polícia Civil, Polícia Científica
     \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
     \item \textbf{Notificações e Alertas} Sistema de notificações internas e externas
     \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
@@ -655,9 +661,9 @@ Funcionalidades Pendentes:
 
 \section{Considerações Finais}
 
-\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{40\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (janeiro 2026), destacam-se as otimizações significativas de performance no módulo da Polícia Militar, implementação de paginação dinâmica via HTMX e melhorias nas consultas ao banco de dados PostgreSQL.
+\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{40\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (janeiro 2026), destacam-se as otimizações de performance no módulo da Polícia Militar, com implementação de paginação dinâmica via HTMX e melhorias nas consultas ao banco de dados PostgreSQL.
 
-\par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{}  instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
+\par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{} instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
 
 \par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
 
