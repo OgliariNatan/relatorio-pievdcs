@@ -565,6 +565,23 @@ Funcionalidades Pendentes:
 \subsection{Assistente virtual com IA}
 
 \par A assistente virtual com inteligência artificial será uma das funcionalidade do projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, o assistente será capaz de compreender e responder a perguntas, fornecer orientações e realizar tarefas automatizadas.
+
+\noindent \begin{minipage}[c]{0.6\textwidth}
+  \vspace {1cm}
+  A assistente virtual foi denominada de \textbf{laelIA}, cujo nome deriva da \textit{Laelia purpurata}, uma orquídea representativa do estado de Santa Catarina \cite{laelia:2026}. O nome é de caráter feminino, incorporando a denominação \textbf{IA} (Inteligência Artificial) em sua composição, resultando em \textbf{lael-IA}. A imagem da assistente virtual foi obtida no site \textit{99designs}, de autoria de \textit{VladanP}. Todos os direitos autorais são reservados ao autor, devendo ser devidamente respeitados conforme os termos de uso da plataforma \citeonline{99designs:2026}.
+
+
+\end{minipage}
+\begin{minipage}[c]{0.4\textwidth}
+  \captionof{figure}{Assistente Virtual com IA.}
+  \includegraphics[width=\textwidth]{figure/chat_bot.png}
+  \label{fig:chat_bot}
+  {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: \cite{99designs:2026}}
+\end{minipage}
+\\
+
+
 \par Implementado e testado alguns modelos de linguagem com Ollama, algumas figuras de desempenho e respostas obtidas. Frisa-se que, alguns modelos detem de um elevado tempo de respostas isso é devido a restrição de \textit{hardware}.
 
 
@@ -646,20 +663,19 @@ Funcionalidades Pendentes:
 \par Os principais marcos de desenvolvimento incluem:
 
 \begin{description}
-    \item[Julho-Agosto 2025] Estruturação inicial dos módulos de segurança pública (Polícia Militar, Polícia Civil, Polícia Penal), implementação de formulários de Medidas Protetivas de Urgência pela Defensoria Pública, configuração da infraestrutura de produção na Hostinger;
+   \item[Julho-Agosto 2025] Estruturação inicial dos módulos de segurança pública (Polícia Militar, Polícia Civil, Polícia Penal), implementação de formulários de Medidas Protetivas de Urgência pela Defensoria Pública, configuração da infraestrutura de produção na Hostinger;
     
-    \item[Setembro-Novembro 2025] Desenvolvimento dos módulos municipais (Centro de Referência de Assistência Social, Centro de Atenção Psicossocial, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde), sistema de notificações em tempo real com Django Channels, integração e testes com modelos de linguagem via Ollama;
+   \item[Setembro-Novembro 2025] Desenvolvimento dos módulos municipais (Centro de Referência de Assistência Social, Centro de Atenção Psicossocial, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde), sistema de notificações em tempo real com Django Channels, integração e testes com modelos de linguagem via Ollama;
     
-    \item[Dezembro 2025] Refinamento de interfaces, testes de usabilidade interna, implementação completa de dashboards públicos com dados anonimizados, ajustes de segurança e permissões granulares por grupo institucional;
+   \item[Dezembro 2025] Refinamento de interfaces, testes de usabilidade interna, implementação completa de dashboards públicos com dados anonimizados, ajustes de segurança e permissões granulares por grupo institucional;
     
-    \item[Janeiro 2026] Otimizações significativas de performance com implementação de paginação dinâmica via HTMX no módulo da Polícia Militar, melhorias estruturais nas consultas PostgreSQL, geração de 6.000 registros de teste para validação de escalabilidade, preparação para fase de validação com usuários reais das \numero_instituicoes{} instituições participantes.
+   \item[Janeiro 2026] Otimizações significativas de performance com implementação de paginação dinâmica via HTMX no módulo da Polícia Militar, melhorias estruturais nas consultas PostgreSQL, geração de 6.000 registros de teste para validação de escalabilidade, preparação para fase de validação com usuários reais das \numero_instituicoes{} instituições participantes.
     
-    \item[Fevereiro 2026] Continuidade da evolução dos módulos municipais, com implementação de componentes e rotinas de atendimento (com destaque para o CREAS) e consolidação de ajustes no módulo principal (ex.: inclusão de tradutor de Libras e ajustes experimentais). No âmbito da segurança pública, houve evolução nas consultas da Polícia Militar, incluindo visualização de histórico nas listagens de atendimento.
+   \item[Fevereiro 2026] Evolução de acessibilidade e funcionalidades institucionais: no módulo \texttt{MAIN}, foi incorporado recurso de \textbf{tradução/interpretação em Libras} (PR \#108), ampliando inclusão e acessibilidade. No módulo de \textbf{Segurança Pública}, foi adicionada a \textbf{visualização de histórico} nas consultas totais da Polícia Militar (PR \#110), fortalecendo a análise contextual de atendimentos. No eixo \textbf{Municipal}, houve avanço expressivo no \textbf{CREAS}, com implementação de rotinas de \textbf{registro de atendimentos e acompanhamento de casos} (PR \#114), consolidando a trilha de atendimento psicossocial e a rastreabilidade do acompanhamento institucional.
 \end{description}
 
-\par A branch de desenvolvimento principal utilizada é a \texttt{63-ogliari}, que representa o trabalho técnico do reeducando responsável pela implementação. Esta branch é regularmente sincronizada com a branch \texttt{main} após revisões e validações funcionais.
-
-\par O repositório completo do projeto está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, totalizando mais de 597 commits até janeiro de 2026, com histórico completo de desenvolvimento documentado.
+\par A \textit{branch} principal de desenvolvimento utilizada é a \texttt{63-ogliari}, que consolida o trabalho técnico do reeducando responsável pela implementação. Essa \textit{branch} é periodicamente sincronizada com a \textit{branch} \texttt{main} após revisões e validações funcionais, garantindo que as entregas integradas estejam estáveis e coerentes com o baseline do projeto.
+\par O repositório do relatório está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, com histórico completo de desenvolvimento versionado e documentado. Até fevereiro de 2026, o projeto acumulava mais de 597 \textit{commits}, refletindo o ciclo iterativo e incremental adotado na evolução da plataforma.
 
 \section{Considerações Finais}
 
