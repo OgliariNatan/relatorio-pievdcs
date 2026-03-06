@@ -51,7 +51,7 @@
 
 \par A violência psicológica, frequentemente subnotificada, afeta profundamente a saúde mental das vítimas. Estudos indicam que 85\% das mulheres em situação de violência doméstica desenvolvem transtornos psicológicos, como depressão, ansiedade e síndrome do pânico \cite{zancan2013}. A violência também impacta diretamente as crianças expostas ao ambiente violento, perpetuando o ciclo intergeracional já mencionado.
 
-\par A \textbf{violência vicária} constitui uma forma particularmente perversa de violência doméstica, na qual o agressor utiliza os filhos e outras pessoas queridas pela vítima como instrumento de controle, punição e coerção. O agressor fere ou ameaça deliberadamente aqueles que a vítima ama com o objetivo de causar sofrimento psicológico e emocional a ela, mantendo-a em situação de medo, dependência e submissão \cite{dp2026}. Essa modalidade de violência não está prevista como crimes contra a mulher, no entanto, são objeto de discussões, deste modo foi incorporada ao formulário de Medida Protetiva da plataforma PIEVDCS, permitindo o registro detalhado desse tipo específico de violência e subsidiando decisões judiciais mais precisas e efetivas.
+\par A \textbf{violência vicária} constitui uma forma particularmente perversa de violência doméstica, na qual o agressor utiliza os filhos e outras pessoas queridas pela vítima como instrumento de controle, punição e coerção. O agressor fere ou ameaça deliberadamente aqueles que a vítima ama com o objetivo de causar sofrimento psicológico e emocional a ela, mantendo-a em situação de medo, dependência e submissão \cite{dp2026}. Essa modalidade de violência não está prevista como crimes contra a mulher, no entanto, são objeto de discussões, deste modo foi incorporada ao formulário de Medida Protetiva da plataforma, permitindo o registro detalhado desse tipo específico de violência e subsidiando decisões judiciais mais precisas e efetivas.
 
 \par Diante desse cenário, a implementação de sistemas integrados de informação, como a PIEVDCS, torna-se essencial para aprimorar a coordenação entre as instituições, acelerar o atendimento às vítimas, monitorar a efetividade das medidas protetivas e produzir dados estratégicos para o planejamento de políticas públicas de prevenção e enfrentamento à violência doméstica.
 
@@ -107,7 +107,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 \subsection{Ollama: Execução Local de Modelos de Linguagem}
 \par A execução de Modelos de Linguagem de Grande Escala (LLMs) será realizada utilizando a plataforma \texttt{Ollama}, que permite rodar modelos como LLaMA, Mistral e Gemma diretamente no ambiente local, sem necessidade de conexão com servidores externos. Segundo \citeonline{ollama:2025}, a proposta da ferramenta é “facilitar a execução de grandes modelos de linguagem localmente”, o que contribui para maior privacidade e controle sobre os dados processados.
-\par A execução dos modelos será realizada com suporte de uma GPU \texttt{NVIDIA RTX 2000 Ada Generation}, equipada com 16GB de memória dedicada, DDR6, 128bits. Embora não seja a mais potente da linha, essa placa gráfica oferece recursos suficientes para testes locais com modelos otimizados, como os disponíveis na plataforma Ollama. Seu uso viabiliza a aceleração das inferências, mesmo que com tempos de resposta mais elevados em modelos de maior complexidade.
+\par A execução dos modelos é realizada com suporte de uma GPU \texttt{NVIDIA RTX 2000 Ada Generation}, equipada com 16GB de memória dedicada, DDR6, 128bits. Embora não seja a mais potente da linha, essa placa gráfica oferece recursos suficientes para testes locais com modelos otimizados, como os disponíveis na plataforma Ollama. Seu uso viabiliza a aceleração das inferências, mesmo que com tempos de resposta mais elevados em modelos de maior complexidade.
 
 
 \section{Níveis de Prontidão Tecnológica (TRL)}\label{trl}
@@ -145,7 +145,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \begin{itemize}
     \item \textbf{TRL 1 e 2 (Concluídos - Pesquisa Básica):} Os princípios fundamentais foram estabelecidos através do levantamento de requisitos com as instituições participantes, identificação das necessidades de integração entre os sistemas de justiça, segurança pública e serviços municipais, e formulação do conceito de plataforma integrada para enfrentamento à violência doméstica.
     
-    \item \textbf{TRL 3 e 4 (Concluído 3, em andamento 4(80\%) - Pesquisa Aplicada):} Os conceitos tecnológicos foram estabelecidos e validados em ambiente de desenvolvimento. A arquitetura Django com PostgreSQL, sistema de autenticação customizado baseado em instituições e integração entre módulos foram testados com sucesso em laboratório (ambiente de desenvolvimento local). Validação funcional dos componentes críticos: sistema de cadastro de vítimas/agressores, formulários de medidas protetivas, sistema de notificações em tempo real via WebSockets e dashboards estatísticos.
+    \item \textbf{TRL 3 e 4 (Concluídos - Pesquisa Aplicada):} Os conceitos tecnológicos foram estabelecidos e validados em ambiente de desenvolvimento. A arquitetura Django com PostgreSQL, sistema de autenticação customizado baseado em instituições e integração entre módulos foram testados com sucesso em laboratório (ambiente de desenvolvimento local). Validação funcional dos componentes críticos: sistema de cadastro de vítimas/agressores, formulários de medidas protetivas, sistema de notificações em tempo real via WebSockets e dashboards estatísticos.
     
     \item \textbf{TRL 5 (Em andamento - Desenvolvimento Experimental):} As funções críticas do sistema estão em validação em ambiente relevante através do servidor de desenvolvimento (\texttt{10.40.22.46:8000}) acessível pela rede interna do estado catarinense. Testes realizados com dados simulados demonstram a viabilidade técnica da integração entre as \numero_instituicoes{} instituições participantes, incluindo fluxos completos desde o registro de ocorrências até a emissão de medidas protetivas.
     
@@ -158,7 +158,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 \begin{enumerate}
     \item Aprovação formal de todas as instituições participantes após testes extensivos com dados reais;
-    \item Integração completa com sistemas legados já em operação (e-eproc do Poder Judiciário, sistemas do Ministério Público, SISP das forças de segurança);
+    \item Integração completa com sistemas legados já em operação (e-eproc do Poder Judiciário, sistemas do Ministério Público, Sistema Integrado de Segurança Pública);
     \item Infraestrutura de produção robusta com garantias de alta disponibilidade (99,9\%), redundância geográfica e planos de contingência;
     \item Programa completo de treinamento e capacitação para todos os operadores das instituições participantes;
     \item Período estendido de operação assistida com suporte técnico dedicado e monitoramento contínuo de desempenho;
@@ -173,24 +173,6 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \section{Implementação para testes e validações}
 \par Para os testes iniciais e validações, as informações serão geradas automaticamente através de \textit{script python} \ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
 
-\subsection{Dos Scripts}\label{script}
-\par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, com foco em testes e validações.
-
-\par Para validação de performance e escalabilidade do sistema, foram gerados através destes scripts \textbf{6.000 registros fictícios de Medidas Protetivas de Urgência}, permitindo testar o comportamento da plataforma sob carga realista antes da utilização de dados reais. Este volume possibilitou identificar gargalos de performance e validar as otimizações implementadas, especialmente no módulo da Polícia Militar.
-
-\par Funcionalidades já implementadas nos \textit{script}:
-
-\begin{description}
-   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio apenas uma vez;
-   \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado", apenas uma vez;
-   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
-   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Utilizado para popular a base de testes com volume realista;
-   \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente. Utilizado para popular a base de testes;
-   \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas Protetivas e Medidas Protetivas de Urgência e cadastra na seção competente da \textbf{Defensoria Pública}. Responsável pela geração dos 6.000 registros utilizados nos testes de performance e escalabilidade;
-   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possam ser inseridos usuários pertinentes às suas instituições e suas permissões. [\textit{Centro de Atenção Psicossocial, Centro de Referência de Assistência Social, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde, Conselho Tutelar, Polícia Penal, Polícia Civil, Polícia Militar, Poder Judiciário, Ministério Público, Defensoria Pública}] - totalizando \numero_instituicoes{} grupos;
-\end{description}
-
-\par Todos os dados gerados são \textbf{fictícios}, garantindo que nenhuma informação real de pessoas seja utilizada durante a fase de desenvolvimento e validação (TRL 6-7), em conformidade com as diretrizes do projeto piloto.
 
 
 \subsection{Hostinger}
@@ -218,6 +200,29 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \subsubsection{O domínio}
 \par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP\footnote{IP é como se fosse o endereço da sua casa, mas na internet.} (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
 \par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é válido até 12/11/2025.
+
+\subsection{Dos Scripts}\label{script}
+\par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, com foco em testes e validações.
+
+\par Para validação de performance e escalabilidade do sistema, foram gerados através destes scripts \textbf{6.000 registros fictícios de Medidas Protetivas de Urgência}, permitindo testar o comportamento da plataforma sob carga realista antes da utilização de dados reais. Este volume possibilitou identificar gargalos de performance e validar as otimizações implementadas, especialmente no módulo da Polícia Militar.
+
+\par Funcionalidades implementadas nos \textit{script}:
+
+\begin{description}
+   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio apenas uma vez;
+   \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado", apenas uma vez;
+   \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
+   \item [Importa Limites de Bairros] (descrever)
+   \item [Limites IBGE] (descrever)
+   \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Utilizado para popular a base de testes com volume realista;
+   \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente. Utilizado para popular a base de testes;
+   \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas Protetivas e Medidas Protetivas de Urgência e cadastra na seção competente da \textbf{Defensoria Pública}. Responsável pela geração dos 6.000 registros utilizados nos testes de performance e escalabilidade;
+   \item [Cria Grupo de Usuários] Cria grupos institucionais para que possam ser inseridos usuários pertinentes às suas instituições e suas permissões. [\textit{Centro de Atenção Psicossocial, Centro de Referência de Assistência Social, Centro de Referência Especializado de Assistência Social, Secretaria da Saúde, Conselho Tutelar, Polícia Penal, Polícia Civil, Polícia Militar, Poder Judiciário, Ministério Público, Defensoria Pública}] - totalizando \numero_instituicoes{} grupos;
+   \item [Cria Tipos de Violência] Cadastra os tipos de violência (física, psicológica, sexual, patrimonial, moral e vicária) para serem utilizados nos formulários de registro de ocorrências;
+\end{description}
+
+\par Todos os dados gerados são \textbf{fictícios}, garantindo que nenhuma informação real de pessoas seja utilizada durante a fase de desenvolvimento e validação (TRL 6-7), em conformidade com as diretrizes do projeto piloto.
+
 
 \subsection{Do Desenvolvimento}
 \par No contexto do ciclo de vida de desenvolvimento de software, a instrumentação do código para fins de depuração (debugging) é uma prática essencial para garantir a rastreabilidade de falhas. O ambiente de desenvolvimento, caracterizado neste projeto pela configuração da variável de ambiente \textit{DEBUG = True}, requer um nível de detalhamento informacional superior ao ambiente de produção.
@@ -269,7 +274,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
       \item Secretaria da Saúde.
    \end{itemize}
    
-   \item[\texttt{mensageria}] Sistema de notificações em tempo real utilizando Django Channels e WebSockets, permitindo envio de mensagens para usuários individuais ou grupos institucionais, com classificação de prioridade (normal, urgente, crítica) e status de leitura.
+   \item[\texttt{mensageria}] Sistema de notificações em tempo real utilizando Django Channels e WebSockets, permitindo envio de mensagens para usuários individuais ou grupos institucionais, com classificação de prioridade (baixa, normal, alta e urgente) e status de leitura.
 \end{description}
 
 \subsection{Visualizações e funcionalidades}
@@ -292,7 +297,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \begin{itemize}
    \item \textbf{Formulário de MPU:} Mais de 35 campos sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária; campo de prazo com suporte a período indeterminado (100 anos);
    \item \textbf{Listagem de MPUs:} Visualização de todas as medidas ativas e encerradas, com filtros por comarca, vítima, agressor e status;
-   \item \textbf{Geração de Relatórios:} Exportação de relatórios em PDF via ReportLab com layout padronizado.
+   %\item \textbf{Geração de Relatórios:} Exportação de relatórios em PDF via ReportLab com layout padronizado.
 \end{itemize}
 
 \subsubsection{Polícia Penal}
@@ -332,13 +337,16 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
    \item \textbf{Página inicial da Polícia Militar:} Consulta de \textit{Vítimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas de Urgência e \textit{Cards informativos}.
 \end{itemize}
 
+\subsubsection{Polícia Civil}
+
+\par IMPLEMENTAR
 
 \subsubsection{Mensageria em Tempo Real}
-\par O módulo de mensageria permite que usuários e instituições troquem mensagens e notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
+\par O módulo de mensageria permite que usuários e instituições troquem notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
 
 \begin{itemize}
    \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma comarca);
-   \item Classificação por prioridade — \textbf{Normal}, \textbf{Urgente} e \textbf{Crítica} — destacando situações de risco imediato;
+   \item Classificação por prioridade — \textbf{Baixa}, \textbf{Normal}, \textbf{Alta} e \textbf{Urgente} — destacando situações de risco imediato;
    \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Lida} e \textbf{Arquivada}, garantindo auditabilidade das comunicações institucionais;
    \item APIs REST para contadores de notificações não lidas e listagem das mensagens recentes, integradas à barra de navegação de cada instituição.
 \end{itemize}
@@ -361,9 +369,9 @@ Algumas técnicas adotadas incluem:
 \item \textbf{Sistema de Notificações em Tempo Real}: Arquitetura baseada em WebSockets com Django Channels, permitindo:
    \begin{itemize}
       \item Envio de notificações para usuários individuais ou grupos institucionais;
-      \item Classificação por prioridade (normal, urgente, crítica);
+      \item Classificação por prioridade (baixa, normal, alta, urgente);
       \item Rastreamento de status (não lida, lida, arquivada);
-      \item APIs REST para contadores e listagens de notificações recentes.
+      %\item APIs REST para contadores e listagens de notificações recentes.
    \end{itemize}
 
 \item \textbf{Visualizações Dinâmicas}: Criação de dashboards interativos com \textit{Chart.js} para análise de tipos de violência, medidas protetivas por comarca, e mapas geográficos com \textit{Leaflet.js} para visualização espacial de ocorrências.
@@ -413,7 +421,7 @@ Algumas técnicas adotadas incluem:
 
 \section{Resultados}
 
-A seguir estão listadas as principais funcionalidades já implementadas:
+A seguir estão listadas as principais funcionalidades implementadas:
 
 \begin{itemize}
     \item \textbf{Estrutura de dados completa}: Modelos Django para vítimas, agressores, filhos, usuários, estados, municípios, comarcas e formulários especializados;
@@ -438,11 +446,11 @@ A seguir estão listadas as principais funcionalidades já implementadas:
     
     \item \textbf{Documentação}: Instruções técnicas e README detalhado de cada aplicação Django;
     
-    \item \textbf{Páginas Concluídas}: Login (com recuperação de senha), Página Inicial pública (conteúdos dinâmicos), Relatórios públicos, Home institucional das \numero_instituicoes{} instituições, Formulários de cadastro, Interface de notificações.
+   
 \end{itemize}
 
 \subsection{Métricas de Performance e Escalabilidade}
-\par Testes realizados em janeiro de 2026 com a base de dados de teste contendo 6.000 registros fictícios de Medidas Protetivas de Urgência demonstraram melhorias significativas:
+\par Testes realizados em janeiro de 2026 com a base de dados de teste contendo 6.000 registros fictícios de Medidas Protetivas demonstraram melhorias significativas:
 
 \begin{table}[H]
 \centering
@@ -464,7 +472,7 @@ Busca por CPF & 2.1s & 0.4s & 81.0\% \\
     Fonte: O autor (2026)}
 \end{table}
 
-\par O Pull Request \#103, mesclado em 30 de janeiro de 2026, consolidou 17 arquivos modificados com 1.989 adições e 555 deleções de código, representando uma refatoração significativa focada em performance e usabilidade.
+\par O Pull Request \#103, mesclado em 30 de janeiro de 2026, consolidou 17 arquivos modificados com 555 deleções de código, representando uma refatoração significativa focada em performance e usabilidade.
 
 \subsubsection{Otimizações de Performance}
 \par Com o crescimento da base de dados, foram implementadas melhorias significativas de performance no módulo da Polícia Militar durante janeiro de 2026, visando garantir eficiência no acesso às informações armazenadas.
@@ -519,6 +527,8 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
 
 \par A figura \ref{fig:consulta_pm_sem_com_otimizada} ilustra a consulta do módulo da Polícia Militar, onde é possível visualizar a implementação sem otimização e a paginação dinâmica. A abordagem com paginação permite navegação eficiente mesmo com a base completa de 6.000 registros fictícios de teste.
 
+\subsection{Telas da Plataforma}
+
 \par Incluo algumas telas da plataforma, sendo a sequência das imagens aleatória.
 
 \begin{figure}[H]
@@ -532,7 +542,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
    {\fontsize{10pt}{\baselineskip}\selectfont
     Fonte: O autor (2025)}
 \end{figure}
-\par Foi desenvolvida uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são tratadas para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta de locais de ocorrência.
+\par Possui uma seção pública de relatórios, permitindo que portais de notícias ou entidades interessadas acessem estatísticas em tempo real. As informações apresentadas são tratadas para garantir o anonimato das vítimas e envolvidos. As localizações exibidas são referenciadas a centros comunitários ou órgãos públicos de cada bairro, evitando a identificação direta de locais de ocorrência.
 
 \begin{figure}[H]
    \center
@@ -662,7 +672,7 @@ Funcionalidades Pendentes:
 
 \end{algorithm}
 
-\par A indagação ao modelo de inteligência artificial necessita para que o chatbot não crie ações que não estejam previstas. Indagou-se a possibilidade de que o chatbot realizasse uma denúncia on line, o modelo respondeu que não poderia fazer a denúncia, mas que poderia orientar a vítima a como fazer. Ressalta-se que o modelo não tem acesso a internet, e todas as respostas são geradas localmente. Ressalto que o tempo de resposta foi de \textbf{224.82 segundos}.
+\par A indagação ao modelo de inteligência artificial necessita para que o chatbot não crie ações que não estejam previstas. Indagou-se a possibilidade de que o chatbot realizasse uma denúncia on line, o modelo respondeu que não poderia fazer a denúncia, mas que poderia orientar a vítima a como fazer. Ressalta-se que o modelo não tem acesso a internet, e todas as respostas são geradas localmente. O tempo de resposta para esta indagação foi de \textbf{224.82 segundos}, aproximadamente \textbf{3.747 minutos}.
 
 \section{Sugestões/Para implementações futuras}
 \par Para aprimoramento do projeto focando na usabilidade, automações e integrações, sugiro algumas implementações:
@@ -687,7 +697,7 @@ Funcionalidades Pendentes:
 \par O desenvolvimento da plataforma PIEVDCS tem sido conduzido de forma iterativa e incremental, com merges regulares à branch principal através de pull requests documentados. 
 
 \subsection{Ciclo de Desenvolvimento}
-\par Entre julho de 2025 e janeiro de 2026, foram realizados mais de 30 pull requests (PRs \#74 a \#103), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
+\par Entre julho de 2025 e março de 2026, foram realizados mais de 30 pull requests (PRs \#74 a \#103), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
 
 \par Os principais marcos de desenvolvimento incluem:
 
@@ -710,13 +720,13 @@ Funcionalidades Pendentes:
 
 \section{Considerações Finais}
 
-\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{40\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (janeiro 2026), destacam-se as otimizações de performance no módulo da Polícia Militar, com implementação de paginação dinâmica via HTMX e melhorias nas consultas ao banco de dados PostgreSQL.
+\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{80\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (março 2026), destacam-se as a implementação do sistema de mensageria em tempo real com WebSockets, a atualização do formulário de Medidas Protetivas de Urgência para tratamento técnico do período indeterminado, e a incorporação do campo de violência vicária, ampliando a capacidade de registro detalhado das ocorrências.
 
 \par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{} instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
 
 \par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
 
-\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. No entanto, \textbf{não há um prazo final fixo para a entrega}, sem extrapolar o período da prestação de contas-, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interresadas).
+\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. A entrega esta previsata para a data de \textbf{março de 2026}, estando dentro do período da prestação de contas, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interresadas).
 
 \par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
 
