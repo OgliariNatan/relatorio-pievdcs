@@ -86,7 +86,7 @@
 
 \par Além da emissão textual, o ReportLab oferece suporte à criação de \textbf{gráficos e desenhos vetoriais}, permitindo compor diagramas, formas personalizadas e elementos gráficos no próprio PDF. Essas características tornam a biblioteca adequada para a geração de relatórios complexos e documentos institucionais produzidos automaticamente a partir dos dados registrados na plataforma.
 
-\subsection{Django Channels e Redis}
+\subsection{Django Channels e Redis}\label{sec:channels_redis}
 \par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entr
 e um cliente e um servidor, permitindo a troca de dados em tempo real.}. Esta tecnologia permite o envio e recebimento de notificações instantâneas entre usuários e instituições, fundamentais para a coordenação eficiente das ações de enfrentamento à violência doméstica.
 \par Como \textit{backend} de mensagens, utiliza-se o \textbf{Redis} \cite{redis:2025}, um armazenamento de estrutura de dados em memória, que atua como \textit{broker} de mensagens garantindo alta performance e confiabilidade na entrega de notificações em tempo real. O sistema foi configurado com capacidade de 1500 conexões simultâneas e tempo de expiração de 10 segundos, assegurando escalabilidade e eficiência.
@@ -282,6 +282,19 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 \par O principal recurso adicionado é o \textbf{assistente virtual (chatbot)}, uma ferramenta interativa projetada para guiar os usuários, esclarecer dúvidas sobre o ciclo da violência e indicar os canais de denúncia e apoio disponíveis. A implementação busca criar um ambiente seguro e informativo desde o primeiro contato com a plataforma.
 
+\subsubsection{Defensoria Pública}
+\par O módulo da Defensoria Pública centraliza o registro e gestão das Medidas Protetivas de Urgência (MPU), dispondo de um formulário extenso com mais de 35 campos que contemplam os diferentes tipos de violência previstos na Lei Maria da Penha: física, psicológica, sexual, patrimonial, moral e a \textbf{violência vicária}. O formulário também registra condutas de controle e monitoramento, ameaças, e uso de tecnologia ou inteligência artificial para manipulação da vítima.
+
+\par Uma decisão técnica relevante neste módulo diz respeito ao tratamento do prazo de vigência das medidas protetivas. Juridicamente, as MPUs podem ser concedidas por \textbf{prazo indeterminado}, ficando a critério do magistrado a definição da duração. Para evitar que campos de data vazios ou nulos gerem informações deslocadas no sistema — como a exibição de medidas como vencidas ou a quebra de consultas que dependem do intervalo de datas — foi adotada a seguinte abordagem técnica: quando o período é indeterminado, o sistema armazena automaticamente uma data de término equivalente a \textbf{100 anos} a partir da data de concessão da medida.
+
+\par Essa decisão garante que as medidas indeterminadas sejam tratadas como ativas indefinidamente, evitando que uma ausência de data de fim comprometa a integridade das consultas, relatórios e notificações do sistema. A escolha de 100 anos é uma convenção amplamente utilizada em sistemas de informação para representar ``sem prazo definido'', garantindo consistência operacional sem alterar a semântica jurídica da medida.
+
+\begin{itemize}
+   \item \textbf{Formulário de MPU:} Mais de 35 campos sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária; campo de prazo com suporte a período indeterminado (100 anos);
+   \item \textbf{Listagem de MPUs:} Visualização de todas as medidas ativas e encerradas, com filtros por comarca, vítima, agressor e status;
+   \item \textbf{Geração de Relatórios:} Exportação de relatórios em PDF via ReportLab com layout padronizado.
+\end{itemize}
+
 \subsubsection{Polícia Penal}
 \par A Polícia Penal atua diretamente com pessoas privadas de liberdade, desempenhando um papel fundamental na ressocialização e na prevenção da reincidência de crimes relacionados à violência doméstica. No contexto da plataforma PIEVDCS, o módulo da Polícia Penal foi desenvolvido para registrar e acompanhar as ações de conscientização voltadas aos agressores que cumprem pena sob a Lei nº 11.340/2006 (Lei Maria da Penha).
 
@@ -320,33 +333,14 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \end{itemize}
 
 
-\subsubsection{Defensoria Pública}
-\par O módulo da Defensoria Pública centraliza o registro e gestão das Medidas Protetivas de Urgência (MPU), dispondo de um formulário extenso com mais de 35 campos que contemplam os diferentes tipos de violência previstos na Lei Maria da Penha: física, psicológica, sexual, patrimonial, moral e a \textbf{violência vicária}. O formulário também registra condutas de controle e monitoramento, ameaças, e uso de tecnologia ou inteligência artificial para manipulação da vítima.
-
-\par Uma decisão técnica relevante neste módulo diz respeito ao tratamento do prazo de vigência das medidas protetivas. Juridicamente, as MPUs podem ser concedidas por \textbf{prazo indeterminado}, ficando a critério do magistrado a definição da duração. Para evitar que campos de data vazios ou nulos gerem informações deslocadas no sistema — como a exibição de medidas como vencidas ou a quebra de consultas que dependem do intervalo de datas — foi adotada a seguinte abordagem técnica: quando o período é indeterminado, o sistema armazena automaticamente uma data de término equivalente a \textbf{100 anos} a partir da data de concessão da medida.
-
-\par Essa decisão garante que as medidas indeterminadas sejam tratadas como ativas indefinidamente, evitando que uma ausência de data de fim comprometa a integridade das consultas, relatórios e notificações do sistema. A escolha de 100 anos é uma convenção amplamente utilizada em sistemas de informação para representar ``sem prazo definido'', garantindo consistência operacional sem alterar a semântica jurídica da medida.
-
-\begin{itemize}
-   \item \textbf{Formulário de MPU:} Mais de 35 campos sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária; campo de prazo com suporte a período indeterminado (100 anos);
-   \item \textbf{Listagem de MPUs:} Visualização de todas as medidas ativas e encerradas, com filtros por comarca, vítima, agressor e status;
-   \item \textbf{Geração de Relatórios:} Exportação de relatórios em PDF via ReportLab com layout padronizado.
-\end{itemize}
-
-
 \subsubsection{Mensageria em Tempo Real}
-\par O módulo de mensageria implementa comunicação em tempo real entre usuários e instituições da plataforma utilizando \textbf{WebSockets} via \textbf{Django Channels} e \textbf{Redis} como \textit{broker} de mensagens. Essa funcionalidade é fundamental para a coordenação ágil das ações institucionais no enfrentamento à violência doméstica.
+\par O módulo de mensageria permite que usuários e instituições troquem mensagens e notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
 
-\par A arquitetura do módulo permite o envio de notificações e mensagens de forma instantânea para usuários individuais ou para grupos institucionais inteiros (por exemplo, todas as delegacias de uma comarca), com classificação por nível de prioridade e rastreamento de status de leitura.
-
-\par Aspectos técnicos da implementação:
 \begin{itemize}
-   \item \textbf{Protocolo WebSocket}: Conexão bidirecional e persistente entre cliente e servidor, permitindo troca de dados em tempo real sem necessidade de \textit{polling}\footnote{Técnica em que o cliente consulta repetidamente o servidor para verificar se há novas mensagens.};
-   \item \textbf{Django Channels}: Extensão do Django que adiciona suporte a protocolos assíncronos, gerenciando as conexões WebSocket e o roteamento de mensagens;
-   \item \textbf{Redis como \textit{broker}}: Armazenamento em memória de alta performance utilizado para distribuir mensagens entre múltiplos processos do servidor, garantindo escalabilidade;
-   \item \textbf{Capacidade}: Sistema configurado para suportar até 1.500 conexões simultâneas, com tempo de expiração de mensagens de 10 segundos;
-   \item \textbf{Prioridades}: Classificação em três níveis — Normal, Urgente e Crítica — permitindo que situações de risco imediato sejam destacadas;
-   \item \textbf{Status de leitura}: Rastreamento do estado de cada mensagem (Não lida, Lida, Arquivada), garantindo auditabilidade das comunicações institucionais.
+   \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma comarca);
+   \item Classificação por prioridade — \textbf{Normal}, \textbf{Urgente} e \textbf{Crítica} — destacando situações de risco imediato;
+   \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Lida} e \textbf{Arquivada}, garantindo auditabilidade das comunicações institucionais;
+   \item APIs REST para contadores de notificações não lidas e listagem das mensagens recentes, integradas à barra de navegação de cada instituição.
 \end{itemize}
 
 
