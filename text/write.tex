@@ -51,6 +51,8 @@
 
 \par A violência psicológica, frequentemente subnotificada, afeta profundamente a saúde mental das vítimas. Estudos indicam que 85\% das mulheres em situação de violência doméstica desenvolvem transtornos psicológicos, como depressão, ansiedade e síndrome do pânico \cite{zancan2013}. A violência também impacta diretamente as crianças expostas ao ambiente violento, perpetuando o ciclo intergeracional já mencionado.
 
+\par A \textbf{violência vicária} constitui uma forma particularmente perversa de violência doméstica, na qual o agressor utiliza os filhos e outras pessoas queridas pela vítima como instrumento de controle, punição e coerção. O agressor fere ou ameaça deliberadamente aqueles que a vítima ama com o objetivo de causar sofrimento psicológico e emocional a ela, mantendo-a em situação de medo, dependência e submissão. Essa modalidade de violência está prevista como agravante nos crimes contra a mulher e foi incorporada ao formulário de Medida Protetiva de Urgência da plataforma PIEVDCS, permitindo o registro detalhado desse tipo específico de violência e subsidiando decisões judiciais mais precisas e efetivas \cite{brasil2006}.
+
 \par Diante desse cenário, a implementação de sistemas integrados de informação, como a PIEVDCS, torna-se essencial para aprimorar a coordenação entre as instituições, acelerar o atendimento às vítimas, monitorar a efetividade das medidas protetivas e produzir dados estratégicos para o planejamento de políticas públicas de prevenção e enfrentamento à violência doméstica.
 
 \section{Tecnologias utilizadas}
@@ -84,7 +86,7 @@
 
 \par Além da emissão textual, o ReportLab oferece suporte à criação de \textbf{gráficos e desenhos vetoriais}, permitindo compor diagramas, formas personalizadas e elementos gráficos no próprio PDF. Essas características tornam a biblioteca adequada para a geração de relatórios complexos e documentos institucionais produzidos automaticamente a partir dos dados registrados na plataforma.
 
-\subsection{Django Channels e Redis}
+\subsection{Django Channels e Redis}\label{sec:channels_redis}
 \par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entr
 e um cliente e um servidor, permitindo a troca de dados em tempo real.}. Esta tecnologia permite o envio e recebimento de notificações instantâneas entre usuários e instituições, fundamentais para a coordenação eficiente das ações de enfrentamento à violência doméstica.
 \par Como \textit{backend} de mensagens, utiliza-se o \textbf{Redis} \cite{redis:2025}, um armazenamento de estrutura de dados em memória, que atua como \textit{broker} de mensagens garantindo alta performance e confiabilidade na entrega de notificações em tempo real. O sistema foi configurado com capacidade de 1500 conexões simultâneas e tempo de expiração de 10 segundos, assegurando escalabilidade e eficiência.
@@ -280,6 +282,19 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 \par O principal recurso adicionado é o \textbf{assistente virtual (chatbot)}, uma ferramenta interativa projetada para guiar os usuários, esclarecer dúvidas sobre o ciclo da violência e indicar os canais de denúncia e apoio disponíveis. A implementação busca criar um ambiente seguro e informativo desde o primeiro contato com a plataforma.
 
+\subsubsection{Defensoria Pública}
+\par O módulo da Defensoria Pública centraliza o registro e gestão das Medidas Protetivas de Urgência (MPU), dispondo de um formulário extenso com mais de 35 campos que contemplam os diferentes tipos de violência previstos na Lei Maria da Penha: física, psicológica, sexual, patrimonial, moral e a \textbf{violência vicária}. O formulário também registra condutas de controle e monitoramento, ameaças, e uso de tecnologia ou inteligência artificial para manipulação da vítima.
+
+\par Uma decisão técnica relevante neste módulo diz respeito ao tratamento do prazo de vigência das medidas protetivas. Juridicamente, as MPUs podem ser concedidas por \textbf{prazo indeterminado}, ficando a critério do magistrado a definição da duração. Para evitar que campos de data vazios ou nulos gerem informações deslocadas no sistema — como a exibição de medidas como vencidas ou a quebra de consultas que dependem do intervalo de datas — foi adotada a seguinte abordagem técnica: quando o período é indeterminado, o sistema armazena automaticamente uma data de término equivalente a \textbf{100 anos} a partir da data de concessão da medida.
+
+\par Essa decisão garante que as medidas indeterminadas sejam tratadas como ativas indefinidamente, evitando que uma ausência de data de fim comprometa a integridade das consultas, relatórios e notificações do sistema. A escolha de 100 anos é uma convenção amplamente utilizada em sistemas de informação para representar ``sem prazo definido'', garantindo consistência operacional sem alterar a semântica jurídica da medida.
+
+\begin{itemize}
+   \item \textbf{Formulário de MPU:} Mais de 35 campos sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária; campo de prazo com suporte a período indeterminado (100 anos);
+   \item \textbf{Listagem de MPUs:} Visualização de todas as medidas ativas e encerradas, com filtros por comarca, vítima, agressor e status;
+   \item \textbf{Geração de Relatórios:} Exportação de relatórios em PDF via ReportLab com layout padronizado.
+\end{itemize}
+
 \subsubsection{Polícia Penal}
 \par A Polícia Penal atua diretamente com pessoas privadas de liberdade, desempenhando um papel fundamental na ressocialização e na prevenção da reincidência de crimes relacionados à violência doméstica. No contexto da plataforma PIEVDCS, o módulo da Polícia Penal foi desenvolvido para registrar e acompanhar as ações de conscientização voltadas aos agressores que cumprem pena sob a Lei nº 11.340/2006 (Lei Maria da Penha).
 
@@ -317,6 +332,16 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
    \item \textbf{Página inicial da Polícia Militar:} Consulta de \textit{Vítimas} ou \textit{Agressores}, por \textit{Nome} ou \textit{CPF}; Consulta de todas as Medidas Protetivas de Urgência e \textit{Cards informativos}.
 \end{itemize}
 
+
+\subsubsection{Mensageria em Tempo Real}
+\par O módulo de mensageria permite que usuários e instituições troquem mensagens e notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
+
+\begin{itemize}
+   \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma comarca);
+   \item Classificação por prioridade — \textbf{Normal}, \textbf{Urgente} e \textbf{Crítica} — destacando situações de risco imediato;
+   \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Lida} e \textbf{Arquivada}, garantindo auditabilidade das comunicações institucionais;
+   \item APIs REST para contadores de notificações não lidas e listagem das mensagens recentes, integradas à barra de navegação de cada instituição.
+\end{itemize}
 
 
 \subsection{Técnicas e Práticas de Desenvolvimento}
@@ -549,7 +574,6 @@ Funcionalidades em desenvolvimento:
     \item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
     \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
     \item Implantação em ambiente de produção e automação de deploy na plataforma \textit{Hostinger}
-    \item Sistema de mensagem com o \textit{Django Channels}\footnote{Permite comunicação em tempo real, usado para troca de notificações entre usuários e instituições.}
 \end{itemize}
 
 
@@ -677,10 +701,12 @@ Funcionalidades Pendentes:
    \item[Janeiro 2026] Otimizações significativas de performance com implementação de paginação dinâmica via HTMX no módulo da Polícia Militar, melhorias estruturais nas consultas PostgreSQL, geração de 6.000 registros de teste para validação de escalabilidade, preparação para fase de validação com usuários reais das \numero_instituicoes{} instituições participantes.
     
    \item[Fevereiro 2026] Evolução de acessibilidade e funcionalidades institucionais: no módulo \texttt{MAIN}, foi incorporado recurso de \textbf{tradução/interpretação em Libras} (PR \#108), ampliando inclusão e acessibilidade. No módulo de \textbf{Segurança Pública}, foi adicionada a \textbf{visualização de histórico} nas consultas totais da Polícia Militar (PR \#110), fortalecendo a análise contextual de atendimentos. No eixo \textbf{Municipal}, houve avanço expressivo no \textbf{CREAS}, com implementação de rotinas de \textbf{registro de atendimentos e acompanhamento de casos} (PR \#114), consolidando a trilha de atendimento psicossocial e a rastreabilidade do acompanhamento institucional.
+
+   \item[Março 2026] Consolidação do módulo de \textbf{Mensageria em Tempo Real} com WebSockets via Django Channels e Redis, incluindo suporte a prioridades de mensagens e rastreamento de status de leitura. Atualização do formulário de \textbf{Medidas Protetivas de Urgência} da Defensoria Pública com tratamento técnico do período indeterminado (armazenamento de 100 anos para medidas sem prazo definido), evitando informações deslocadas no sistema. Incorporação do campo de \textbf{violência vicária} no formulário de MPU, permitindo o registro detalhado dessa modalidade específica de violência.
 \end{description}
 
 \par A \textit{branch} principal de desenvolvimento utilizada é a \texttt{63-ogliari}, que consolida o trabalho técnico do reeducando responsável pela implementação. Essa \textit{branch} é periodicamente sincronizada com a \textit{branch} \texttt{main} após revisões e validações funcionais, garantindo que as entregas integradas estejam estáveis e coerentes com o baseline do projeto.
-\par O repositório do relatório está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, com histórico completo de desenvolvimento versionado e documentado. Até fevereiro de 2026, o projeto acumulava mais de 597 \textit{commits}, refletindo o ciclo iterativo e incremental adotado na evolução da plataforma.
+\par O repositório do relatório está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, com histórico completo de desenvolvimento versionado e documentado. Até março de 2026, o projeto acumulava mais de 630 \textit{commits}, refletindo o ciclo iterativo e incremental adotado na evolução da plataforma.
 
 \section{Considerações Finais}
 
