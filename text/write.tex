@@ -15,7 +15,7 @@
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
   \vspace {1cm}
-  A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência, promovendo agilidade e efetividade no atendimento às vítimas e concientização dos agressores.
+  A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência, promovendo agilidade e efetividade no atendimento às vítimas e conscientização dos agressores.
 
   
 \end{minipage}
@@ -199,7 +199,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 
 \subsubsection{O domínio}
 \par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP\footnote{IP é como se fosse o endereço da sua casa, mas na internet.} (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
-\par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é válido até 12/11/2025.
+\par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é gerenciado e renovado automaticamente via \textit{Let's Encrypt}, assegurando continuidade na proteção das conexões.
 
 \subsection{Dos Scripts}\label{script}
 \par Possui uma seção denominada de \textbf{automacoes}, esta pasta é responsável pela centralização de todos os \textit{script} de automações para a inserção de informações no banco de dados, com foco em testes e validações.
@@ -283,7 +283,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \par Portanto, a customização aqui descrita visa aumentar a produtividade e, consequentemente, a assertividade das ações de cada departamento. A seguir estão listadas as implementações de cada instituição (ressaltando que esta é uma lista viva das funcionalidades já implementadas ou em desenvolvimento, não limitando expansões futuras):
 
 \subsubsection{Página Inicial}
-\par A página inicial da plataforma tem por foco a concientização dos público alvo, e acesso a informações relevantes sobre a violência doméstica. Para isso, foram implementados \textit{cards informativos} dinâmicos, que exibem dados estatísticos atualizados, dicas de segurança, contatos de emergência e links para recursos de apoio.
+\par A página inicial da plataforma tem por foco a conscientização do público alvo, e acesso a informações relevantes sobre a violência doméstica. Para isso, foram implementados \textit{cards informativos} dinâmicos, que exibem dados estatísticos atualizados, dicas de segurança, contatos de emergência e links para recursos de apoio.
 
 \par O principal recurso adicionado é o \textbf{assistente virtual (chatbot)}, uma ferramenta interativa projetada para guiar os usuários, esclarecer dúvidas sobre o ciclo da violência e indicar os canais de denúncia e apoio disponíveis. A implementação busca criar um ambiente seguro e informativo desde o primeiro contato com a plataforma.
 
@@ -339,7 +339,16 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 
 \subsubsection{Polícia Civil}
 
-\par IMPLEMENTAR
+\par A Polícia Civil desempenha papel central na investigação criminal relacionada à violência doméstica, sendo responsável pela lavratura de boletins de ocorrência, condução de inquéritos policiais e realização de prisões em flagrante. No contexto da plataforma PIEVDCS, o módulo da Polícia Civil foi estruturado para suportar o registro sistematizado das ocorrências policiais, integrando essas informações ao fluxo institucional que conecta as demais entidades da rede de enfrentamento à violência doméstica.
+
+\par O módulo permite o registro de ocorrências com tipificação dos crimes, vinculação de vítimas e agressores previamente cadastrados na plataforma e acompanhamento do andamento das investigações. A integração com os demais módulos do sistema facilita o acesso imediato ao histórico de medidas protetivas vigentes, permitindo que os agentes da Polícia Civil verifiquem, no momento do atendimento, se o agressor está sujeito a restrições judiciais, como proibição de aproximação ou contato com a vítima.
+
+\begin{itemize}
+   \item \textbf{Registro de Ocorrências:} Cadastro detalhado de boletins de ocorrência com tipificação dos crimes, informações sobre vítimas, agressores e testemunhas;
+   \item \textbf{Registro de Flagrantes e Investigações:} Suporte ao acompanhamento de prisões em flagrante e inquéritos policiais vinculados às vítimas ou agressores cadastrados;
+   \item \textbf{Consulta de Histórico:} Acesso ao histórico de ocorrências, medidas protetivas e atendimentos anteriores envolvendo a vítima ou o agressor, permitindo avaliação contextualizada do risco;
+   \item \textbf{Integração Institucional:} Vinculação das ocorrências com os registros da Defensoria Pública, Poder Judiciário e demais instituições participantes, promovendo fluxo de informações ágil e seguro.
+\end{itemize}
 
 \subsubsection{Mensageria em Tempo Real}
 \par O módulo de mensageria permite que usuários e instituições troquem notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
@@ -388,7 +397,7 @@ Algumas técnicas adotadas incluem:
       \item Cookies HTTP-only e SameSite;
       \item Separação de variáveis sensíveis com \textit{Dotenv};
       \item Sistema de \textit{logging} customizado para auditoria.
-      \item Camadas extras de segurança com decoradores para controle de acesso por grupo institucional, usuários autentificados e usuários ativos (algoritmo \ref{alg:seg_extras}).
+      \item Camadas extras de segurança com decoradores para controle de acesso por grupo institucional, usuários autenticados e usuários ativos (algoritmo \ref{alg:seg_extras}).
    \end{itemize}
 
 \item \textbf{Integração com IA Local}: Implementação e testes com modelos de linguagem via Ollama (\texttt{llama3:70b}, \texttt{mixtral}, \texttt{gpt-oss:120b}), com configurações em \texttt{settings.py} permitindo alternância entre modelos. Sistema de fallback com respostas demo quando Ollama não está disponível.
@@ -401,7 +410,7 @@ Algumas técnicas adotadas incluem:
 \end{itemize}
 
 
-\par O framework Django possui verificaçãoe de segurança robustas, no entanto implementamos camadas extras de segurança, utilizando decoradores personalizados que verificam se o usuário está autenticado, ativo e pertence a grupos institucionais permitidos antes de conceder acesso às funcionalidades sensíveis da plataforma.
+\par O framework Django possui verificações de segurança robustas, no entanto implementamos camadas extras de segurança, utilizando decoradores personalizados que verificam se o usuário está autenticado, ativo e pertence a grupos institucionais permitidos antes de conceder acesso às funcionalidades sensíveis da plataforma.
 
 \begin{algorithm}[H]
     
@@ -576,14 +585,11 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
 
 Funcionalidades em desenvolvimento:
 \begin{itemize}
-    \item \textbf{Módulo de Atendimento Municipal} CRAS, CAPS, CREAS, Conselho Tutelar e Secretaria da Saúde
-    \item \textbf{Módulo da segurança pública} Polícia Militar, Polícia Penal, Polícia Civil, Polícia Científica
+    \item \textbf{Módulo Municipal} Conclusão dos fluxos de atendimento no CRAS, CAPS e Secretaria da Saúde
     \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
-    \item \textbf{Notificações e Alertas} Sistema de notificações internas e externas
     \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
     \item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
     \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
-    \item Implantação em ambiente de produção e automação de deploy na plataforma \textit{Hostinger}
 \end{itemize}
 
 
@@ -681,15 +687,15 @@ Funcionalidades Pendentes:
     \item \textbf{Desenvolvimento de um aplicativo para Polícia Militar}: Desenvolver um aplicativo de forma nativa para dispositivos móveis (Android) que permita aos policiais militares consultar/registrar ocorrências diretamente no local do atendimento. O app deve incluir funcionalidades como captura de fotos, geolocalização automática, preenchimento simplificado - com inserção de informações com áudio -  de formulários e integração direta com a plataforma principal via APIs\footnote{É um conjunto de regras e protocolos que permite que diferentes softwares se comuniquem e troquem informações de maneira padronizada.}.
     
         
-    \item \textbf{Predições com Machine Learning}: Utilizar algoritmos de aprendizado de máquina para análise preditiva de risco, identificando padrões de violência e sugerindo intervenções preventivas baseadas em dados históricos, para esta abordagem sugiro a análise e uso da biblioteca \href{https://scikit-learn.org/stable/index.html}{Scikit-learn}, utilizando de seus métodos de predições a exemplo das séries temporais como no modelo \textit{ARIMA}. O framework possiblita uma série de artifícios para a construção de modelos preditivos.
+    \item \textbf{Predições com Machine Learning}: Utilizar algoritmos de aprendizado de máquina para análise preditiva de risco, identificando padrões de violência e sugerindo intervenções preventivas baseadas em dados históricos, para esta abordagem sugiro a análise e uso da biblioteca \href{https://scikit-learn.org/stable/index.html}{Scikit-learn}, utilizando de seus métodos de predições a exemplo das séries temporais como no modelo \textit{ARIMA}. O framework possibilita uma série de artifícios para a construção de modelos preditivos.
     
     \item \textbf{Segurança Avançada}: Implementar autenticação multifator (MFA) para acesso à plataforma, loggin com a plataforma \textbf{.GOV}, além de auditoria detalhada de logs de atividades dos usuários para monitoramento e conformidade.
     
     \item \textbf{Documentação Técnica Detalhada}: Criar documentação abrangente utilizando Swagger/OpenAPI para todas as APIs desenvolvidas, facilitando futuras integrações e manutenções.
     
     \item \textbf{Testes Automatizados}: Desenvolver uma suíte completa de testes unitários e de integração para garantir a estabilidade e confiabilidade da plataforma em cada nova atualização.
-    \item \textbf{Redundâncias de permissões} Implementar nas visualizações críticas verificações adicionais de permissões e usuários autentificados para evitar acessos indevidos. Caso o acesso seja indevido(Falta de login ou qualquer outro) registrar logging detalhado do evento e forcar "ERRO" ``` raise ValeuError("Comentario a ser exibido caso o 'DEBUG' esteja ativo") ```.
-    Esta abordagem suprime o erro ao usuário evitando informações para possivél ataque.
+    \item \textbf{Redundâncias de permissões} Implementar nas visualizações críticas verificações adicionais de permissões e usuários autenticados para evitar acessos indevidos. Caso o acesso seja indevido (falta de login ou qualquer outro) registrar logging detalhado do evento e forçar \texttt{raise ValueError("Comentario a ser exibido caso o DEBUG esteja ativo")}.
+    Esta abordagem suprime o erro ao usuário evitando informações para possível ataque.
 \end{itemize}
 
 \section{Evolução do Desenvolvimento}
@@ -697,7 +703,7 @@ Funcionalidades Pendentes:
 \par O desenvolvimento da plataforma PIEVDCS tem sido conduzido de forma iterativa e incremental, com merges regulares à branch principal através de pull requests documentados. 
 
 \subsection{Ciclo de Desenvolvimento}
-\par Entre julho de 2025 e março de 2026, foram realizados mais de 30 pull requests (PRs \#74 a \#103), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
+\par Entre julho de 2025 e março de 2026, foram realizados mais de 40 pull requests (PRs \#74 a \#115), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
 
 \par Os principais marcos de desenvolvimento incluem:
 
@@ -712,7 +718,7 @@ Funcionalidades Pendentes:
     
    \item[Fevereiro 2026] Evolução de acessibilidade e funcionalidades institucionais: no módulo \texttt{MAIN}, foi incorporado recurso de \textbf{tradução/interpretação em Libras} (PR \#108), ampliando inclusão e acessibilidade. No módulo de \textbf{Segurança Pública}, foi adicionada a \textbf{visualização de histórico} nas consultas totais da Polícia Militar (PR \#110), fortalecendo a análise contextual de atendimentos. No eixo \textbf{Municipal}, houve avanço expressivo no \textbf{CREAS}, com implementação de rotinas de \textbf{registro de atendimentos e acompanhamento de casos} (PR \#114), consolidando a trilha de atendimento psicossocial e a rastreabilidade do acompanhamento institucional.
 
-   \item[Março 2026] Consolidação do módulo de \textbf{Mensageria em Tempo Real} com WebSockets via Django Channels e Redis, incluindo suporte a prioridades de mensagens e rastreamento de status de leitura. Atualização do formulário de \textbf{Medidas Protetivas de Urgência} da Defensoria Pública com tratamento técnico do período indeterminado (armazenamento de 100 anos para medidas sem prazo definido), evitando informações deslocadas no sistema. Incorporação do campo de \textbf{violência vicária} no formulário de MPU, permitindo o registro detalhado dessa modalidade específica de violência.
+   \item[Março 2026] Consolidação do módulo de \textbf{Mensageria em Tempo Real} com WebSockets via Django Channels e Redis, incluindo suporte a prioridades de mensagens e rastreamento de status de leitura. Atualização do formulário de \textbf{Medidas Protetivas de Urgência} da Defensoria Pública com tratamento técnico do período indeterminado (armazenamento de 100 anos para medidas sem prazo definido), evitando informações deslocadas no sistema. Incorporação do campo de \textbf{violência vicária} no formulário de MPU, permitindo o registro detalhado dessa modalidade específica de violência. Implementação do módulo da \textbf{Polícia Civil} com suporte ao registro de ocorrências, flagrantes e consulta de histórico integrado. Ampliação do volume de dados de teste para validação de escalabilidade e continuidade dos ajustes de performance nas consultas PostgreSQL.
 \end{description}
 
 \par A \textit{branch} principal de desenvolvimento utilizada é a \texttt{63-ogliari}, que consolida o trabalho técnico do reeducando responsável pela implementação. Essa \textit{branch} é periodicamente sincronizada com a \textit{branch} \texttt{main} após revisões e validações funcionais, garantindo que as entregas integradas estejam estáveis e coerentes com o baseline do projeto.
@@ -720,13 +726,13 @@ Funcionalidades Pendentes:
 
 \section{Considerações Finais}
 
-\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{80\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (março 2026), destacam-se as a implementação do sistema de mensageria em tempo real com WebSockets, a atualização do formulário de Medidas Protetivas de Urgência para tratamento técnico do período indeterminado, e a incorporação do campo de violência vicária, ampliando a capacidade de registro detalhado das ocorrências.
+\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{85\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (março 2026), destacam-se a implementação do sistema de mensageria em tempo real com WebSockets, a atualização do formulário de Medidas Protetivas de Urgência para tratamento técnico do período indeterminado, a incorporação do campo de violência vicária e a estruturação do módulo da Polícia Civil, ampliando a capacidade de registro e integração das ocorrências policiais.
 
 \par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{} instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
 
 \par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
 
-\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. A entrega esta previsata para a data de \textbf{março de 2026}, estando dentro do período da prestação de contas, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interresadas).
+\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. A entrega está prevista para a data de \textbf{março de 2026}, estando dentro do período da prestação de contas, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interessadas).
 
 \par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
 
