@@ -356,9 +356,48 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \begin{itemize}
    \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma comarca);
    \item Classificação por prioridade — \textbf{Baixa}, \textbf{Normal}, \textbf{Alta} e \textbf{Urgente} — destacando situações de risco imediato;
-   \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Lida} e \textbf{Arquivada}, garantindo auditabilidade das comunicações institucionais;
+   \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Todas} e \textbf{Prioritárias}, garantindo auditabilidade das comunicações institucionais;
    \item APIs REST para contadores de notificações não lidas e listagem das mensagens recentes, integradas à barra de navegação de cada instituição.
 \end{itemize}
+
+\par Incluo algumas figuras de notificações da plataforma, onde é possível observar o template para envio de notificações, o template de notificação de descumprimento e o template de solicitação de acompanhamento da Rede Catarina - PMSC. O sistema de mensageria é projetado para ser intuitivo e eficiente, garantindo que as informações críticas sejam comunicadas de forma rápida e clara entre os diferentes atores envolvidos no enfrentamento à violência doméstica.
+
+\begin{figure}[H]
+   \centering
+   \caption{Sistema de mensageria em tempo real}
+   \subfigure[Template para Enviar Notificação]{\includegraphics[width=0.4\textwidth]{figure/mensageria/mensageria.png}}
+   \subfigure[Template de notificação de descumprimento]{\includegraphics[width=0.4\textwidth]{figure/mensageria/notificacao_descumprimento_mpu.png}}
+   \subfigure[Template de solicitação de acompanhamento da Rede Catarina - PMSC]{\includegraphics[width=0.8\textwidth]{figure/mensageria/solicitacao-acompanhamento-rede-catarina.png}}   
+   \label{fig:enviar_notificacao}
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2026)}
+\end{figure}
+
+\par De igual modo as notiifcações em tempo real são renderizadas ao colaborador de acorda com a figura \ref{card-notifi}, onde é possível visualizar as mensagens recebidas, com destaque para as notificações prioritárias. O sistema de mensageria é integrado à barra de navegação, exibindo um contador de mensagens não lidas e permitindo acesso rápido às notificações recentes, garantindo que os usuários estejam sempre informados sobre atualizações críticas relacionadas às suas atividades institucionais.
+\begin{figure}[H]
+   \centering
+   \caption{Sistema de informação para notificações não lidas}
+   \subfigure[Informação de notificação]{\includegraphics[width=0.4\textwidth]{figure/mensageria/card_not.png}}
+   \subfigure[Informação de notificação lateral]{\includegraphics[width=0.4\textwidth]{figure/mensageria/card_not1.png}}
+   \label{card-notifi}
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2026)}
+\end{figure}
+
+\par Para que o sistema funcione em 'tempo real', alguns ajustes do ponto de vista técnico são necessários, a exemplo da figura \ref{notificacao-os}, onde é possível observar a notificação sendo exibida pelo sistema operacional, mesmo com a aba do navegador fechada. Para isso, foi necessário configurar o sistema de notificações do navegador para permitir que as mensagens sejam exibidas mesmo quando o usuário não está ativamente utilizando a plataforma, garantindo que informações críticas sejam recebidas e visualizadas imediatamente, independentemente do estado da aplicação. 
+\begin{figure}[H]
+   \centering
+   \caption{Sistema de notificações pelo Sistema Operacional}
+   \subfigure[Notificação pelo Sistema Operacional]{\includegraphics[width=0.4\textwidth]{figure/mensageria/noti_SO.png}}
+   \subfigure[Notificação pelo navegador]{\includegraphics[width=0.4\textwidth]{figure/mensageria/notifi_auto.png}}
+   \label{notificacao-os}
+
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2026)}
+\end{figure}
+
 
 
 \subsection{Técnicas e Práticas de Desenvolvimento}
