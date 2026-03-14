@@ -418,7 +418,7 @@ Algumas técnicas adotadas incluem:
    \begin{itemize}
       \item Envio de notificações para usuários individuais ou grupos institucionais;
       \item Classificação por prioridade (baixa, normal, alta, urgente);
-      \item Rastreamento de status (não lida, lida, arquivada);
+      \item Rastreamento de status (não lida, Todas, Prioritárias); 
       %\item APIs REST para contadores e listagens de notificações recentes.
    \end{itemize}
 
@@ -559,7 +559,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
     Fonte: O autor (2026)}
 \end{table}
 
-\par Este volume de 6.000 registros permite testar a escalabilidade da plataforma, validar a performance das consultas no banco de dados PostgreSQL e verificar o comportamento das interfaces com cargas realistas. As otimizações implementadas em janeiro de 2026, especialmente a paginação via HTMX no módulo da Polícia Militar, foram validadas com esta base, demonstrando manutenção de performance adequada mesmo com volume significativo de dados.
+\par Este volume de 6.000 registros -e aumentando progressivamente- permite testar a escalabilidade da plataforma, validar a performance das consultas no banco de dados PostgreSQL e verificar o comportamento das interfaces com cargas realistas. As otimizações implementadas em janeiro de 2026, especialmente a paginação via HTMX no módulo da Polícia Militar, foram validadas com esta base, demonstrando manutenção de performance adequada mesmo com volume significativo de dados.
 
 \par É importante ressaltar que todos os registros são \textbf{dados fictícios gerados automaticamente}, em conformidade com as diretrizes do projeto piloto (TRL 6-7) que estabelecem a não utilização de dados reais de vítimas durante a fase de desenvolvimento e testes. A transição para dados reais ocorrerá apenas após aprovação formal das \numero_instituicoes{} instituições participantes e implementação da infraestrutura de produção definitiva (TRL 8-9).
 
