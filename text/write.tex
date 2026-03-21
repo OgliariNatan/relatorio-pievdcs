@@ -109,6 +109,8 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par A execução de Modelos de Linguagem de Grande Escala (LLMs) será realizada utilizando a plataforma \texttt{Ollama}, que permite rodar modelos como LLaMA, Mistral e Gemma diretamente no ambiente local, sem necessidade de conexão com servidores externos. Segundo \citeonline{ollama:2025}, a proposta da ferramenta é “facilitar a execução de grandes modelos de linguagem localmente”, o que contribui para maior privacidade e controle sobre os dados processados.
 \par A execução dos modelos é realizada com suporte de uma GPU \texttt{NVIDIA RTX 2000 Ada Generation}, equipada com 16GB de memória dedicada, DDR6, 128bits. Embora não seja a mais potente da linha, essa placa gráfica oferece recursos suficientes para testes locais com modelos otimizados, como os disponíveis na plataforma Ollama. Seu uso viabiliza a aceleração das inferências, mesmo que com tempos de resposta mais elevados em modelos de maior complexidade.
 
+\subsection{Argostranslate}
+\par De acordo com \citeonline{argostranslate2026}, a biblioteca \textit{Argostranslate} do Python, possui a capacidade de realizar traduções \textit{off-line} e utiliza um modelo de tradução neural. Foi integrada ao projeto para fornecer tradução automática de mensagens. Este sistema traduz as citações para o português antes de exibi-las na plataforma, garantindo acessibilidade e compreensão das mensagens de forma gratuita e local.
 
 \section{Níveis de Prontidão Tecnológica (TRL)}\label{trl}
 
@@ -245,28 +247,28 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 A estrutura de desenvolvimento adotada é modular, baseada em aplicações Django (apps), com automações para carga de dados, visualização via dashboards\footnote{Os dashboards são interfaces gráficas que permitem a visualização de dados de forma interativa e dinâmica.} e controle granular de permissões por perfil institucional.
 
 \subsection{Estrutura de Aplicações Django}
-\par O projeto está organizado em aplicações Django independentes e interconectadas, seguindo o princípio de separação de responsabilidades:
+\par O projeto está organizado em aplicações Django interconectadas, seguindo princípios de separação e responsabilidades:
 
 \begin{description}
-   \item[\texttt{MAIN}] Aplicação principal que gerencia a estrutura base do projeto, incluindo configurações globais, roteamento de URLs, página inicial com conteúdos dinâmicos e cálculo de variáveis estatísticas compartilhadas entre módulos.
+   \item[\texttt{MAIN}] Aplicação principal que gerencia a estrutura base do projeto, incluindo configurações globais, roteamento de URLs, página inicial com conteúdos dinâmicos, chatbot de IA, mensagens motivacionais e cálculo de variáveis estatísticas compartilhadas entre módulos.
    
-   \item[\texttt{usuarios}] Gerencia autenticação, autorização e perfis de usuários customizados (\texttt{CustomUser}). Implementa grupos personalizados com permissões específicas por instituição.
+   \item[\texttt{usuarios}] Gerencia autenticação, autorização e perfis de usuários customizados (\texttt{CustomUser}). Gerencia grupos personalizados com permissões específicas por instituição.
    
    \item[\texttt{sistema\_justica}] Centraliza os módulos do sistema de justiça, subdividido em:
    \begin{itemize}
-      \item \textbf{Poder Judiciário}: Gestão de comarcas, cadastro de vítimas e agressores, integração com chatbot de IA;
-      \item \textbf{Ministério Público}: Interface específica para promotores de justiça;
-      \item \textbf{Defensoria Pública}: Formulários de solicitação de medidas protetivas de urgência (MPU) com mais de 30 campos detalhados sobre tipos de violência.
+      \item \textbf{Poder Judiciário}: Gestão de comarcas, cadastro de vítimas e agressores, concessão de medidas protetivas, consultas de atendimentos da Rede Catarina e dos atendimentos dos agressores;
+      \item \textbf{Ministério Público}: Interface específica para representantes do Ministério Público, com acesso a consultas da Rede Catarina, consultas dos atendimentos dos agressores e dados de medidas protetivas, além de funcionalidades para acompanhamento de casos, com possibilidade de registro de Medidas Protetivas de Urgência (MPU) e Medidas Protetivas;
+      \item \textbf{Defensoria Pública}: Formulários de solicitação de medidas protetivas de urgência (MPU) com mais de 30 campos detalhados sobre tipos de violência, Atualização dos formulários e acompanhamento dos casos, consultas de atendimentos de rede catarina e dos agressores.
    \end{itemize}
    
    \item[\texttt{seguranca\_publica}] Engloba as instituições de segurança pública:
    \begin{itemize}
-      \item \textbf{Polícia Penal}: Registro de atendimentos a agressores (assistência social, psicologia, grupos reflexivos);
-      \item \textbf{Polícia Civil}: Registro de ocorrências, investigações e flagrantes;
-      \item \textbf{Polícia Militar}: Registro de atendimentos por tipo de patrulha (Radio Patrulha, Emergência 190, Policiamento Montado, etc.).
+      \item \textbf{Polícia Penal}: Registro de atendimentos a agressores (assistência social, psicologia, grupos reflexivos) e consulta de medidas protetivas e históricos dos atendidos;
+      \item \textbf{Polícia Civil}: Formulários de solicitação de medidas protetivas de urgência (MPU), Atualização dos formulários e acompanhamento dos casos, consultas de atendimentos de rede catarina e dos agressores.
+      \item \textbf{Polícia Militar}: Registro de atendimentos por tipo de patrulha (Radio Patrulha, Emergência 190, Policiamento Montado, etc.), consulta completa das MPU com formularios preenchidos e com indicação da reincidencia e consulta da reincidencia tanto da vitima quanto do agressor, geração de relatórios de atendimentos de rede catarina com informação em tempo real da possivél descomprimento MPU.
    \end{itemize}
    
-   \item[\texttt{municipio}]\footnote{No inicio possuíamos o conselho tutelar, no entanto, como não se trata de uma equipe técnica, mas sim de conselheiros eleitos pela sociedade, optamos por não incluí-los como um grupo institucional, devido a informações criticas contidas na plataforma.} Abrange serviços municipais de assistência:
+   \item[\texttt{municipio}]\footnote{No inicio possuíamos o conselho tutelar, no entanto, como não se trata de uma equipe técnica, mas sim de conselheiros eleitos pela sociedade, optamos por não incluí-los como um grupo institucional, devido a informações críticas contidas na plataforma.} Abrange serviços municipais de assistência:
    \begin{itemize}
       \item CRAS (Centro de Referência de Assistência Social);
       \item CREAS (Centro de Referência Especializado de Assistência Social);
