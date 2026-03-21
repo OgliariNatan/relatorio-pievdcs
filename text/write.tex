@@ -613,7 +613,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
    \caption{Telas institucionais}\label{fig:telas_plataforma2}
    
    \subfigure[Seleção das instituições.\label{fig:selecao_insti}]{\includegraphics[scale=.3]{figure/institui.png}}
-   \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.25]{figure/pp_home.png}}
+   \subfigure[Página inicial da Polícia Penal.\label{fig:home_pp}]{\includegraphics[scale=.25]{figure/PP/home.png}}
    
 
    {\fontsize{10pt}{\baselineskip}\selectfont
@@ -743,6 +743,7 @@ para uso:
    \comentario{Configura e instala o sistema de tradução automática, permitindo a tradução de mensagens motivacionais do inglês para o português.}
 
    \KwIn{pip install argostranslate} \
+
    \KwIn{python -c "from argostranslate import package; package.update\_package\_index(); p = next(x for x in package.get\_available\_packages() if x.from\_code == 'en' and x.to\_code == 'pt'); package.install\_from\_path(p.download())"} \
        
    {\fontsize{10pt}{\baselineskip}\selectfont
