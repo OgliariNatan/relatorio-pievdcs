@@ -719,6 +719,38 @@ Funcionalidades Pendentes:
 
 \par A indagação ao modelo de inteligência artificial necessita para que o chatbot não crie ações que não estejam previstas. Indagou-se a possibilidade de que o chatbot realizasse uma denúncia on line, o modelo respondeu que não poderia fazer a denúncia, mas que poderia orientar a vítima a como fazer. Ressalta-se que o modelo não tem acesso a internet, e todas as respostas são geradas localmente. O tempo de resposta para esta indagação foi de \textbf{224.82 segundos}, aproximadamente \textbf{3.747 minutos}.
 
+
+\subsection{Mensagens Motivacionais}
+\par Para oferecer suporte emocional e motivacional às vítimas de violência doméstica, a plataforma inclui um recurso de mensagens motivacionais. Essas mensagens são exibidas na página inicial, com o objetivo de fortalecer a autoestima e incentivar a busca por ajuda.
+\begin{figure}[H]
+   \center
+   \caption{Mensagens motivacionais}\label{fig:mensagens_motivacionais}
+   \includegraphics[scale=.4]{figure/frase_motivacional.png}
+   
+   {\fontsize{10pt}{\baselineskip}\selectfont
+    Fonte: O autor (2025)}
+\end{figure}
+
+\par As mensagens são obtidas através de uma API de citações motivacionais, garantindo variedade e relevância. A cada periodo estipulado à plataforma, uma nova mensagem é exibida, proporcionando um ambiente acolhedor e encorajador para as vítimas. Este recurso visa criar um espaço de apoio emocional. A plataforma de consulta as mensagens denomina-se \textbf{ZenQuotes API}, que é uma API gratuita que fornece citações motivacionais e inspiradoras de diversos autores. A integração com esta API permite que a plataforma exiba mensagens motivacionais atualizadas regularmente, contribuindo para o bem-estar emocional das vítimas de violência doméstica.
+A API fornece frases no indioma inglês, e para garantir a acessibilidade e compreensão das mensagens, foi implementado um sistema de tradução automática utilizando a biblioteca \textit{Argostranslate} do Python. Este sistema traduz as citações para o português antes de exibi-las na plataforma, de forma gratuita e local. 
+
+para uso:
+
+
+\begin{algorithm}[H]
+   \caption{Configuração do sistema de tradução automática com Argostranslate}
+   \SetKwComment{comentario}{\#\#\#}{\#\#\#}
+   \comentario{Configura e instala o sistema de tradução automática, permitindo a tradução de mensagens motivacionais do inglês para o português.}
+
+   \KwIn{pip install argostranslate} \
+   \KwIn{python -c "from argostranslate import package; package.update\_package\_index(); p = next(x for x in package.get\_available\_packages() if x.from\_code == 'en' and x.to\_code == 'pt'); package.install\_from\_path(p.download())"} \
+       
+   {\fontsize{10pt}{\baselineskip}\selectfont
+   Fonte: O autor (2026)}
+
+\end{algorithm}
+
+
 \section{Sugestões/Para implementações futuras}
 \par Para aprimoramento do projeto focando na usabilidade, automações e integrações, sugiro algumas implementações:
 
