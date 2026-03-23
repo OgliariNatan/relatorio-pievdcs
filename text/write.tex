@@ -5,7 +5,7 @@
 %
 % Variaveis 
 \def\numero_instituicoes{11}
-\def\tempo_secao{9000}
+\def\tempo_secao{2000}
 %\def\com_detalhes#1#2{#1 (numero #2)} para uso \com_detalhes{parametro1}{parametro2}
 
 
@@ -73,7 +73,10 @@
 \par Em termos de gerenciamento de dados, o PostgreSQL oferece suporte a extensões como PostGIS, que adiciona funcionalidades geoespaciais essenciais para a análise e visualização de dados geográficos, como mapas de ocorrências de violência doméstica. Além disso, sua arquitetura robusta e escalável permite lidar com grandes volumes de dados, garantindo integridade, segurança e desempenho, aspectos cruciais para uma plataforma que visa integrar múltiplas instituições e gerenciar informações sensíveis.
 
 \subsection{Nginx}
-\par O \citeonline{nginx:2025} é um servidor web de alto desempenho e proxy reverso, amplamente utilizado para servir aplicações web em ambientes de produção. No contexto deste projeto, o Nginx será configurado como servidor HTTP para a versão de produção, substituindo o servidor de desenvolvimento do Django. Suas principais vantagens incluem alto desempenho, baixo consumo de recursos, capacidade de lidar com grande número de conexões simultâneas e funcionalidades avançadas de balanceamento de carga e cache.
+\par O \citeonline{nginx:2025} é um servidor web de alto desempenho e proxy reverso, amplamente utilizado para servir aplicações web em ambientes de produção. No contexto deste projeto, o Nginx está configurado como servidor HTTP na versão de produção, substituindo o servidor de desenvolvimento do Django. Suas principais vantagens incluem alto desempenho, baixo consumo de recursos, capacidade de lidar com grande número de conexões simultâneas e funcionalidades avançadas de balanceamento de carga e cache.
+
+\subsection{Daphne}
+\par O \textbf{Daphne} \cite{django_channels:2025} é um servidor ASGI (\textit{Asynchronous Server Gateway Interface}) desenvolvido pelo time do Django Channels, responsável por gerenciar conexões HTTP e WebSocket de forma assíncrona. No projeto, o Daphne está registrado como primeira aplicação em \texttt{INSTALLED\_APPS} e atua como servidor de interface entre o Nginx e o núcleo Django, habilitando suporte nativo a WebSockets para o sistema de mensageria em tempo real.
 
 \subsection{Tailwind CSS}
 \par O \citeonline{tailwindCSS:2025} é um framework de estilo baseado em classes utilitárias, que permite o desenvolvimento rápido de interfaces personalizadas e responsivas. Sua abordagem facilita a manutenção e reutilização de estilos, promovendo consistência visual e produtividade no desenvolvimento front-end, mantendo os padrões de desenvolvimento de Experiência do Usuário/Interface do Usuário (UX/UI).
@@ -94,7 +97,7 @@
 \subsection{Django Channels e Redis}\label{sec:channels_redis}
 \par Para implementação de comunicação em tempo real na plataforma, foi adotado o \textbf{Django Channels} \cite{django_channels:2025}, uma extensão do Django que adiciona suporte a protocolos assíncronos como WebSockets\footnote{protocolo que estabelece canais de comunicações bidirecionais e persistente entr
 e um cliente e um servidor, permitindo a troca de dados em tempo real.}. Esta tecnologia permite o envio e recebimento de notificações instantâneas entre usuários e instituições, fundamentais para a coordenação eficiente das ações de enfrentamento à violência doméstica.
-\par Como \textit{backend} de mensagens, utiliza-se o \textbf{Redis} \cite{redis:2025}, um armazenamento de estrutura de dados em memória, que atua como \textit{broker} de mensagens garantindo alta performance e confiabilidade na entrega de notificações em tempo real. O sistema foi configurado com capacidade de 1500 conexões simultâneas e tempo de expiração de 10 segundos, assegurando escalabilidade e eficiência.
+\par Como \textit{backend} de mensagens, utiliza-se o \textbf{Redis} \cite{redis:2025}, um armazenamento de estrutura de dados em memória, que atua como \textit{broker} de mensagens garantindo alta performance e confiabilidade na entrega de notificações em tempo real. O sistema foi configurado com capacidade de 1500 conexões simultâneas e tempo de expiração de 1800 segundos (30 minutos), assegurando escalabilidade e eficiência.
 
 \subsection{Smart Selects}
 \par A biblioteca \textbf{Smart Selects} \cite{smart_selects:2025} foi integrada ao projeto para implementar campos de seleção encadeados (\textit{chained selects}) nos formulários Django. Esta funcionalidade é essencial para garantir a consistência de dados, especialmente na seleção de municípios baseada no estado previamente escolhido, e na vinculação de municípios às suas respectivas comarcas do Poder Judiciário.
@@ -219,8 +222,8 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
    \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio apenas uma vez;
    \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado", apenas uma vez;
    \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
-   \item [Importa Limites de Bairros] (descrever)
-   \item [Limites IBGE] (descrever)
+   \item [Importa Limites de Bairros] Importa automaticamente os limites geográficos dos bairros a partir da API Nominatim/OpenStreetMap, consultando o identificador de cada município e obtendo as geometrias das relações OSM correspondentes. As coordenadas são armazenadas no campo \texttt{limites} do modelo \texttt{Bairro}, viabilizando a visualização geoespacial na plataforma;
+   \item [Limites IBGE] Atualiza os limites geográficos de estados e municípios a partir da API pública do IBGE (\href{https://servicodados.ibge.gov.br}{servicodados.ibge.gov.br}), obtendo os polígonos das malhas territoriais em formato GeoJSON e persistindo-os no campo \texttt{limites} dos modelos \texttt{Estado} e \texttt{Municipio}, utilizados nos mapas estatísticos da plataforma;
    \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Utilizado para popular a base de testes com volume realista;
    \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente. Utilizado para popular a base de testes;
    \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas Protetivas e Medidas Protetivas de Urgência e cadastra na seção competente da \textbf{Defensoria Pública}. Responsável pela geração dos 6.000 registros utilizados nos testes de performance e escalabilidade;
@@ -468,7 +471,7 @@ Algumas técnicas adotadas incluem:
 
 \par O desenvolvimento da plataforma foi iniciado em ambiente Windows 11, com ambiente virtual Python. Atualmente esta sendo desenvolvido no sistema operacional com base Linux (Ubuntu 24.04.3 LTS), tal migração se justifica e se sustenta em virtude da sua flexibilidade, autonomia na configuração de ambientes complexos e implementações de inteligências artificiais em ambiente de desenvolvimento local.
 
-\par Estão sendo implementados modelos de inteligência artificial utilizando o Ollama, com restrições específicas ao tema de violência doméstica e à Lei nº 11.340/2006 (Lei Maria da Penha). O objetivo é desenvolver uma assistente virtual capaz de oferecer atendimento qualificado às vítimas e ao público em geral, garantindo conformidade legal e segurança nas respostas.
+\par Estão sendo aprimorados modelos de inteligência artificial utilizando o Ollama, com restrições específicas ao tema de violência doméstica e à Lei nº 11.340/2006 (Lei Maria da Penha). O objetivo é consolidar uma assistente virtual capaz de oferecer atendimento qualificado às vítimas e ao público em geral, garantindo conformidade legal e segurança nas respostas.
 
 \par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
@@ -650,7 +653,7 @@ Funcionalidades Pendentes:
 
 \subsection{Assistente virtual com IA}
 
-\par A assistente virtual com inteligência artificial será uma das funcionalidade do projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, o assistente será capaz de compreender e responder a perguntas, fornecer orientações e realizar tarefas automatizadas.
+\par A assistente virtual com inteligência artificial constitui uma das funcionalidades implementadas e testadas no projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, a assistente é capaz de compreender e responder a perguntas, fornecer orientações e realizar tarefas automatizadas, com restrições específicas ao tema de violência doméstica e à Lei nº 11.340/2006.
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
   \vspace {1cm}
@@ -828,7 +831,7 @@ para uso:
 
 \par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. A entrega está prevista para a data de \textbf{março de 2026}, estando dentro do período da prestação de contas, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interessadas).
 
-\par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
+\par No tocante à assistente virtual com inteligência artificial, foram realizados testes com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Os resultados obtidos são promissores, tendo sido validadas respostas com restrições ao tema de violência doméstica e conformidade com a Lei Maria da Penha. A integração completa da funcionalidade na plataforma principal, com disponibilização para os usuários finais, está condicionada à aprovação formal das instituições participantes e às etapas de validação operacional previstas no TRL 7.
 
 \par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões.
 
