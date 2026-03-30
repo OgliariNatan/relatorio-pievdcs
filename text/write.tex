@@ -380,13 +380,23 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \par O módulo permite o registro de ocorrências com tipificação dos crimes, vinculação de vítimas e agressores previamente cadastrados na plataforma e acompanhamento do andamento das investigações. A integração com os demais módulos do sistema facilita o acesso imediato ao histórico de medidas protetivas vigentes.
 
 \subsubsection{Rede de atenção municipal (CREAS, CRAS, CAPS e Secretaria da Saúde)}
-\par IMPLEMNTAR
+\par Os módulos destinados aos serviços municipais de assistência — CREAS (Centro de Referência Especializado de Assistência Social), CRAS (Centro de Referência de Assistência Social), CAPS (Centro de Atenção Psicossocial) e Secretaria da Saúde — compartilham a mesma estrutura de funcionalidades, adaptada ao contexto de cada instituição. A página inicial de cada módulo apresenta a seção de \textbf{Ações Rápidas} com os seguintes recursos:
+
+\begin{itemize}
+    \item \textbf{Registrar Atendimento:} formulário para registro de atendimentos individuais ou em grupo, vinculando os participantes ao registro institucional;
+    \item \textbf{Atendimentos Realizados:} painel com visualização dos atendimentos mais recentes, exibindo o número sequencial do atendimento, os participantes com seus respectivos CPFs e acesso à listagem completa via botão \textit{``Ver todos os atendimentos''};
+    \item \textbf{Buscar por CPF:} consulta de atendimentos vinculados a um CPF específico;
+    \item \textbf{Relatório por CPF:} geração de relatório consolidado dos atendimentos realizados, filtrado por CPF;
+    \item \textbf{Consultar MPU:} visualização das medidas protetivas de urgência cadastradas no sistema.
+\end{itemize}
+
+\par A página também exibe \textit{cards informativos} com indicadores do mês corrente: total de \textbf{atendimentos realizados} com comparativo percentual em relação ao mês anterior, e o número de \textbf{tipos de atendimento cadastrados} na instituição.
 
 \subsubsection{Mensageria em Tempo Real}
 \par O módulo de mensageria permite que usuários e instituições troquem notificações de forma instantânea dentro da plataforma. Sustentado pela infraestrutura de \textbf{Django Channels} e \textbf{Redis} descrita na seção \ref{sec:channels_redis}, o módulo expõe ao usuário final as seguintes funcionalidades:
 
 \begin{itemize}
-   \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma comarca);
+   \item Envio de mensagens para usuários individuais ou para grupos institucionais inteiros (por exemplo, toda a equipe de uma instituição);
    \item Classificação por prioridade — \textbf{Baixa}, \textbf{Normal}, \textbf{Alta} e \textbf{Urgente} — destacando situações de risco imediato;
    \item Rastreamento de status por mensagem: \textbf{Não lida}, \textbf{Todas} e \textbf{Prioritárias}, garantindo auditabilidade das comunicações institucionais;
    \item APIs REST para contadores de notificações não lidas e listagem das mensagens recentes, integradas à barra de navegação de cada instituição.
@@ -406,24 +416,26 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
    Fonte: O autor (2026)}
 \end{figure}
 
-\par De igual modo as notiifcações em tempo real são renderizadas ao colaborador de acorda com a figura \ref{card-notifi}, onde é possível visualizar as mensagens recebidas, com destaque para as notificações prioritárias. O sistema de mensageria é integrado à barra de navegação, exibindo um contador de mensagens não lidas e permitindo acesso rápido às notificações recentes, garantindo que os usuários estejam sempre informados sobre atualizações críticas relacionadas às suas atividades institucionais.
+\par De igual modo as notiifcações em tempo real são renderizadas ao colaborador de acordo com a figura \ref{card-notifi}, onde é possível visualizar as mensagens recebidas, com destaque para as notificações prioritárias. O sistema de mensageria é integrado à barra de navegação, exibindo um contador de mensagens não lidas e permitindo acesso rápido às notificações recentes, garantindo que os usuários estejam sempre informados sobre atualizações críticas relacionadas às suas atividades institucionais.
 \begin{figure}[H]
    \centering
    \caption{Sistema de informação para notificações não lidas}
    \subfigure[Informação de notificação]{\includegraphics[width=0.4\textwidth]{figure/mensageria/card_not.png}}
    \subfigure[Informação de notificação lateral]{\includegraphics[width=0.4\textwidth]{figure/mensageria/card_not1.png}}
+   
    \label{card-notifi}
 
    {\fontsize{10pt}{\baselineskip}\selectfont
    Fonte: O autor (2026)}
 \end{figure}
 
-\par Para que o sistema funcione em 'tempo real', alguns ajustes do ponto de vista técnico são necessários, a exemplo da figura \ref{notificacao-os}, onde é possível observar a notificação sendo exibida pelo sistema operacional, mesmo com a aba do navegador fechada. Para isso, foi necessário configurar o sistema de notificações do navegador para permitir que as mensagens sejam exibidas mesmo quando o usuário não está ativamente utilizando a plataforma, garantindo que informações críticas sejam recebidas e visualizadas imediatamente, independentemente do estado da aplicação. 
+\par Para que o sistema funcione em 'tempo real', alguns ajustes do ponto de vista técnico são necessários, a exemplo da figura \ref{notificacao-os}, onde é possível observar a notificação sendo exibida pelo sistema operacional, mesmo com a aba do navegador fechada. Para isso, foi necessário configurar o sistema de notificações do navegador \ref{fig:aceite_notificacao_os} para permitir que as mensagens sejam exibidas mesmo quando o usuário não está ativamente utilizando a plataforma, garantindo que informações críticas sejam recebidas e visualizadas imediatamente, independentemente do estado da aplicação. 
 \begin{figure}[H]
    \centering
    \caption{Sistema de notificações pelo Sistema Operacional}
    \subfigure[Notificação pelo Sistema Operacional]{\includegraphics[width=0.4\textwidth]{figure/mensageria/noti_SO.png}}
    \subfigure[Notificação pelo navegador]{\includegraphics[width=0.4\textwidth]{figure/mensageria/notifi_auto.png}}
+   \subfigure[Aceite de Notificação pelo sistema operacional]{\label{fig:aceite_notificacao_os} \includegraphics[width=0.4\textwidth]{figure/mensageria/ativa_notificacao_os.png}}
    \label{notificacao-os}
 
    {\fontsize{10pt}{\baselineskip}\selectfont
@@ -450,7 +462,7 @@ Algumas técnicas adotadas incluem:
    \begin{itemize}
       \item Envio de notificações para usuários individuais ou grupos institucionais;
       \item Classificação por prioridade (baixa, normal, alta, urgente);
-      \item Rastreamento de status (não lida, Todas, Prioritárias); 
+      \item Rastreamento de status (Não Lida, Todas, Prioritárias); 
       %\item APIs REST para contadores e listagens de notificações recentes.
    \end{itemize}
 
@@ -464,7 +476,7 @@ Algumas técnicas adotadas incluem:
    \begin{itemize}
       \item Proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)};
       \item Configuração de CORS para APIs;
-      \item Sessões com tempo limite configurável (\tempo_secao{} segundos);
+      \item Sessões com tempo limite configurável (\tempo_secao{} segundos) - \texttt{Influência nas notificaçãos no sistema operacional} -;
       \item Cookies HTTP-only e SameSite;
       \item Separação de variáveis sensíveis com \textit{Dotenv};
       \item Sistema de \textit{logging} customizado para auditoria.
@@ -495,7 +507,7 @@ Algumas técnicas adotadas incluem:
 
 \par Estão sendo implementados modelos de inteligência artificial utilizando o Ollama, com restrições específicas ao tema de violência doméstica e à Lei nº 11.340/2006 (Lei Maria da Penha). O objetivo é desenvolver uma assistente virtual capaz de oferecer atendimento qualificado às vítimas e ao público em geral, garantindo conformidade legal e segurança nas respostas.
 
-\par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense atraves do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
+\par Para fins de teste, está sendo utilizado o servidor de desenvolvimento do Django o (\textit{Django server}\footnote{Pode ser acessado dentro da rede do estado Catarinense através do 10.40.22.46:8000}). Na versão de produção, o servidor elencado foi o \textbf{Nginx}. O \textit{deploy} da aplicação esta sendo implementado na plataforma \textbf{Hostinger}, permitindo a validação da interface do usuário e de suas funcionalidades em ambiente real.
 
 \par Adicionalmente, foi dada atenção à experiência do usuário (UX) por meio de microinterações. Os componentes modais da plataforma foram aprimorados para seguir padrões de usabilidade consolidados: agora, além do clique no botão de fechar ('X'), os modais podem ser dispensados pressionando a tecla \textbf{ESC} ou clicando em qualquer área externa a eles. Tais melhorias, embora simples, contribuem para uma navegação mais fluida e intuitiva.
 
@@ -506,15 +518,14 @@ A seguir estão listadas as principais funcionalidades implementadas:
 \begin{itemize}
     \item \textbf{Estrutura de dados completa}: Modelos Django para vítimas, agressores, filhos, usuários, estados, municípios, comarcas e formulários especializados;
     
-    \item \textbf{Sistema de autenticação robusto}: Login customizado com usuários estendidos (\texttt{CustomUser}), CPF, telefone, data de nascimento, gênero, Foto de perfil e vinculação institucional;
+    \item \textbf{Sistema de autenticação robusto}: Login customizado com usuários estendidos (\texttt{CustomUser}), CPF, telefone, data de nascimento, gênero, foto de perfil e vinculação institucional;
     
     \item \textbf{Gestão de grupos e permissões}: Sistema automatizado de criação de grupos institucionais (\numero_instituicoes{} grupos) com permissões granulares específicas por app (Sistema de Justiça, Segurança Pública, Município) e por instituições;
     
-    \item \textbf{Formulário de Medida Protetiva extenso}: Implementado na Defensoria Pública com mais de 35 campos detalhados sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária;
+    \item \textbf{Formulário de Medida Protetiva extenso}: Implementado com mais de 35 campos detalhados sobre tipos de violência, condutas de controle, ameaças, uso de tecnologia/IA para manipulação e violência vicária;
     
-    \item \textbf{Registro de Ocorrências e acompanhamentos}: Polícia Militar (com 14 tipos de patrulha), Polícia Civil (investigação e flagrantes), Polícia Penal (atendimentos individuais e em grupo com agressores);
     
-    \item \textbf{Sistema de Notificações em Tempo Real}: WebSocket com Django Channels, envio para usuários/grupos, prioridades (Normal, Urgente, Crítica), status (Não lida, Lida, Arquivada);
+    \item \textbf{Sistema de Notificações em Tempo Real}: WebSocket com Django Channels, envio para usuários/grupos, prioridades (Baixa, Normal, Alta, Urgente), status (Não lida, Lida, Arquivada);
     
     \item \textbf{Dashboards estatísticos públicos}: Gráficos de tipos de violência, medidas protetivas por comarca, mapas geográficos (Leaflet.js + OpenStreetMap) com dados anonimizados;
     
@@ -534,7 +545,7 @@ A seguir estão listadas as principais funcionalidades implementadas:
 
 \begin{table}[H]
 \centering
-\caption{Comparativo de performance pós-otimizações (Janeiro 2026)}
+\caption{Comparativo de performance pós-otimizações.}
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Operação} & \textbf{Antes} & \textbf{Depois} & \textbf{Melhoria} \\
@@ -548,6 +559,8 @@ Busca por CPF & 2.1s & 0.4s & 81.0\% \\
 \end{tabular}
 
 \label{tab:performance}
+%\flushleft
+%\raggedleft
 {\fontsize{10pt}{\baselineskip}\selectfont
     Fonte: O autor (2026)}
 \end{table}
@@ -593,7 +606,7 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
 
 \par Este volume de 6.000 registros -e aumentando progressivamente- permite testar a escalabilidade da plataforma, validar a performance das consultas no banco de dados PostgreSQL e verificar o comportamento das interfaces com cargas realistas. As otimizações implementadas em janeiro de 2026, especialmente a paginação via HTMX no módulo da Polícia Militar, foram validadas com esta base, demonstrando manutenção de performance adequada mesmo com volume significativo de dados.
 
-\par É importante ressaltar que todos os registros são \textbf{dados fictícios gerados automaticamente}, em conformidade com as diretrizes do projeto piloto (TRL 6-7) que estabelecem a não utilização de dados reais de vítimas durante a fase de desenvolvimento e testes. A transição para dados reais ocorrerá apenas após aprovação formal das \numero_instituicoes{} instituições participantes e implementação da infraestrutura de produção definitiva (TRL 8-9).
+\par É importante ressaltar que todos os registros são \textbf{dados fictícios gerados automaticamente}, em conformidade com as diretrizes do projeto piloto (TRL 6-7) que vedam o uso de dados reais de vítimas durante a fase de desenvolvimento e testes. A transição para dados reais ocorrerá apenas após aprovação formal das \numero_instituicoes{} instituições participantes e implementação da infraestrutura de produção definitiva (TRL 8-9).
 
 \begin{figure}[H]
     \center
@@ -656,11 +669,11 @@ Média de cadastros por mês (simulado) & $\sim$200 registros \\
 
 Funcionalidades em desenvolvimento:
 \begin{itemize}
-    \item \textbf{Módulo Municipal} Conclusão dos fluxos de atendimento no CRAS, CAPS e Secretaria da Saúde
-    \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
-    \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
-    \item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
-    \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
+   \item \textbf{Módulo Municipal} Conclusão dos fluxos de atendimento no CRAS, CAPS e Secretaria da Saúde
+   \item \textbf{Integração Avançada entre Apps} Fluxos completos de encaminhamento entre órgãos
+   \item \textbf{Painel Administrativo Avançado} Customização do admin para fluxos institucionais
+   %\item \textbf{Testes Automatizados} Cobertura de testes unitários e de integração
+   \item \textbf{Aprimoramento de Relatórios} Novos filtros, exportação de dados, relatórios customizados por perfil
 \end{itemize}
 
 
@@ -675,7 +688,7 @@ Funcionalidades Pendentes:
 
 \subsection{Assistente virtual com IA}
 
-\par A assistente virtual com inteligência artificial será uma das funcionalidade do projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, o assistente será capaz de compreender e responder a perguntas, fornecer orientações e realizar tarefas automatizadas.
+\par A assistente virtual com inteligência artificial é uma das funcionalidades do projeto, permitindo interações mais naturais e eficientes entre os usuários e a plataforma. Utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, o assistente será capaz de compreender e responder a perguntas e fornecer orientações.
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
   \vspace {1cm}
