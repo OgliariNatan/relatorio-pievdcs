@@ -711,7 +711,7 @@ Funcionalidades Pendentes:
 \\
 
 
-\par Implementado e testado alguns modelos de linguagem com Ollama, algumas figuras de desempenho e respostas obtidas. Frisa-se que, alguns modelos detem de um elevado tempo de respostas isso é devido a restrição de \textit{hardware}.
+\par Implementado e testado alguns modelos de linguagem com Ollama, algumas figuras \ref{fig:modelos_ia} de desempenho e respostas obtidas. Frisa-se que, alguns modelos detem de um elevado tempo de respostas isso é devido a restrição de \textit{hardware}.
 
 
 \begin{figure}[H]
@@ -777,7 +777,7 @@ Funcionalidades Pendentes:
 \end{figure}
 
 \par As mensagens são obtidas através de uma API de citações motivacionais, garantindo variedade e relevância. A cada período estipulado à plataforma, uma nova mensagem é exibida, proporcionando um ambiente acolhedor e encorajador para as vítimas. Este recurso visa criar um espaço de apoio emocional. A plataforma de consulta as mensagens denomina-se \textbf{ZenQuotes API}, que é uma API gratuita que fornece citações motivacionais e inspiradoras de diversos autores. A integração com esta API permite que a plataforma exiba mensagens motivacionais atualizadas regularmente, contribuindo para o bem-estar emocional das vítimas de violência doméstica e usuários da plataforma.
-\par A API fornece frases no idioma inglês, e para garantir a acessibilidade e compreensão das mensagens, foi implementado um sistema de tradução automática utilizando a biblioteca \textit{Argostranslate}. Este sistema traduz as citações para o português antes de exibi-las na plataforma, de forma gratuita e local. 
+\par A API fornece frases no idioma inglês, e para garantir a acessibilidade e compreensão das mensagens, foi implementado um sistema de tradução automática utilizando a biblioteca \texttt{Argostranslate}. Este sistema traduz as citações para o português antes de exibi-las na plataforma, de forma gratuita e local. 
 
 para uso:
 
@@ -820,7 +820,7 @@ para uso:
 \par O desenvolvimento da plataforma PIEVDCS tem sido conduzido de forma iterativa e incremental, com merges regulares à branch principal através de pull requests documentados. 
 
 \subsection{Ciclo de Desenvolvimento}
-\par Entre julho de 2025 e março de 2026, foram realizados mais de 40 pull requests (PRs \#74 a \#115), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
+\par Entre julho de 2025 e março de 2026, foram realizados mais de 100 pull requests (PRs \#74 a \#174), demonstrando um ritmo consistente de desenvolvimento. Cada PR representa um conjunto coeso de funcionalidades testadas e validadas antes da integração.
 
 \par Os principais marcos de desenvolvimento incluem:
 
@@ -835,11 +835,11 @@ para uso:
     
    \item[Fevereiro 2026] Evolução de acessibilidade e funcionalidades institucionais: no módulo \texttt{MAIN}, foi incorporado recurso de \textbf{tradução/interpretação em Libras} (PR \#108), ampliando inclusão e acessibilidade. No módulo de \textbf{Segurança Pública}, foi adicionada a \textbf{visualização de histórico} nas consultas totais da Polícia Militar (PR \#110), fortalecendo a análise contextual de atendimentos. No eixo \textbf{Municipal}, houve avanço expressivo no \textbf{CREAS}, com implementação de rotinas de \textbf{registro de atendimentos e acompanhamento de casos} (PR \#114), consolidando a trilha de atendimento psicossocial e a rastreabilidade do acompanhamento institucional.
 
-   \item[Março 2026] Consolidação do módulo de \textbf{Mensageria em Tempo Real} com WebSockets via Django Channels e Redis, incluindo suporte a prioridades de mensagens e rastreamento de status de leitura. Atualização do formulário de \textbf{Medidas Protetivas de Urgência} da Defensoria Pública com tratamento técnico do período indeterminado (armazenamento de 100 anos para medidas sem prazo definido), evitando informações deslocadas no sistema. Incorporação do campo de \textbf{violência vicária} no formulário de MPU, permitindo o registro detalhado dessa modalidade específica de violência. Implementação do módulo da \textbf{Polícia Civil} com suporte ao registro de ocorrências, flagrantes e consulta de histórico integrado. Ampliação do volume de dados de teste para validação de escalabilidade e continuidade dos ajustes de performance nas consultas PostgreSQL.
+   \item[Março 2026] Consolidação do módulo de \textbf{Mensageria em Tempo Real} com WebSockets via Django Channels e Redis, incluindo suporte a prioridades de mensagens e rastreamento de status de leitura. Atualização do formulário de \textbf{Medidas Protetivas de Urgência} com tratamento técnico do período indeterminado (armazenamento de 100 anos para medidas sem prazo definido), evitando informações deslocadas no sistema. Incorporação do campo de \textbf{violência vicária} no formulário de MPU, permitindo o registro detalhado dessa modalidade específica de violência. Implementação do módulo da \textbf{Polícia Civil} com suporte ao registro de ocorrências, flagrantes e consulta de histórico integrado. Ampliação do volume de dados de teste para validação de escalabilidade e continuidade dos ajustes de performance nas consultas PostgreSQL.
 \end{description}
 
 \par A \textit{branch} principal de desenvolvimento utilizada é a \texttt{63-ogliari}, que consolida o trabalho técnico do reeducando responsável pela implementação. Essa \textit{branch} é periodicamente sincronizada com a \textit{branch} \texttt{main} após revisões e validações funcionais, garantindo que as entregas integradas estejam estáveis e coerentes com o baseline do projeto.
-\par O repositório do relatório está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, com histórico completo de desenvolvimento versionado e documentado. Até março de 2026, o projeto acumulava mais de 630 \textit{commits}, refletindo o ciclo iterativo e incremental adotado na evolução da plataforma.
+\par O repositório do relatório está disponível em \href{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}{https://github.com/OgliariNatan/relatorio-pievdcs/blob/main/main.pdf}, com histórico completo de desenvolvimento versionado e documentado. Até março de 2026, o projeto acumulava mais de 780 \textit{commits}, refletindo o ciclo iterativo e incremental adotado na evolução da plataforma.
 
 \begin{figure}[h]
    \center
@@ -854,21 +854,17 @@ para uso:
 \par A figura \ref{fig:commits_mes}, que representa o gráfico de bolhas reais da primeira semana de março de 2026, evidencia uma exemplificação de horas trabalhadas na semana e nos arquivos. O gráfico reflete a intensidade e a distribuição do trabalho realizado, destacando os arquivos mais modificados e o volume de horas dedicadas a cada um.
 
 
-%% Considerações Finais
+
 \section{Considerações Finais}
 
+\par O projeto PIEVDCS foi entregue em \textbf{abril de 2026}, dentro do prazo previsto para prestação de contas. A plataforma integra \numero_instituicoes{} instituições de segurança pública, justiça e assistência social em um único ambiente digital, sistematizando os fluxos institucionais de enfrentamento à violência doméstica e crimes sexuais.
 
-\par O projeto PIEVDCS encontra-se em estágio avançado de desenvolvimento, com aproximadamente \textbf{85\% das funcionalidades previstas já implementadas e testadas}. Entre os avanços recentes (março 2026), destacam-se a implementação do sistema de mensageria em tempo real com WebSockets, a atualização do formulário de Medidas Protetivas de Urgência para tratamento técnico do período indeterminado, a incorporação do campo de violência vicária e a estruturação do módulo da Polícia Civil, ampliando a capacidade de registro e integração das ocorrências policiais.
+\par A implementação consolidou mais de 17 módulos funcionais com interfaces customizadas por perfil institucional, sistema de permissões granular, notificações em tempo real via WebSockets e dashboards estatísticos públicos operacionais. O desenvolvimento foi conduzido com metodologia Scrum, em ciclo iterativo e incremental, acumulando mais de 780 \textit{commits} e mais de 100 \textit{pull requests} documentados entre julho de 2025 e março de 2026.
 
-\par A plataforma já possui mais de 17 módulos funcionais distribuídos entre as \numero_instituicoes{} instituições participantes, com interfaces customizadas, sistema de permissões granular, notificações em tempo real e dashboards estatísticos públicos operacionais.
+\par Por tratar-se de um \textbf{projeto piloto} (TRL 6-7), a plataforma foi desenvolvida e validada em ambiente controlado, com dados fictícios gerados por automação, em conformidade com as diretrizes que vedam o uso de dados reais de vítimas nesta fase. Consolidada esta etapa, o próximo passo é a implementação em ambiente de produção definitiva (TRL 8-9), com integração de dados reais após aprovação formal das instituições participantes.
 
-\par No momento, o foco está na construção dos fluxos de integração entre os órgãos, aprimoramento de velocidades nas consultas, testes e customizações de acordo com os perfis institucionais.
+\par No tocante à assistente virtual com inteligência artificial, foram realizados testes com modelos de linguagem de grande escala (LLMs) via Ollama, demonstrando viabilidade técnica para incorporação futura no suporte às vítimas.
 
-\par Por se tratar de um sistema que será utilizado por múltiplas instituições, sua conclusão depende da validação progressiva por parte dos usuários finais — como operadores do sistema, representantes da segurança pública, órgãos do Judiciário e Órgãos Municipais. A metodologia adotada é o Scrum, com entregas em sprints iterativos. A entrega está prevista para a data de \textbf{março de 2026}, estando dentro do período da prestação de contas, já que cada etapa é condicionada à disponibilidade para reuniões, testes e aprovação por parte dos \textit{stakeholders}\footnote{No contexto do desenvolvimento de sistemas, \textit{stakeholders} são todas as pessoas, grupos ou organizações que têm interesse direto ou indireto no projeto, incluindo usuários finais, clientes, desenvolvedores, patrocinadores, gestores e demais partes envolvidas no processo de criação, aprovação e uso do sistema.} (Pessoas Interessadas).
-
-\par No tocante à assistente virtual com inteligência artificial, foram realizados testes iniciais com modelos de linguagem de grande escala (LLMs) utilizando a plataforma Ollama. Embora os resultados sejam promissores, a integração completa dessa funcionalidade na plataforma principal ainda está em fase de planejamento e desenvolvimento.
-
-\par Este projeto é um \textbf{projeto piloto}, desenvolvido para testar a plataforma em um ambiente controlado e obter feedback prático das instituições envolvidas. Essa etapa inicial é fundamental para ajustar funcionalidades, identificar melhorias e garantir que a solução atenda efetivamente às demandas antes de uma possível expansão para outras regiões.
+\par Ajustes operacionais seguirão sendo necessários à medida que os usuários finais — operadores do sistema, representantes da segurança pública, órgãos do Judiciário e órgãos municipais — interajam com a plataforma em ambiente real. Essa natureza iterativa é inerente a sistemas institucionais complexos e está prevista na metodologia adotada.
 
 \par Além de seu impacto direto no enfrentamento à violência de gênero, o projeto promove inclusão e ressocialização, ao contar com a atuação técnica de um reeducando em ambiente supervisionado. A proposta comprova o potencial transformador da tecnologia aliada à reintegração social.
-
