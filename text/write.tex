@@ -205,7 +205,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par Com relação ao banco de dados, a sua configuração ficou a cargo do PostgreSQL 14, com acesso local e configurações passadas para o Django através de variáveis de ambientes.
 
 \subsubsection{O domínio}
-\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP\footnote{IP é como se fosse o endereço da sua casa, mas na internet.} (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
+\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
 \par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é gerenciado e renovado automaticamente via \textit{Let's Encrypt}, assegurando continuidade na proteção das conexões.
 
 \subsection{Dos Scripts}\label{script}
@@ -219,8 +219,8 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
    \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio apenas uma vez;
    \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado", apenas uma vez;
    \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no site do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
-   \item [Importa Limites de Bairros] (descrever)
-   \item [Limites IBGE] (descrever)
+   %\item [Importa Limites de Bairros] (descrever)
+   \item [Limites IBGE] Busca os limites do IBGE para cada município e os cadastra no banco de dados, permitindo a visualização geoespacial das ocorrências;
    \item [Gera Vítimas] Cadastra aleatoriamente vítimas geradas randomicamente. Utilizado para popular a base de testes com volume realista;
    \item [Gera Agressores] Cadastra aleatoriamente Agressores gerados randomicamente. Utilizado para popular a base de testes;
    \item [Cadastro de MP e MPU] Gera aleatoriamente Medidas Protetivas e Medidas Protetivas de Urgência e cadastra na seção competente da \textbf{Defensoria Pública}. Responsável pela geração dos 6.000 registros utilizados nos testes de performance e escalabilidade;
