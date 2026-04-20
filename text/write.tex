@@ -15,7 +15,7 @@
 
 \noindent \begin{minipage}[c]{0.6\textwidth}
   \vspace {1cm}
-  A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência, promovendo agilidade e efetividade no atendimento às vítimas e conscientização dos agressores.
+  A Plataforma Integrada de Informações para Enfrentamento à Violência Doméstica e Crimes Sexuais (PIEVDCS) é uma solução digital desenvolvida com base no \textit{framework} Django, no modelo SaaS (Software como Serviço). Seu objetivo é integrar instituições como segurança pública, Ministério Público, Poder Judiciário, Defensoria Pública e serviços municipais de assistência social, promovendo agilidade e efetividade no atendimento às vítimas e conscientização dos agressores.
 
   
 \end{minipage}
@@ -66,7 +66,7 @@
 
 \subsection{Django}
 \par Segundo \citeonline{django:2025}, Django é um framework de desenvolvimento web escrito em Python, amplamente reconhecido por acelerar a criação de aplicações robustas e escaláveis. Seu diferencial está na abordagem \textit{"batteries included"}, oferecendo nativamente funcionalidades essenciais como autenticação, painel administrativo, mapeamento objeto-relacional (ORM) e roteamento de URLs (\textit{Uniform Resource Locator}).
-\par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}\footnote{Aprendizado de máquina}, como \texttt{scikit-learn}, \texttt{TensorFlow}, \texttt{PyTorch}, \texttt{Ollama}, dentre outras. Viabilizando, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
+\par Outro fator decisivo na escolha do Django é sua natureza nativa em Python, o que possibilita fácil integração com bibliotecas de \textit{machine learning}\footnote{Aprendizado de máquina}, como \texttt{scikit-learn}, \texttt{TensorFlow}, \texttt{PyTorch}, \texttt{Ollama}, dentre outras. Isso viabiliza, em futuras versões do sistema, a implementação de modelos preditivos capazes de analisar parâmetros operacionais e sugerir ações estratégicas de maneira automatizada e inteligente.
 
 \subsection{Banco de dados: PostgreSQL}
 \par \citeonline{postgresql:2025} é um sistema de gerenciamento de banco de dados objeto-relacional de código aberto, com mais de 35 anos de desenvolvimento ativo, considerado um dos mais avançados e robustos do mercado. Conta com integração nativa ao Django.
@@ -170,12 +170,12 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
    \item Estabelecimento de governança institucional permanente - para o armazenamento dos dados reais.
 \end{enumerate}
 
-\par A decisão estratégica de limitar o escopo ao \textbf{TRL 7} está alinhada com a natureza de \textbf{projeto piloto} da iniciativa, para que o estado possua as informações sensiveis armazenadas. Esta abordagem permite validação técnica e operacional em escala controlada antes de uma possível expansão futura, minimizando riscos técnicos, organizacionais e financeiros. O modelo piloto possibilita ajustes iterativos baseados em \textit{feedback} real dos usuários, demonstra a viabilidade da solução em condições operacionais reais e gera evidências concretas de valor agregado.
+\par A decisão estratégica de limitar o escopo ao \textbf{TRL 7} está alinhada com a natureza de \textbf{projeto piloto} da iniciativa, para que o estado possua as informações sensíveis armazenadas. Esta abordagem permite validação técnica e operacional em escala controlada antes de uma possível expansão futura, minimizando riscos técnicos, organizacionais e financeiros. O modelo piloto possibilita ajustes iterativos baseados em \textit{feedback} real dos usuários, demonstra a viabilidade da solução em condições operacionais reais e gera evidências concretas de valor agregado.
 
 \par O acompanhamento sistemático da evolução do projeto através da metodologia TRL, conforme padronizada pela NBR ISO 16290:2015, permite aos \textit{stakeholders} (gestores públicos e instituições participantes) compreender claramente o estágio atual de maturidade da tecnologia, os riscos associados a cada fase de transição e os próximos passos necessários para avançar rumo a uma solução completamente operacional e escalável no combate à violência doméstica e crimes sexuais.
 
 \section{Implementação para testes e validações}
-\par Para os testes iniciais e validações, as informações são geradas automaticamente através de \textit{script python} \ref{script}, por se tratar de dados vulneráveis, não será utilizados informações reais nesta etapa do processo.
+\par Para os testes iniciais e validações, as informações são geradas automaticamente por meio de scripts em Python, conforme a Seção \ref{script}; por se tratar de dados vulneráveis, não serão utilizadas informações reais nesta etapa do processo.
 
 
 
@@ -202,7 +202,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par Com relação ao banco de dados, a sua configuração ficou a cargo do PostgreSQL 14, com acesso local e configurações passadas para o Django através de variáveis de ambientes.
 
 \subsubsection{O domínio}
-\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domíno foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
+\par O domínio a ser utilizado é o \href{https://www.redecontraaviolencia.org}{https://www.redecontraaviolencia.org}, seu registro foi feito no dia 05 de agosto de 2025, terá validade de 1 ano (05/08/2026), o custo do domínio foi de R\$51,08 e o registro foi pela empresa \href{https://www.hostinger.com/br}{Hostinger}. Podendo a aplicação ser acessada através de seu IP (Protocolo de Internet), e de sua porta de serviço. \href{62.72.9.77:8000}{62.72.9.77:8000}.
 \par Para a aplicação foi configurado um certificado TLS (Transport Layer Security), garantindo a segurança na comunicação entre o servidor e os usuários. O certificado é gerenciado e renovado automaticamente via \textit{Let's Encrypt}, assegurando continuidade na proteção das conexões.
 
 \subsection{Dos Scripts}\label{script}
@@ -213,7 +213,7 @@ Link: (https://github.com/chartjs/Chart.js/graphs/contributors).
 \par Funcionalidades implementadas nos \textit{script}:
 
 \begin{description}
-   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Extrangeiro} - Script para configuração da plataforma, pode ser executado no inicio;
+   \item [Cria Estado] Função que cria no banco de dados todos os estados da federação e um estado \textbf{"EX" - Estrangeiro} - Script para configuração da plataforma, pode ser executado no início;
    \item [Atribui Município] Script que atribui todos os municípios de cada respectivo estado, evitando duplicidade e relacionando com o estado pertinente, deverá ser executado após o "Cria Estado";
    \item [Cria Comarca] Funcionalidade que cria todas as comarcas do estado Catarinense com base no sitio do Tribunal de Justiça Catarinense, \href{https://www.tjsc.jus.br/paginas-das-comarcas}{https://www.tjsc.jus.br/paginas-das-comarcas};
    %\item [Importa Limites de Bairros] (descrever)
@@ -270,7 +270,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
       \item \textbf{Polícia Militar}: Registro de atendimentos por tipo de patrulha (Radio Patrulha, Emergência 190, Policiamento Montado, etc.), consulta completa das MPU com formulários preenchidos e com indicação de reincidência e consulta da reincidência tanto da vítima quanto do agressor, geração de relatórios de atendimentos de rede catarina com comunicação em tempo real da possível descomprimento da medida protetiva.
    \end{itemize}
    
-   \item[\texttt{municipio}]\footnote{No inicio possuíamos o conselho tutelar, no entanto, como não se trata de uma equipe técnica, mas sim de conselheiros eleitos pela sociedade, optamos por não incluí-los como um grupo institucional, devido a informações críticas contidas na plataforma.} Abrange serviços municipais de assistência:
+   \item[\texttt{municipio}]\footnote{Inicialmente possuíamos o conselho tutelar, no entanto, como não se trata de uma equipe técnica, mas sim de conselheiros eleitos pela sociedade, optamos por não incluí-los como um grupo institucional, devido a informações críticas contidas na plataforma.} Abrange serviços municipais de assistência:
    \begin{itemize}
       \item CRAS (Centro de Referência de Assistência Social);
       \item CREAS (Centro de Referência Especializado de Assistência Social);
@@ -329,7 +329,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
    \item \textbf{Listagem de MPUs:} Visualização de todas as medidas ativas e encerradas, com filtros por comarca, vítima, agressor e status;
    \item \textbf{Consultas de atendimentos pela REDE CATARINA:} Consulta os atendimentos realizados pela rede de proteção à mulher, permitindo acompanhamento detalhado das ações e suporte às vítimas e sendo notificada quando a rede relatar um descumprimento.
    \item \textbf{Consultas de atendimentos dos agressores:} Consulta os atendimentos realizados com os agressores, permitindo acompanhamento detalhado das ações e participação nos grupos reflexivos.
-   \item \textbf{Atualização de MPU} Permite a atalização do formulário abrangendo a violência psicológica.
+   \item \textbf{Atualização de MPU} Permite a atualização do formulário abrangendo a violência psicológica.
 \end{itemize}
 
 \subsubsection{Polícia Penal}
@@ -349,10 +349,10 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
 \subsubsection{Polícia Militar}
 \par A Polícia Militar desempenha um papel crucial no enfrentamento à violência doméstica, sendo frequentemente a primeira força de segurança a estabelecer contato direto com as vítimas em situação de risco. No contexto da plataforma PIEVDCS, o módulo da Polícia Militar foi desenvolvido para otimizar o atendimento emergencial e fortalecer o acompanhamento sistemático das medidas protetivas de urgência.
 
-\par Entre as principais funcionalidades implementadas, destaca-se a capacidade de consulta ao histórico de ocorrências envolvendo a vítima e o agressor. Ao atender uma chamada de violência doméstica, a polícia militar pode acessar imediatamente o sistema para verificar se existem registros anteriores, identificando casos de reincidência e avaliando o grau de risco da situação.
+\par Entre as principais funcionalidades implementadas, destaca-se a capacidade de consulta ao histórico de ocorrências envolvendo a vítima e o agressor. Ao atender uma chamada de violência doméstica, a Polícia Militar pode acessar imediatamente o sistema para verificar se existem registros anteriores, identificando casos de reincidência e avaliando o grau de risco da situação.
 
 
-\par Um dos diferenciais do módulo da Polícia Militar é o suporte à Rede Catarina de Proteção à Mulher. Por meio do sistema, a polícia militar responsável pela fiscalização pode registrar sistematicamente as visitas de acompanhamento às vítimas, verificando se as determinações judiciais estão sendo respeitadas pelo agressor. O sistema permite o registro de informações como: data e horário da fiscalização, situação encontrada (medida cumprida, descumprimento parcial ou total), relato da vítima sobre sua percepção de segurança. Caso se identifique um descumprimento da medida protetiva, o sistema gera automaticamente uma notificação de alerta para a Defensoria Pública, Ministério Público e Poder Judiciário, garantindo que as instituições responsáveis sejam informadas em tempo real sobre a situação de risco da vítima. Essa integração fortalece a rede de proteção e permite uma resposta rápida e coordenada diante de situações de descumprimento das medidas protetivas.
+\par Um dos diferenciais do módulo da Polícia Militar é o suporte à Rede Catarina de Proteção à Mulher. Por meio do sistema, a Polícia Militar responsável pela fiscalização pode registrar sistematicamente as visitas de acompanhamento às vítimas, verificando se as determinações judiciais estão sendo respeitadas pelo agressor. O sistema permite o registro de informações como: data e horário da fiscalização, situação encontrada (medida cumprida, descumprimento parcial ou total), relato da vítima sobre sua percepção de segurança. Caso se identifique um descumprimento da medida protetiva, o sistema gera automaticamente uma notificação de alerta para a Defensoria Pública, Ministério Público e Poder Judiciário, garantindo que as instituições responsáveis sejam informadas em tempo real sobre a situação de risco da vítima. Essa integração fortalece a rede de proteção e permite uma resposta rápida e coordenada diante de situações de descumprimento das medidas protetivas.
 
 \par A seção destinada à Polícia Militar fornece acesso a informações sobre Medidas Protetivas de Urgência. Durante os testes com massa elevada de dados, foram identificados gargalos de performance relevantes para consulta e navegação, especialmente quando o sistema tentava carregar todos os registros simultaneamente.
 
@@ -413,7 +413,7 @@ A estrutura de desenvolvimento adotada é modular, baseada em aplicações Djang
    Fonte: O autor (2026)}
 \end{figure}
 
-\par De igual modo as notiifcações em tempo real são renderizadas ao colaborador de acordo com a figura \ref{card-notifi}, onde é possível visualizar as mensagens recebidas, com destaque para as notificações prioritárias. O sistema de mensageria é integrado à barra de navegação, exibindo um contador de mensagens não lidas e permitindo acesso rápido às notificações recentes, garantindo que os usuários estejam sempre informados sobre atualizações críticas relacionadas às suas atividades institucionais.
+\par De igual modo as notificações em tempo real são renderizadas ao colaborador de acordo com a figura \ref{card-notifi}, onde é possível visualizar as mensagens recebidas, com destaque para as notificações prioritárias. O sistema de mensageria é integrado à barra de navegação, exibindo um contador de mensagens não lidas e permitindo acesso rápido às notificações recentes, garantindo que os usuários estejam sempre informados sobre atualizações críticas relacionadas às suas atividades institucionais.
 \begin{figure}[H]
    \centering
    \caption{Sistema de informação para notificações não lidas}
@@ -473,7 +473,7 @@ Algumas técnicas adotadas incluem:
    \begin{itemize}
       \item Proteção CSRF\footnote{Cross-Site Request Forgery (falsificação de solicitação entre sites)};
       \item Configuração de CORS para APIs;
-      \item Sessões com tempo limite configurável (\tempo_secao{} segundos) - \texttt{Influência nas notificaçãos no sistema operacional} -;
+      \item Sessões com tempo limite configurável (\tempo_secao{} segundos) - \texttt{Influência nas notificações no sistema operacional} -;
       \item Cookies HTTP-only e SameSite;
       \item Separação de variáveis sensíveis com \textit{Dotenv};
       \item Sistema de \textit{logging} customizado para auditoria.
@@ -870,4 +870,4 @@ para uso:
 \href{https://github.com/OgliariNatan/pievdcs}{https://github.com/OgliariNatan/pievdcs}, 
 permitindo auditoria técnica e continuidade do desenvolvimento por equipes futuras.
 
-\par Coloco-me à disposição para ajustes futuros e suporte na implementação, acompanhando as demandas que surgirem junto às instituições participantes ao longo das próximas etapas do projeto.
+\par O desenvolvedor permanece à disposição para ajustes futuros e para prestar suporte à implementação, acompanhando as demandas que surgirem junto às instituições participantes ao longo das próximas etapas do projeto.
